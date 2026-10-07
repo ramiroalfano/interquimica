@@ -1,0 +1,8 @@
+{
+  "name": "InterQuímica Argentina",
+  "description": "Soluciones químicas de alta performance para procesos industriales y limpieza profesional en industrias de alimentos, bebidas, bodegas y frigoríficos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
