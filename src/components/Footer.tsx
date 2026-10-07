@@ -247,7 +247,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
                 />
                 <button
                   type="submit"
-                  className="w-full py-2 px-3 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/30"
+                  className="w-full py-2 px-3 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-md shadow-blue-950/40 border border-blue-400/20"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Enviar Mensaje</span>

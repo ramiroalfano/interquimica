@@ -65,14 +65,14 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 onClick={handleWhatsAppChat}
-                className="flex items-center gap-2 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-colors shadow-lg shadow-blue-600/30"
+                className="flex items-center gap-2 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] rounded-xl transition-colors shadow-lg shadow-blue-950/40 border border-blue-400/20"
               >
                 <span>HABLAR CON UN ESPECIALISTA</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onOpenEscenarios(currentIndustry.id)}
-                className="py-3 px-5 text-xs font-bold uppercase tracking-wider text-blue-300 hover:text-white bg-blue-950/70 hover:bg-blue-600 border border-blue-400/40 rounded-xl transition-colors flex items-center gap-1.5 backdrop-blur-sm"
+                className="py-3 px-5 text-xs font-bold uppercase tracking-wider text-blue-200 hover:text-white bg-[#07234d]/80 hover:bg-[#0b4592] border border-blue-400/30 rounded-xl transition-colors flex items-center gap-1.5 backdrop-blur-sm"
               >
                 <span>Ver Planta Interactiva</span>
                 <Sparkles className="w-3.5 h-3.5" />
@@ -98,13 +98,13 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
                   onClick={() => setCurrentId(ind.id)}
                   className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-between ${
                     isSelected
-                      ? 'bg-blue-50 border-2 border-blue-600 text-blue-900 shadow-md scale-[1.02]'
-                      : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-blue-600 hover:bg-white hover:border-slate-300 shadow-xs'
+                      ? 'bg-blue-50/90 border-2 border-[#0b4592] text-[#07234d] shadow-md scale-[1.02]'
+                      : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-[#0b4592] hover:bg-white hover:border-slate-300 shadow-xs'
                   }`}
                 >
                   <div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center mb-2 transition-colors ${
-                      isSelected ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-600'
+                      isSelected ? 'bg-[#0b4592] text-white' : 'bg-slate-200 text-slate-600'
                     }`}
                   >
                     <Factory className="w-5 h-5" />
@@ -122,7 +122,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
         <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xs space-y-8">
           <div className="border-b border-slate-200 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-600 font-mono">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0b4592] font-mono">
                 SECTOR SELECCIONADO
               </span>
               <h2 className="text-3xl font-extrabold text-slate-900 mt-1">
@@ -135,7 +135,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
 
             <button
               onClick={() => onOpenEscenarios(currentIndustry.id)}
-              className="shrink-0 flex items-center gap-2 py-2.5 px-4 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-600 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
+              className="shrink-0 flex items-center gap-2 py-2.5 px-4 rounded-xl bg-blue-50 text-[#0b4592] border border-blue-200 hover:bg-[#0b4592] hover:text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
             >
               <span>Explorar Escenario 3D</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -145,7 +145,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
           {/* Áreas y procesos de la industria */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
-              <Layers className="w-5 h-5 text-blue-600" />
+              <Layers className="w-5 h-5 text-[#0b4592]" />
               <span>Áreas y procesos clave en {currentIndustry.shortName}</span>
             </h3>
 
@@ -153,10 +153,10 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
               {currentIndustry.areas.map((area) => (
                 <div
                   key={area.id}
-                  className="bg-white border border-slate-200 hover:border-blue-500 rounded-2xl p-5 flex flex-col justify-between transition-all group shadow-xs hover:shadow-md"
+                  className="bg-white border border-slate-200 hover:border-[#0b4592] rounded-2xl p-5 flex flex-col justify-between transition-all group shadow-xs hover:shadow-md"
                 >
                   <div>
-                    <h4 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0b4592] transition-colors">
                       {area.name}
                     </h4>
                     <p className="text-xs text-slate-700 mt-2 font-medium">
@@ -180,7 +180,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
                           <button
                             key={pId}
                             onClick={() => onSelectProduct(prod)}
-                            className="text-xs font-bold py-1 px-2.5 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-600 hover:text-white transition-colors"
+                            className="text-xs font-bold py-1 px-2.5 rounded-lg bg-blue-50 border border-blue-200 text-[#0b4592] hover:bg-[#0b4592] hover:text-white transition-colors"
                           >
                             {prod.name}
                           </button>
@@ -197,7 +197,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
           <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
             <button
               onClick={onNavigateToProducts}
-              className="py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors shadow-md shadow-blue-600/20 flex items-center gap-2"
+              className="py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] rounded-xl transition-colors shadow-md shadow-blue-950/30 flex items-center gap-2 border border-blue-400/20"
             >
               <span>VER PRODUCTOS RECOMENDADOS</span>
               <ArrowRight className="w-4 h-4" />
@@ -224,7 +224,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
           </div>
           <button
             onClick={handleWhatsAppChat}
-            className="shrink-0 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors flex items-center gap-2 shadow-md shadow-blue-600/20"
+            className="shrink-0 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] rounded-xl transition-colors flex items-center gap-2 shadow-md shadow-blue-950/30 border border-blue-400/20"
           >
             <MessageCircle className="w-4 h-4" />
             <span>CONTACTAR ASESOR</span>

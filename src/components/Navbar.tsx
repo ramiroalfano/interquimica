@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           className="px-3 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 cursor-pointer transition-colors flex items-center justify-between"
                         >
                           <span>{ind.name}</span>
-                          <span className="text-[10px] text-blue-400 uppercase font-mono">
+                          <span className="text-[10px] text-[#2c75d8] uppercase font-mono font-bold">
                             Ver
                           </span>
                         </div>
@@ -113,13 +113,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => onNavigate(link.id)}
                 className={`py-2 transition-colors relative whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? 'text-blue-400 font-extrabold'
+                    ? 'text-[#2c75d8] font-extrabold'
                     : 'hover:text-white text-slate-200'
                 }`}
               >
                 <span>{link.label}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0b4592] rounded-full" />
                 )}
               </button>
             );
@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Primary Action Button - darker rich navy/blue */}
           <button
             onClick={onOpenQuote}
-            className="hidden sm:flex items-center gap-1.5 py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#104a99] hover:bg-[#0c3b7a] active:bg-[#092d5e] rounded-xl transition-all shadow-md shadow-blue-950/40 whitespace-nowrap border border-blue-400/20"
+            className="hidden sm:flex items-center gap-1.5 py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] active:bg-[#062450] rounded-xl transition-all shadow-md shadow-blue-950/40 whitespace-nowrap border border-blue-400/20"
           >
             <span>SOLICITAR COTIZACIÓN</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -184,7 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onOpenQuote();
                 setMobileMenuOpen(false);
               }}
-              className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#104a99] hover:bg-[#0c3b7a] rounded-xl flex items-center justify-center gap-2 border border-blue-400/20 shadow-md"
+              className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] rounded-xl flex items-center justify-center gap-2 border border-blue-400/20 shadow-md"
             >
               <span>SOLICITAR COTIZACIÓN</span>
               <ArrowRight className="w-3.5 h-3.5" />

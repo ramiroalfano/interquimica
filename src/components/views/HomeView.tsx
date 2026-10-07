@@ -106,13 +106,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
             {heroSlides[currentSlide].type === 'quimica' ? (
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-display">
                 Química que limpia.<br />
-                <span className="text-blue-500">Resultados que impulsan.</span>
+                <span className="text-[#155fc2] sm:text-[#186be0] font-black">Resultados que impulsan.</span>
               </h1>
             ) : (
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-display">
                 Nuevo concepto<br />
-                de <span className="text-blue-500">limpieza y desinfección</span>,<br />
-                <span className="text-blue-500">sustentable</span><br />
+                de <span className="text-[#155fc2] sm:text-[#186be0] font-black">limpieza y desinfección</span>,<br />
+                <span className="text-[#155fc2] sm:text-[#186be0] font-black">sustentable</span><br />
                 y en un único paso.
               </h1>
             )}
@@ -121,7 +121,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={() => onNavigate('productos')}
-                className="flex items-center gap-2 py-3.5 px-6 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-500 rounded-md transition-all shadow-lg shadow-blue-600/30"
+                className="flex items-center gap-2 py-3.5 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] active:bg-[#062450] rounded-md transition-all shadow-lg shadow-blue-950/40 border border-blue-400/20"
               >
                 <span>VER PRODUCTOS</span>
                 <ArrowRight className="w-4 h-4" />
@@ -163,7 +163,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               key={slide.id}
               onClick={() => setCurrentSlide(idx)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                idx === currentSlide ? 'w-7 bg-blue-500 shadow-sm shadow-blue-500/50' : 'w-2 bg-white/40 hover:bg-white/80'
+                idx === currentSlide ? 'w-7 bg-[#104a99] shadow-sm shadow-blue-500/50' : 'w-2 bg-white/40 hover:bg-white/80'
               }`}
               title={slide.name}
             />

@@ -116,7 +116,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <span
             className={`text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded ${
               isLight
-                ? 'bg-white/95 text-blue-700 border border-slate-200 shadow-xs'
+                ? 'bg-white/95 text-[#0b4592] border border-slate-200 shadow-xs'
                 : 'bg-slate-950/90 text-blue-400 border border-slate-800'
             }`}
           >
@@ -133,7 +133,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               onClick={() => onSelect(product)}
               className={`text-lg font-bold transition-colors cursor-pointer ${
                 isLight
-                  ? 'text-slate-900 group-hover:text-blue-600'
+                  ? 'text-slate-900 group-hover:text-[#0b4592]'
                   : 'text-white group-hover:text-blue-400'
               }`}
             >
@@ -150,7 +150,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           <p
             className={`text-xs font-semibold uppercase tracking-wide mb-2 ${
-              isLight ? 'text-blue-600' : 'text-blue-400'
+              isLight ? 'text-[#0b4592]' : 'text-blue-400'
             }`}
           >
             {product.categoryLabel}
@@ -179,13 +179,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 : 'text-slate-300 hover:text-white bg-slate-800/70 hover:bg-slate-800 border-slate-700/60'
             }`}
           >
-            <FileText className="w-3.5 h-3.5 text-blue-600" />
+            <FileText className={`w-3.5 h-3.5 ${isLight ? 'text-[#0b4592]' : 'text-blue-400'}`} />
             <span>Ver ficha</span>
           </button>
 
           <button
             onClick={() => onRequestQuote(product)}
-            className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors shadow-sm shadow-blue-600/30"
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold text-white bg-[#0b4592] hover:bg-[#083470] rounded-lg transition-colors shadow-sm shadow-blue-950/30"
           >
             <span>Cotizar</span>
             <ArrowRight className="w-4 h-4" />

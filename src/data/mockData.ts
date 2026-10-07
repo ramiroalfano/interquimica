@@ -7,20 +7,28 @@ import {
   TrainingLiveEvent,
 } from '../types.ts';
 
-// Image paths generated from prompt references (optimized lightweight WebP)
+// Direct imports for Vite asset bundling in production & development
+import banner1Img from '../assets/images/banner1.webp';
+import banner2Img from '../assets/images/banner2.webp';
+import banner3Img from '../assets/images/banner3.webp';
+import banner4Img from '../assets/images/banner4.webp';
+import banner5Img from '../assets/images/banner5.webp';
+import banner6Img from '../assets/images/banner6.webp';
+
+// Image paths generated from prompt references (bundled via Vite)
 export const IMAGES = {
-  banner1: '/src/assets/images/banner1.webp', // Frigorífico / Cold room
-  banner2: '/src/assets/images/banner2.webp', // Bodega / Wine barrels
-  banner3: '/src/assets/images/banner3.webp', // Olivícola / Olive oil bottling line
-  banner4: '/src/assets/images/banner4.webp', // Línea de jugos / Juice bottling line
-  banner5: '/src/assets/images/banner5.webp', // Operario espuma / Foam sanitizing
-  banner6: '/src/assets/images/banner6.webp', // Cervecería / Brewery cellar
-  heroBreweryCellar: '/src/assets/images/banner6.webp',
-  operatorFoam: '/src/assets/images/banner5.webp',
-  bottlingConveyor: '/src/assets/images/banner4.webp',
-  frigorificoCold: '/src/assets/images/banner1.webp',
-  oliveOilFacility: '/src/assets/images/banner3.webp',
-  wineCellar: '/src/assets/images/banner2.webp',
+  banner1: banner1Img, // Frigorífico / Cold room
+  banner2: banner2Img, // Bodega / Wine barrels
+  banner3: banner3Img, // Olivícola / Olive oil bottling line
+  banner4: banner4Img, // Línea de jugos / Juice bottling line
+  banner5: banner5Img, // Operario espuma / Foam sanitizing
+  banner6: banner6Img, // Cervecería / Brewery cellar
+  heroBreweryCellar: banner6Img,
+  operatorFoam: banner5Img,
+  bottlingConveyor: banner4Img,
+  frigorificoCold: banner1Img,
+  oliveOilFacility: banner3Img,
+  wineCellar: banner2Img,
 };
 
 export const PRODUCTS: Product[] = [

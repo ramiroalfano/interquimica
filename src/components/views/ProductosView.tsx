@@ -140,7 +140,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 onClick={handleDownloadFullCatalog}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-lg transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0b4592] hover:bg-[#083470] text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-lg shadow-blue-950/40 border border-blue-400/20 transition-all"
               >
                 <FileDown className="w-4 h-4" />
                 <span>Descargar Catálogo Completo</span>
@@ -172,7 +172,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
                   onClick={() => setTypeFilter(tab.id)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold tracking-wider whitespace-nowrap transition-all border ${
                     isSelected
-                      ? 'bg-blue-600 border-blue-600 text-white shadow-sm'
+                      ? 'bg-[#0b4592] border-[#0b4592] text-white shadow-sm'
                       : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300'
                   }`}
                 >
@@ -191,7 +191,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
                 placeholder="Buscar por nombre, código o aplicación (ej. CIP, Alcalino, K-300)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 shadow-xs"
+                className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#0b4592] focus:ring-1 focus:ring-[#0b4592] shadow-xs"
               />
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
             </div>
@@ -201,7 +201,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
               <select
                 value={formatFilter}
                 onChange={(e) => setFormatFilter(e.target.value)}
-                className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 shadow-xs"
+                className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0b4592] focus:ring-1 focus:ring-[#0b4592] shadow-xs"
               >
                 <option value="Todos">Formato: Todos</option>
                 <option value="Líquido">Líquidos (Bidón / IBC)</option>
@@ -226,7 +226,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
             <span>
               Mostrando <strong className="text-slate-900 font-mono font-bold">{filteredProducts.length}</strong> de {PRODUCTS.length} productos disponibles
             </span>
-            <span className="text-[11px] font-mono text-blue-600 font-semibold hidden sm:inline">
+            <span className="text-[11px] font-mono text-[#0b4592] font-semibold hidden sm:inline">
               Fórmulas certificadas de fabricación nacional
             </span>
           </div>
@@ -252,7 +252,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
             </p>
             <button
               onClick={handleResetFilters}
-              className="py-2.5 px-5 text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-200 rounded-xl hover:bg-blue-100 transition-colors"
+              className="py-2.5 px-5 text-xs font-semibold text-[#0b4592] bg-blue-50/80 border border-blue-200 rounded-xl hover:bg-[#0b4592] hover:text-white transition-colors"
             >
               Restablecer búsqueda
             </button>
@@ -262,7 +262,7 @@ pH: ${p.technicalData.pH} | Densidad: ${p.technicalData.density}
         {/* 4. Bottom Trust Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-10 border-t border-slate-200">
           <div className="flex items-center gap-3 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-            <ShieldCheck className="w-5 h-5 text-blue-600 shrink-0" />
+            <ShieldCheck className="w-5 h-5 text-[#0b4592] shrink-0" />
             <div>
               <h5 className="text-xs font-bold text-slate-900">Máxima eficacia</h5>
               <p className="text-[11px] text-slate-500">Garantía de limpieza profunda y resultados consistentes.</p>
