@@ -198,6 +198,7 @@ Mendoza, Argentina
               src={currentScene.bgImage}
               alt={currentScene.title}
               decoding="async"
+              referrerPolicy="no-referrer"
               className="w-full h-full object-cover transition-transform duration-300 ease-out"
               style={{ transform: `scale(${zoomLevel})` }}
             />
@@ -419,6 +420,7 @@ Mendoza, Argentina
                 alt={scene.name}
                 loading="lazy"
                 decoding="async"
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-3 flex flex-col justify-end">

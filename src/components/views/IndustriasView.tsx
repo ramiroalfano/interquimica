@@ -46,6 +46,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
           alt={currentIndustry.name}
           loading="eager"
           decoding="async"
+          referrerPolicy="no-referrer"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         {/* Contrast Scrim for text readability */}

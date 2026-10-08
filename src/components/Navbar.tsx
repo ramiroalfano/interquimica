@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Search,
   MessageCircle,
@@ -29,6 +29,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { id: 'inicio', label: 'INICIO' },
@@ -48,8 +59,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 w-full bg-transparent border-b border-transparent transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <header
+      className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ease-in-out ${
+        scrolled
+          ? 'bg-[#050b14]/85 backdrop-blur-md shadow-lg shadow-black/25 border-b border-white/10'
+          : 'bg-transparent border-b border-transparent shadow-none'
+      }`}
+    >
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 h-20 flex items-center justify-between gap-4">
         {/* Zone 1: Brand Wordmark / Exact IQA Logo */}
         <div
           onClick={() => onNavigate('inicio')}

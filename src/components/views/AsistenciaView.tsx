@@ -44,6 +44,7 @@ export const AsistenciaView: React.FC<AsistenciaViewProps> = ({ onOpenDosageCalc
             alt="Operario y asistencia técnica sanitaria"
             loading="eager"
             decoding="async"
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center"
           />
         </div>

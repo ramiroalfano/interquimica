@@ -17,67 +17,115 @@ export const CanisterVisual: React.FC<CanisterVisualProps> = ({
   isBag = false,
 }) => {
   if (isBag) {
-    // Industrial multi-ply chemical sack representation (e.g. Bio Det series)
+    // Industrial multi-ply chemical sack representation (e.g. Bio Det series matching reference image)
     return (
       <div className={`relative flex items-center justify-center ${className}`}>
         <svg
-          viewBox="0 0 160 200"
-          className="w-full h-full drop-shadow-xl"
+          viewBox="0 0 170 215"
+          className="w-full h-full drop-shadow-2xl transition-transform duration-300 hover:scale-105"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Bag Body */}
+          <defs>
+            <linearGradient id={`sack-body-${name}`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#d1d5db" />
+              <stop offset="8%" stopColor="#e5e7eb" />
+              <stop offset="25%" stopColor="#f3f4f6" />
+              <stop offset="50%" stopColor="#ffffff" />
+              <stop offset="75%" stopColor="#f3f4f6" />
+              <stop offset="92%" stopColor="#e5e7eb" />
+              <stop offset="100%" stopColor="#9ca3af" />
+            </linearGradient>
+            <linearGradient id="sack-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#000000" stopOpacity="0.08" />
+              <stop offset="85%" stopColor="#000000" stopOpacity="0.02" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0.25" />
+            </linearGradient>
+          </defs>
+
+          {/* Bottom shadow */}
+          <ellipse cx="85" cy="204" rx="60" ry="8" fill="#000000" fillOpacity="0.2" />
+
+          {/* Bag Body with natural folds and gussets */}
           <path
-            d="M 28 35 L 132 35 L 140 185 L 20 185 Z"
-            fill="#f8fafc"
-            stroke="#cbd5e1"
-            strokeWidth="2"
+            d="M 32 30 C 30 26 140 26 138 30 L 148 185 C 150 196 136 200 120 200 L 50 200 C 34 200 20 196 22 185 Z"
+            fill={`url(#sack-body-${name})`}
+            stroke="#9ca3af"
+            strokeWidth="1.2"
           />
-          {/* Top seal stitching */}
-          <rect x="25" y="28" width="110" height="10" rx="3" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1.5" />
-          <line x1="28" y1="33" x2="132" y2="33" stroke="#64748b" strokeWidth="1" strokeDasharray="3 2" />
 
-          {/* Shading creases */}
-          <path d="M 28 35 L 36 185" stroke="#e2e8f0" strokeWidth="3" />
-          <path d="M 132 35 L 124 185" stroke="#cbd5e1" strokeWidth="3" />
-          <path d="M 50 185 L 60 45" stroke="#f1f5f9" strokeWidth="2" />
-          <path d="M 110 185 L 100 45" stroke="#e2e8f0" strokeWidth="2" />
+          {/* Top crimped seal / heat stitch */}
+          <path
+            d="M 28 26 L 142 26 L 140 33 L 30 33 Z"
+            fill="#d1d5db"
+            stroke="#6b7280"
+            strokeWidth="1"
+          />
+          <line x1="32" y1="29.5" x2="138" y2="29.5" stroke="#4b5563" strokeWidth="1" strokeDasharray="3 2" />
 
-          {/* Label area */}
-          <rect x="42" y="65" width="76" height="85" rx="3" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1.5" />
-          {/* Brand header */}
-          <rect x="42" y="65" width="76" height="16" fill="#0f172a" rx="2" />
-          <text x="57" y="76.5" fill="#ffffff" fontSize="9" fontWeight="bold" fontFamily="'Cinzel', 'Playfair Display', Georgia, serif">
-            IQA
-          </text>
-          <line x1="73" y1="68" x2="73" y2="79" stroke="#ffffff" strokeWidth="1" />
-          <text x="77" y="72" fill="#ffffff" fontSize="4.2" fontWeight="bold" fontFamily="'Cinzel', sans-serif" letterSpacing="0.4">
-            INTERQUIMICA
-          </text>
-          <text x="77" y="77" fill="#cbd5e1" fontSize="3.6" fontWeight="semibold" fontFamily="'Cinzel', sans-serif" letterSpacing="0.8">
-            ARGENTINA
-          </text>
+          {/* Shading creases & volume shadows */}
+          <path d="M 28 32 C 32 80 34 140 38 190" stroke="#9ca3af" strokeWidth="2.5" strokeOpacity="0.4" />
+          <path d="M 142 32 C 138 80 136 140 132 190" stroke="#6b7280" strokeWidth="2.5" strokeOpacity="0.5" />
+          <path d="M 52 35 C 50 90 48 150 56 195" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.8" />
+          <path d="M 118 35 C 120 90 122 150 114 195" stroke="#e5e7eb" strokeWidth="2" strokeOpacity="0.6" />
 
-          {/* Color band */}
-          <rect x="42" y="81" width="76" height="5" fill={color} />
+          {/* Product Label (White with red & black branding as in reference) */}
+          <g transform="translate(42, 60)">
+            {/* Label Base Plate */}
+            <rect x="0" y="0" width="86" height="110" rx="2" fill="#ffffff" stroke="#d1d5db" strokeWidth="1.2" />
 
-          {/* Product Name */}
-          <text x="80" y="104" textAnchor="middle" fill="#0f172a" fontSize="10" fontWeight="900" fontFamily="sans-serif">
-            {name}
-          </text>
-          <text x="80" y="114" textAnchor="middle" fill="#64748b" fontSize="5" fontWeight="600" fontFamily="sans-serif">
-            {badge} SÓLIDO
-          </text>
+            {/* Red Header Bar: InterQuímica Argentina */}
+            <rect x="0" y="0" width="86" height="16" fill="#dc2626" rx="1" />
+            <text x="43" y="11.5" textAnchor="middle" fill="#ffffff" fontSize="5.5" fontWeight="900" fontFamily="sans-serif" letterSpacing="0.2">
+              InterQuímica Argentina
+            </text>
 
-          {/* Technical icon lines */}
-          <line x1="50" y1="125" x2="110" y2="125" stroke="#cbd5e1" strokeWidth="1" />
-          <line x1="50" y1="130" x2="95" y2="130" stroke="#cbd5e1" strokeWidth="1" />
-          <line x1="50" y1="135" x2="105" y2="135" stroke="#cbd5e1" strokeWidth="1" />
+            {/* Black / Red Framed Title Box with Product Name */}
+            <rect x="4" y="20" width="78" height="18" fill="#111827" rx="2" stroke="#dc2626" strokeWidth="1" />
+            <text x="43" y="32.5" textAnchor="middle" fill="#ef4444" fontSize="6.8" fontWeight="900" fontFamily="sans-serif" letterSpacing="0.3">
+              {name}
+            </text>
 
-          {/* Bottom net weight */}
-          <text x="80" y="145" textAnchor="middle" fill="#0f172a" fontSize="6" fontWeight="bold">
-            CONT. NETO 25 KG
-          </text>
+            {/* Chemical Specification Subtitle */}
+            <text x="43" y="44" textAnchor="middle" fill="#1f2937" fontSize="4.2" fontWeight="bold" fontFamily="sans-serif">
+              {badge} SÓLIDO
+            </text>
+
+            {/* GHS Red Hazard Warning Diamonds */}
+            <g transform="translate(23, 49) scale(0.45)">
+              <polygon points="12,0 24,12 12,24 0,12" fill="#ffffff" stroke="#dc2626" strokeWidth="2.5" />
+              <path d="M 12 5 L 12 13 M 12 16 L 12 18" stroke="#111827" strokeWidth="2" strokeLinecap="round" />
+            </g>
+            <g transform="translate(37, 49) scale(0.45)">
+              <polygon points="12,0 24,12 12,24 0,12" fill="#ffffff" stroke="#dc2626" strokeWidth="2.5" />
+              <circle cx="12" cy="12" r="4" fill="#111827" />
+            </g>
+            <g transform="translate(51, 49) scale(0.45)">
+              <polygon points="12,0 24,12 12,24 0,12" fill="#ffffff" stroke="#dc2626" strokeWidth="2.5" />
+              <path d="M 6 15 L 18 15 M 12 8 L 12 16" stroke="#111827" strokeWidth="2" />
+            </g>
+
+            {/* Technical description lines */}
+            <line x1="10" y1="68" x2="76" y2="68" stroke="#9ca3af" strokeWidth="1.2" />
+            <line x1="10" y1="73" x2="72" y2="73" stroke="#cbd5e1" strokeWidth="1" />
+            <line x1="10" y1="78" x2="74" y2="78" stroke="#cbd5e1" strokeWidth="1" />
+            <line x1="10" y1="83" x2="68" y2="83" stroke="#cbd5e1" strokeWidth="1" />
+            <line x1="10" y1="88" x2="76" y2="88" stroke="#cbd5e1" strokeWidth="1" />
+
+            {/* Barcode & SENASA reference */}
+            <rect x="10" y="94" width="22" height="7" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="0.5" />
+            <line x1="13" y1="95" x2="13" y2="100" stroke="#111827" strokeWidth="1" />
+            <line x1="16" y1="95" x2="16" y2="100" stroke="#111827" strokeWidth="1" />
+            <line x1="18" y1="95" x2="18" y2="100" stroke="#111827" strokeWidth="1.5" />
+            <line x1="22" y1="95" x2="22" y2="100" stroke="#111827" strokeWidth="1" />
+            <line x1="25" y1="95" x2="25" y2="100" stroke="#111827" strokeWidth="1.5" />
+            <line x1="28" y1="95" x2="28" y2="100" stroke="#111827" strokeWidth="1" />
+
+            {/* Bottom Net Weight (30 kg / 25 kg) */}
+            <text x="68" y="100" textAnchor="middle" fill="#111827" fontSize="5.5" fontWeight="bold">
+              25 kg
+            </text>
+          </g>
         </svg>
       </div>
     );

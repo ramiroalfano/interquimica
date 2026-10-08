@@ -134,6 +134,7 @@ export default function App() {
           <ProductosView
             onSelectProduct={setSelectedProduct}
             onRequestQuote={handleOpenQuote}
+            onNavigate={setCurrentView}
           />
         )}
 

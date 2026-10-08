@@ -45,6 +45,7 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
           alt="Instalaciones InterQuímica"
           loading="eager"
           decoding="async"
+          referrerPolicy="no-referrer"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/45" />

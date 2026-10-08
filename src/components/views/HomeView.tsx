@@ -92,6 +92,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               alt={slide.name}
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding="async"
+              referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-center"
             />
             {/* Cinematic contrast scrim from left to transparent on right */}
