@@ -18,7 +18,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   compact = false,
   variant = 'light',
 }) => {
-  const isBag = product.id.startsWith('bio-det');
+  const isBag =
+    product.isBag ??
+    product.presentations.some(
+      (p) =>
+        p.packaging.toLowerCase().includes('bolsa') ||
+        p.packaging.toLowerCase().includes('saco')
+    );
   const isLight = variant === 'light';
 
   if (compact) {

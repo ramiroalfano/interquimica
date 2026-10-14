@@ -6,16 +6,23 @@ import {
 } from 'lucide-react';
 import { Product, Industry } from '../../types.ts';
 import { IMAGES } from '../../data/mockData.ts';
+import { ProcessOverviewSection } from '../home/ProcessOverviewSection.tsx';
+import { IndustrySelectorStrip } from '../home/IndustrySelectorStrip.tsx';
+import { ProductShowcaseSection } from '../home/ProductShowcaseSection.tsx';
 
 interface HomeViewProps {
   onNavigate: (view: string) => void;
   onSelectProduct?: (product: Product) => void;
   onSelectIndustry?: (ind: Industry) => void;
   onOpenQuote?: (product?: Product) => void;
+  onOpenEscenarios?: (sceneId: string) => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
   onNavigate,
+  onSelectProduct,
+  onSelectIndustry,
+  onOpenEscenarios,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -171,6 +178,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
           ))}
         </div>
       </section>
+
+      {/* Industrial Process Overview Section (QUÍMICOS QUE IMPULSAN PROCESOS + UN PROCESO LIMPIO, SEGURO Y EFICIENTE) */}
+      <ProcessOverviewSection
+        onNavigate={onNavigate}
+        onOpenEscenarios={onOpenEscenarios}
+      />
+
+      {/* Elegí Tu Industria Bar */}
+      <IndustrySelectorStrip
+        onNavigate={onNavigate}
+        onSelectIndustry={onSelectIndustry}
+      />
+
+      {/* Catálogo de Productos Showcase Carousel Section */}
+      <ProductShowcaseSection
+        onNavigate={onNavigate}
+        onSelectProduct={onSelectProduct}
+      />
     </div>
   );
 };

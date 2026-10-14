@@ -13,7 +13,7 @@ import { InteractiveSceneViewer } from './components/InteractiveSceneViewer.tsx'
 import { AsistenciaView } from './components/views/AsistenciaView.tsx';
 import { NosotrosContactoView } from './components/views/NosotrosContactoView.tsx';
 
-import { ProductDetailModal } from './components/ProductDetailModal.tsx';
+import { ProductDetailView } from './components/views/ProductDetailView.tsx';
 import { QuoteModal } from './components/QuoteModal.tsx';
 import { DosageCalculatorModal } from './components/DosageCalculatorModal.tsx';
 import { SearchModal } from './components/SearchModal.tsx';
@@ -25,8 +25,8 @@ import { MessageCircle } from 'lucide-react';
 export default function App() {
   const [currentView, setCurrentView] = useState<string>('inicio');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [selectedIndustry, setSelectedIndustry] = useState<Industry>(INDUSTRIES[0]);
-  const [interactiveSceneId, setInteractiveSceneId] = useState<string>('cervecerias');
+  const [selectedIndustry, setSelectedIndustry] = useState<Industry | null>(null);
+  const [interactiveSceneId, setInteractiveSceneId] = useState<string>('frigorificos');
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Modals state
@@ -71,9 +71,11 @@ export default function App() {
     setDosageModalOpen(true);
   };
 
-  const handleSelectIndustry = (ind: Industry) => {
+  const handleSelectIndustry = (ind: Industry | null) => {
     setSelectedIndustry(ind);
-    setInteractiveSceneId(ind.id);
+    if (ind) {
+      setInteractiveSceneId(ind.id);
+    }
   };
 
   const handleOpenEscenariosWithScene = (sceneId: string) => {
@@ -81,10 +83,16 @@ export default function App() {
     setCurrentView('soluciones');
   };
 
+  const handleSelectProduct = (product: Product) => {
+    setSelectedProduct(product);
+    setCurrentView('producto-detalle');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSelectProductById = (productId: string) => {
     const prod = PRODUCTS.find((p) => p.id === productId);
     if (prod) {
-      setSelectedProduct(prod);
+      handleSelectProduct(prod);
     }
   };
 
@@ -111,37 +119,50 @@ export default function App() {
         {currentView === 'inicio' && (
           <HomeView
             onNavigate={setCurrentView}
-            onSelectProduct={setSelectedProduct}
+            onSelectProduct={handleSelectProduct}
             onSelectIndustry={(ind) => {
               handleSelectIndustry(ind);
               setCurrentView('industrias');
             }}
             onOpenQuote={handleOpenQuote}
+            onOpenEscenarios={handleOpenEscenariosWithScene}
           />
         )}
 
         {currentView === 'industrias' && (
           <IndustriasView
-            selectedIndustryId={selectedIndustry.id}
-            onSelectProduct={setSelectedProduct}
+            selectedIndustryId={selectedIndustry?.id || null}
+            onSelectProduct={handleSelectProduct}
             onNavigateToProducts={() => setCurrentView('productos')}
             onOpenQuote={() => handleOpenQuote()}
             onOpenEscenarios={handleOpenEscenariosWithScene}
+            onNavigate={setCurrentView}
+            onSelectIndustry={handleSelectIndustry}
           />
         )}
 
         {currentView === 'productos' && (
           <ProductosView
-            onSelectProduct={setSelectedProduct}
+            onSelectProduct={handleSelectProduct}
             onRequestQuote={handleOpenQuote}
             onNavigate={setCurrentView}
+          />
+        )}
+
+        {currentView === 'producto-detalle' && selectedProduct && (
+          <ProductDetailView
+            product={selectedProduct}
+            onNavigate={setCurrentView}
+            onSelectProduct={handleSelectProduct}
+            onRequestQuote={(prod, pres) => handleOpenQuote(prod, pres)}
+            onBack={() => setCurrentView('productos')}
           />
         )}
 
         {currentView === 'soluciones' && (
           <InteractiveSceneViewer
             initialSceneId={interactiveSceneId}
-            onSelectProduct={setSelectedProduct}
+            onSelectProduct={handleSelectProduct}
             onNavigateToProducts={() => setCurrentView('productos')}
           />
         )}
@@ -160,19 +181,6 @@ export default function App() {
       </main>
 
       {/* Global Modals */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onRequestQuote={(prod, pres) => {
-          setSelectedProduct(null);
-          handleOpenQuote(prod, pres);
-        }}
-        onOpenDosageCalc={(prod) => {
-          setSelectedProduct(null);
-          handleOpenDosageCalc(prod);
-        }}
-      />
-
       <QuoteModal
         initialProduct={quoteProduct}
         initialPresentation={quotePresentation}
@@ -189,7 +197,7 @@ export default function App() {
       <SearchModal
         isOpen={searchModalOpen}
         onClose={() => setSearchModalOpen(false)}
-        onSelectProduct={setSelectedProduct}
+        onSelectProduct={handleSelectProduct}
         onSelectIndustry={(ind) => {
           handleSelectIndustry(ind);
           setCurrentView('industrias');

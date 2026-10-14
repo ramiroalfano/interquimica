@@ -6,6 +6,7 @@ import {
   Certificate,
   TrainingLiveEvent,
 } from '../types.ts';
+import { OFFICIAL_PRODUCTS } from './productsData.ts';
 
 // Direct imports for Vite asset bundling in production & development
 import banner1Img from '../assets/images/banner1.webp';
@@ -14,6 +15,13 @@ import banner3Img from '../assets/images/banner3.webp';
 import banner4Img from '../assets/images/banner4.webp';
 import banner5Img from '../assets/images/banner5.webp';
 import banner6Img from '../assets/images/banner6.webp';
+import industryVitivinicolaImg from '../assets/images/industry_vitivinicola_1791476679148.jpg';
+import industryLacteaImg from '../assets/images/industry_lactea_1791476688425.jpg';
+import industryOlivesImg from '../assets/images/industry_olives_conveyor_1791476700534.jpg';
+import industryPapeleraImg from '../assets/images/industry_papelera_1791476709581.jpg';
+import industryGeneralImg from '../assets/images/industry_general_1791476718928.jpg';
+import interquimicaSvg from '../assets/images/interquimica.svg';
+import industrialProcessDiagramImg from '../assets/images/industrial_process_diagram_1791565701189.jpg';
 
 // Image paths generated from prompt references (bundled via Vite)
 export const IMAGES = {
@@ -23,841 +31,22 @@ export const IMAGES = {
   banner4: banner4Img, // Línea de jugos / Juice bottling line
   banner5: banner5Img, // Operario espuma / Foam sanitizing
   banner6: banner6Img, // Cervecería / Brewery cellar
+  interquimica: interquimicaSvg, // Exact process diagram graphic
+  processDiagram: industrialProcessDiagramImg, // Panoramic realistic equipment matching user reference
   heroBreweryCellar: banner6Img,
   operatorFoam: banner5Img,
   bottlingConveyor: banner4Img,
   frigorificoCold: banner1Img,
   oliveOilFacility: banner3Img,
   wineCellar: banner2Img,
+  industryVitivinicola: industryVitivinicolaImg,
+  industryLactea: industryLacteaImg,
+  industryOlives: industryOlivesImg,
+  industryPapelera: industryPapeleraImg,
+  industryGeneral: industryGeneralImg,
 };
 
-export const PRODUCTS: Product[] = [
-  {
-    id: 'na45',
-    name: 'Na45',
-    code: 'IQA-NA45-PRO',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino',
-    badge: 'ALCALINO',
-    badgeColor: 'bg-blue-600',
-    canisterColor: '#1d4ed8',
-    title: 'Detergente alcalino concentrado para limpieza CIP',
-    tagline: 'Máxima eficacia en remoción de residuos orgánicos y grasas',
-    description:
-      'Formulado para la remoción de residuos orgánicos, grasas, aceites y sedimentos en sistemas de limpieza CIP. Ideal para la industria alimentaria, bebidas, lácteos y más.',
-    features: [
-      'Alta alcalinidad formulada',
-      'Alto poder desengrasante',
-      'Libre de fosfatos',
-      'Fácil enjuague y enjuagabilidad',
-      'Uso en sistemas CIP automáticos',
-    ],
-    applications: [
-      'Tanques y depósitos',
-      'Cañerías y bombas',
-      'Intercambiadores de calor',
-      'Líneas de llenado',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1% - 1,5%', temperature: '50 - 60 °C', contactTime: '10 - 15 min' },
-      { dirtLevel: 'Media', concentration: '1,5% - 2%', temperature: '60 - 70 °C', contactTime: '15 - 20 min' },
-      { dirtLevel: 'Pesada', concentration: '2% - 3%', temperature: '70 - 80 °C', contactTime: '20 - 30 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B20-NA45' },
-      { size: '200 kg', packaging: 'Tambor sellado con tapón de seguridad', code: 'T200-NA45' },
-      { size: '1000 kg', packaging: 'Contenedor IBC con válvula de descarga', code: 'IBC-NA45' },
-    ],
-    benefits: [
-      'Reduce hasta un 35% los tiempos de recirculación CIP',
-      'Evita la re-deposición de materia saponificada',
-      'No genera espuma excesiva en conducciones de alta turbulencia',
-      'Seguro sobre aceros inoxidables AISI 304 y 316',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable (304, 316, 316L), Teflón, EPDM, Viton, Vidrio borosilicato',
-      'No compatible: Aluminio no pasivado, zinc, cobre, galvanizados',
-    ],
-    technicalData: {
-      pH: '13.5 ± 0.5 (puro)',
-      density: '1.28 g/cm³ a 20°C',
-      appearance: 'Líquido límpido ámbar claro',
-      solubility: '100% miscible en agua a cualquier temperatura',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'k45',
-    name: 'K45',
-    code: 'IQA-K45-CHL',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino Clorado',
-    badge: 'ALCALINO CLORADO',
-    badgeColor: 'bg-emerald-600',
-    canisterColor: '#059669',
-    title: 'Detergente alcalino clorado de alta alcalinidad',
-    tagline: 'Desinfección y limpieza profunda con cloro activo estabilizado',
-    description:
-      'Soluciones para limpieza CIP, equipos, cañerías y fermentadores. Combina el poder saponificante de la soda cáustica con el poder blanqueador y desinfectante del hipoclorito estabilizado.',
-    features: [
-      'Cloro activo estabilizado (mín. 4.5% p/p)',
-      'Excelente poder de remoción de biofilm',
-      'Baja formación de espuma a 55°C',
-      'Rápida acción bactericida y fungicida',
-    ],
-    applications: [
-      'Circuitos de ordeñe y tinas queseras',
-      'Fermentadores y tanques de cerveza',
-      'Mesas de desposte y cintas de transporte',
-      'Líneas de jugo y mosto',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1% - 1,2%', temperature: '45 - 55 °C', contactTime: '10 - 15 min' },
-      { dirtLevel: 'Media', concentration: '1,5% - 2%', temperature: '50 - 60 °C', contactTime: '15 - 20 min' },
-      { dirtLevel: 'Pesada', concentration: '2,5% - 3,5%', temperature: '55 - 65 °C', contactTime: '20 - 30 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B20-K45' },
-      { size: '200 kg', packaging: 'Tambor sellado con tapón de seguridad', code: 'T200-K45' },
-      { size: '1000 kg', packaging: 'Contenedor IBC con válvula de descarga', code: 'IBC-K45' },
-    ],
-    benefits: [
-      'Eliminación de manchas proteicas y taninos',
-      'Desinfección de amplio espectro en un solo paso',
-      'Fácil dosificación automática por conductividad',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable AISI 304 / 316 (hasta 60°C), juntas EPDM',
-      'Evitar: Bronce, cobre, aluminio, gomas naturales',
-    ],
-    technicalData: {
-      pH: '13.0 ± 0.5',
-      density: '1.22 g/cm³',
-      appearance: 'Líquido amarillento característico a cloro',
-      solubility: '100% soluble en agua',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'na75-plus',
-    name: 'Na75 Plus',
-    code: 'IQA-NA75P',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino',
-    badge: 'ALCALINO',
-    badgeColor: 'bg-indigo-600',
-    canisterColor: '#4f46e5',
-    title: 'Detergente alcalino líquido de alto rendimiento para CIP',
-    tagline: 'Fórmula reforzada con agentes secuestrantes de dureza cálcica',
-    description:
-      'Detergente alcalino líquido formulado con potentes tensoactivos y quelantes de dureza que evitan incrustaciones salinas en aguas duras (> 400 ppm CaCO3).',
-    features: [
-      'Secuestrantes orgánicos biodegradables',
-      'Optimizado para aguas duras de Mendoza y cuyo',
-      'Previene precipitación de sales cálcicas',
-      'Elevada conductividad estable',
-    ],
-    applications: [
-      'Sistemas CIP con agua de pozo de alta dureza',
-      'Hervidores y clarificadores cerveceros',
-      'Pasteurizadores de leche y jugos',
-      'Lavadoras automáticas de botellas',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1% - 1,5%', temperature: '60 - 70 °C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '2% - 2,5%', temperature: '70 - 75 °C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '3% - 4%', temperature: '75 - 85 °C', contactTime: '30 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B20-NA75P' },
-      { size: '200 kg', packaging: 'Tambor sellado con tapón de seguridad', code: 'T200-NA75P' },
-      { size: '1000 kg', packaging: 'Contenedor IBC', code: 'IBC-NA75P' },
-    ],
-    benefits: [
-      'Mantiene los serpentines limpios sin incrustación salina',
-      'Disminuye la frecuencia de lavados ácidos de desincrustación',
-      'Fórmula no espumante certificada para CIP',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable, cerámicas, plásticos industriales',
-      'Evitar: Metales no ferrosos blandos',
-    ],
-    technicalData: {
-      pH: '13.8 ± 0.3',
-      density: '1.34 g/cm³',
-      appearance: 'Líquido denso ámbar translúcido',
-      solubility: 'Totalmente miscible',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'acid',
-    name: 'Acid',
-    code: 'IQA-ACID-PRO',
-    category: 'acidos',
-    categoryLabel: 'Ácido Desincrustante',
-    badge: 'ÁCIDO',
-    badgeColor: 'bg-rose-600',
-    canisterColor: '#e11d48',
-    title: 'Detergente ácido para remoción de sarro e incrustaciones',
-    tagline: 'Fórmula sinérgica fosfo-nítrica para pasivación y descalcificación',
-    description:
-      'Soluciones ácidas de alta concentración desarrolladas para disolver piedra de cerveza (beerstone), piedra de leche (milkstone), bitartratos enológicas e incrustaciones minerales inorgánicas.',
-    features: [
-      'Mezcla balanceada de ácidos inorgánicos',
-      'Capacidad pasivante de superficies de acero inoxidable',
-      'Excelente poder de penetración',
-      'Libre de cloro y sulfúrico',
-    ],
-    applications: [
-      'Desincrustación periódica de tanques de fermentación',
-      'Eliminación de tártaro en piletas y barricas enológicas',
-      'Intercambiadores de calor a placas',
-      'Centrífugas y clarificadores',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '0,8% - 1%', temperature: 'Ambiente a 45 °C', contactTime: '10 min' },
-      { dirtLevel: 'Media', concentration: '1,5% - 2%', temperature: '50 - 65 °C', contactTime: '15 - 20 min' },
-      { dirtLevel: 'Pesada', concentration: '2,5% - 4%', temperature: '60 - 70 °C', contactTime: '25 - 35 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B20-ACID' },
-      { size: '200 kg', packaging: 'Tambor sellado con tapón de seguridad', code: 'T200-ACID' },
-      { size: '1000 kg', packaging: 'Contenedor IBC', code: 'IBC-ACID' },
-    ],
-    benefits: [
-      'Restaura el brillo original del acero inoxidable',
-      'Disolución inmediata sin vapores molestos en dilución',
-      'No ataca juntas ni soldaduras homologadas',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable 304 y 316, vidrio, PTFE, PVDF',
-      'No compatible: Cemento sin recubrir, acero al carbono, mármol, zinc',
-    ],
-    technicalData: {
-      pH: '1.2 ± 0.3 (sol. 1%)',
-      density: '1.26 g/cm³',
-      appearance: 'Líquido incoloro a ligeramente rosado',
-      solubility: 'Instantánea en agua fría o caliente',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'foam-plus',
-    name: 'Foam Plus',
-    code: 'IQA-FOAM-PL',
-    category: 'espumigenos',
-    categoryLabel: 'Espumígeno Alcalino',
-    badge: 'ESPUMÍGENO',
-    badgeColor: 'bg-amber-500',
-    canisterColor: '#d97706',
-    title: 'Detergente espumígeno para limpieza de superficies exteriores',
-    tagline: 'Espuma densa y persistente de máxima adherencia vertical',
-    description:
-      'Detergente espumante que asegura un contacto prolongado sobre paredes verticales, cintas transportadoras, exteriores de tanques, pisos y salas de desposte o faena.',
-    features: [
-      'Espuma densa de alta permanencia (hasta 30 minutos)',
-      'Penetración en recovecos de difícil acceso mecánico',
-      'Disuelve grasas animales y aceites vegetales fríos',
-      'Fácil enjuague con agua a media presión',
-    ],
-    applications: [
-      'Paredes y techos de salas de faena y desposte',
-      'Exterior de tanques y fermentadores',
-      'Cintas transportadoras y tolvas',
-      'Pisos industriales y canaletas de desagüe',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '2% - 3%', temperature: 'Ambiente - 45 °C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '3% - 5%', temperature: 'Ambiente - 50 °C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '5% - 8%', temperature: 'Ambiente - 55 °C', contactTime: '25 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B20-FOAM' },
-      { size: '200 kg', packaging: 'Tambor sellado', code: 'T200-FOAM' },
-    ],
-    benefits: [
-      'Reduce hasta un 40% el consumo de agua por lavado manual',
-      'No chorrea inmediatamente de superficies verticales',
-      'Compatible con lanzas de espuma y carritos espumadores neumáticos',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable, resinas epoxi, azulejos sanitarios, PVC',
-      'Evitar: Policarbonato sensible a la alcalinidad',
-    ],
-    technicalData: {
-      pH: '12.8 ± 0.5',
-      density: '1.18 g/cm³',
-      appearance: 'Líquido viscoso ambarino',
-      solubility: 'Completa',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'oxi-t',
-    name: 'OXI T',
-    code: 'IQA-OXI-T',
-    category: 'desinfectantes',
-    categoryLabel: 'Sanitizante Oxidante',
-    badge: 'OXIDANTE',
-    badgeColor: 'bg-cyan-600',
-    canisterColor: '#0891b2',
-    title: 'Limpiador oxidante de alto desempeño para CIP',
-    tagline: 'Ácido peracético estabilizado sin enjuague para contacto con alimentos',
-    description:
-      'Sanitizante líquido a base de ácido peracético y peróxido de hidrógeno en equilibrio químico. Acción microbicida de amplio espectro rápida a bajas temperaturas sin generar residuos tóxicos.',
-    features: [
-      'Efectivo contra esporas, virus, bacterias y levaduras',
-      'No genera subproductos clorados ni organoclorados',
-      'Eficaz en agua fría (reduce consumo térmico)',
-      'Se descompone en agua, oxígeno y ácido acético',
-    ],
-    applications: [
-      'Sanitización final de líneas de embotellado y llenado',
-      'Desinfección de tanques de vino y barricas',
-      'Líneas asépticas de jugo y leche',
-      'Sanitización de circuitos de recirculación CIP',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '0,1% - 0,2%', temperature: '10 - 25 °C', contactTime: '5 min' },
-      { dirtLevel: 'Media', concentration: '0,2% - 0,3%', temperature: '15 - 30 °C', contactTime: '10 min' },
-      { dirtLevel: 'Pesada', concentration: '0,4% - 0,5%', temperature: '20 - 40 °C', contactTime: '15 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón ventilado especial HDPE', code: 'B20-OXIT' },
-      { size: '200 kg', packaging: 'Tambor con válvula de despresurización', code: 'T200-OXIT' },
-    ],
-    benefits: [
-      'No requiere enjuague a concentraciones aprobadas SENASA',
-      'Excelente poder de penetración en rugosidades microscópicas',
-      'Compatible con dióxido de carbono en bodegas y cervecerías',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable 316 / 304, PTFE, PVDF, Vidrio',
-      'Evitar: Cobre, hierro negro, gomas naturales vulnerables',
-    ],
-    technicalData: {
-      pH: '2.5 ± 0.5 (sol. 1%)',
-      density: '1.14 g/cm³',
-      appearance: 'Líquido incoloro límpido con olor punzante característico',
-      solubility: '100% soluble',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'bio-det-duo-plus',
-    name: 'BIO DET DÚO PLUS',
-    code: 'IQA-BD-DUO',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino Sólido',
-    badge: 'ALCALINO SÓLIDO',
-    badgeColor: 'bg-blue-700',
-    canisterColor: '#1e40af',
-    title: 'Limpiador y desinfectante alcalino sólido concentrado',
-    tagline: 'Fórmula en polvo granular de alto rendimiento y fácil disolución',
-    description:
-      'Producto alcalino clorado de alto rendimiento. Remueve suciedad orgánica, grasas y proteínas. Ideal para lavado de tanques, cañerías y sistemas CIP en la industria alimenticia.',
-    features: [
-      'Formato sólido compacto (ahorra hasta 60% en flete y logística)',
-      'Rápida disolución sin grumos en agua templada',
-      'Agentes quelantes y secuestrantes de calcio y magnesio',
-      'Poder bactericida de choque',
-    ],
-    applications: [
-      'Lavado de tanques de fermentación y maceradores',
-      'Limpieza de cañerías en plantas lecheras',
-      'Desengrase por inmersión de piezas y válvulas',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '0,8% - 1%', temperature: '50 - 65 °C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '1,2% - 1,8%', temperature: '60 - 70 °C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '2% - 3%', temperature: '65 - 80 °C', contactTime: '30 min' },
-    ],
-    presentations: [
-      { size: '25 kg', packaging: 'Bolsa triple pliego con liner estanco de PE', code: 'BOL25-BDDUO' },
-      { size: '500 kg', packaging: 'Palletizado flejado y termocontraíble', code: 'PAL-BDDUO' },
-    ],
-    benefits: [
-      'Menor peso y volumen en almacenamiento en bodega',
-      'Disolución homogénea y controlada',
-      'No genera efluentes clorados desbalanceados',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable, polietileno de alta densidad, juntas estándar',
-      'Evitar: Metales no ferrosos',
-    ],
-    technicalData: {
-      pH: '12.9 (sol. 1%)',
-      density: '0.98 g/cm³ (aparente)',
-      appearance: 'Polvo granular blanco homogéneo',
-      solubility: 'Alta solubilidad en agua a partir de 30°C',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'bio-det-k75-plus',
-    name: 'BIO DET K 75 PLUS',
-    code: 'IQA-BD-K75',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino Sólido Clorado',
-    badge: 'ALCALINO SÓLIDO',
-    badgeColor: 'bg-emerald-700',
-    canisterColor: '#047857',
-    title: 'Limpiador/desinfectante alcalino sólido clorado',
-    tagline: 'Formulación alcalina clorada con secuestrantes y dispersantes de sarro',
-    description:
-      'Formulación alcalina clorada con secuestrantes y dispersantes. Alta eficacia frente a suciedad persistente. Apto para todo tipo de superficies y sistemas CIP.',
-    features: [
-      'Cloro activo en polvo micro-encapsulado de liberación sostenida',
-      'Acción bactericida y virucida certificada',
-      'Remueve velos biológicos y depósitos albuminosos',
-    ],
-    applications: [
-      'Pasteurizadores y placas lecheras',
-      'Centrífugas desnatadoras',
-      'Líneas de envasado aséptico',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1%', temperature: '50 - 60 °C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '1,5%', temperature: '55 - 65 °C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '2,5%', temperature: '60 - 70 °C', contactTime: '25 min' },
-    ],
-    presentations: [
-      { size: '25 kg', packaging: 'Bolsa kraft impermeable con sellado térmico', code: 'BOL25-BDK75' },
-    ],
-    benefits: [
-      'Mayor estabilidad del cloro en almacenamiento que líquidos tradicionales',
-      'Eficacia comprovada frente a Salmonella, Listeria y E. coli',
-    ],
-    compatibility: [
-      'Apto: Aceros inoxidables 304/316 a temperaturas reglamentarias',
-      'Evitar: Aleaciones de cobre y cinc',
-    ],
-    technicalData: {
-      pH: '12.5 (sol. 1%)',
-      density: '1.02 g/cm³',
-      appearance: 'Granulado blanco con pintas celestes',
-      solubility: 'Completa',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'bio-det-na75-plus',
-    name: 'BIO DET Na 75 PLUS',
-    code: 'IQA-BD-NA75',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino Sólido No Clorado',
-    badge: 'ALCALINO SÓLIDO',
-    badgeColor: 'bg-sky-600',
-    canisterColor: '#0284c7',
-    title: 'Limpiador alcalino no clorado de alta concentración',
-    tagline: 'Ideal para industrias con restricciones de halógenos y membranas',
-    description:
-      'Producto alcalino no clorado. Ideal para la limpieza de equipos y superficies en la industria alimenticia, asegurando máxima remoción de residuos orgánicos y grasas sin riesgo de corrosión por cloruros.',
-    features: [
-      '100% libre de cloro y cloruros',
-      'Seguro para membranas de ósmosis inversa y ultrafiltración compatibles con pH alcalino',
-      'Secuestrantes amigables con el medio ambiente',
-    ],
-    applications: [
-      'Filtros tangenciales y membranas de filtración',
-      'Tanques de guarda y maduración de bebidas',
-      'Circuitos con efluentes biológicos sensibles a cloro',
-    ],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1% - 1,2%', temperature: '50 - 60 °C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '1,5% - 2%', temperature: '60 - 75 °C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '2,5% - 3,5%', temperature: '70 - 85 °C', contactTime: '30 min' },
-    ],
-    presentations: [
-      { size: '25 kg', packaging: 'Bolsa hermética de 25 kg', code: 'BOL25-BDNA75' },
-    ],
-    benefits: [
-      'No genera clorofenoles ni olores indeseados en la industria vitivinícola',
-      'Prolonga la vida útil de los equipos de acero inoxidable',
-    ],
-    compatibility: [
-      'Apto: Acero inoxidable, membranas poliméricas resistentes a álcalis',
-      'Evitar: Aluminio y metales blandos',
-    ],
-    technicalData: {
-      pH: '13.1 (sol. 1%)',
-      density: '0.95 g/cm³',
-      appearance: 'Polvo blanco fino de alta pureza',
-      solubility: 'Rápida solubilidad',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'ac32',
-    name: 'AC32',
-    code: 'IQA-AC32',
-    category: 'alcalinos',
-    categoryLabel: 'Alcalino Multifunción',
-    badge: 'ALCALINO',
-    badgeColor: 'bg-blue-600',
-    canisterColor: '#2563eb',
-    title: 'Detergente alcalino para limpieza de superficies y equipos',
-    tagline: 'Versatilidad y penetración para limpieza manual y por inmersión',
-    description:
-      'Detergente alcalino formulado con agentes humectantes para limpieza de superficies, transportadores y tanques abiertos. Remueve películas orgánicas rebeldes.',
-    features: [
-      'Humectación rápida de superficies',
-      'Fácil dosificación manual o por dilución automática',
-      'Excelente poder desengrasante para grasas de origen vegetal y animal',
-    ],
-    applications: ['Mesas de trabajo', 'Tinas de lavado', 'Canaletas', 'Cajas plásticas'],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1% - 2%', temperature: '30 - 50 °C', contactTime: '10 min' },
-      { dirtLevel: 'Media', concentration: '2% - 3%', temperature: '40 - 60 °C', contactTime: '15 min' },
-      { dirtLevel: 'Pesada', concentration: '3% - 5%', temperature: '50 - 70 °C', contactTime: '20 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico HDPE', code: 'B20-AC32' },
-      { size: '200 kg', packaging: 'Tambor 200 kg', code: 'T200-AC32' },
-    ],
-    benefits: ['Rápido desprendimiento de sólidos', 'Apto para todo operario con EPP estándar'],
-    compatibility: ['Acero inoxidable, azulejos, pisos epoxi'],
-    technicalData: {
-      pH: '12.4 ± 0.3',
-      density: '1.16 g/cm³',
-      appearance: 'Líquido cristalino',
-      solubility: 'Total',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'acid-c30',
-    name: 'ACID C30',
-    code: 'IQA-ACID-C30',
-    category: 'acidos',
-    categoryLabel: 'Ácido Concentrado',
-    badge: 'ÁCIDO',
-    badgeColor: 'bg-red-600',
-    canisterColor: '#dc2626',
-    title: 'Detergente ácido concentrado para remoción de sarro',
-    tagline: 'Disuelve incrustaciones calcáreas persistentes en hervidores y piletas',
-    description:
-      'Formulado para remover suciedad mineral severa y sarro en calderas, piletas de fermentación, tanques de acero y sistemas CIP de alta exigencia.',
-    features: [
-      'Acción rápida contra sales de calcio, magnesio y hierro',
-      'Inhibidor de corrosión incorporado',
-      'No genera vapores asfixiantes',
-    ],
-    applications: ['Hervidores cerveceros', 'Piletas vinarias', 'Pasterizadores de placas', 'Cañerías con sarro'],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '1% - 1,5%', temperature: '50 - 65 °C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '2% - 3%', temperature: '60 - 75 °C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '3% - 5%', temperature: '65 - 80 °C', contactTime: '30 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico HDPE', code: 'B20-ACIDC30' },
-      { size: '200 kg', packaging: 'Tambor 200 kg', code: 'T200-ACIDC30' },
-    ],
-    benefits: ['Restaura el coeficiente de transferencia térmica de intercambiadores'],
-    compatibility: ['Acero inoxidable 304/316'],
-    technicalData: {
-      pH: '1.0 ± 0.2',
-      density: '1.30 g/cm³',
-      appearance: 'Líquido translúcido rojizo',
-      solubility: 'Instantánea',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'sanitex-forte',
-    name: 'Sanitex Forte',
-    code: 'IQA-SAN-FORTE',
-    category: 'desinfectantes',
-    categoryLabel: 'Desinfectante Amplio Espectro',
-    badge: 'DESINFECTANTE',
-    badgeColor: 'bg-teal-600',
-    canisterColor: '#0d9488',
-    title: 'Desinfectante catiónico de 5ta generación para superficies',
-    tagline: 'Amplo espectro bactericida con efecto residual protector',
-    description:
-      'Desinfectante a base de amonios cuaternarios de 5ta generación con alta tolerancia a aguas duras y restos de materia orgánica. Deja una película residual biocida en salas blancas.',
-    features: [
-      'Amplio espectro (Gram+, Gram-, levaduras y hongos)',
-      'Efecto residual protector de hasta 48 horas',
-      'No es corrosivo sobre metales ni deteriora plásticos',
-    ],
-    applications: ['Paredes de cámaras de frío', 'Pediluvios sanitarios', 'Cintas de transporte', 'Superficies de empaque'],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '0,2% - 0,5%', temperature: 'Ambiente', contactTime: '10 min' },
-      { dirtLevel: 'Media', concentration: '0,5% - 1%', temperature: 'Ambiente', contactTime: '15 min' },
-      { dirtLevel: 'Pesada', concentration: '1% - 2%', temperature: 'Ambiente', contactTime: '20 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico HDPE', code: 'B20-SANFORTE' },
-    ],
-    benefits: ['No mancha, no corroe, no irrita a dosis de uso'],
-    compatibility: ['Apto para todo tipo de metales, gomas y plásticos'],
-    technicalData: {
-      pH: '7.5 ± 0.5',
-      density: '1.01 g/cm³',
-      appearance: 'Líquido incoloro aromático suave',
-      solubility: '100%',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'clor-liq-100',
-    name: 'CLOR LIQ 100',
-    code: 'IQA-CLOR-100',
-    category: 'desinfectantes',
-    categoryLabel: 'Desinfectante Clorado Líquido',
-    badge: 'DESINFECTANTE',
-    badgeColor: 'bg-teal-600',
-    canisterColor: '#0f766e',
-    title: 'Desinfectante a base de cloro activo estabilizado para sanitización',
-    tagline: 'Solución microbicida de alta pureza y rápida acción desinfectante',
-    description:
-      'Formulado para la desinfección de aguas de proceso, tanques, líneas de transporte y equipos en la industria alimenticia y vitivinícola con rápida acción bactericida.',
-    features: [
-      'Cloro activo estabilizado al 10% (100 g/L)',
-      'Rápida acción bactericida, fungicida y esporicida',
-      'Excelente poder oxidante y blanqueador',
-    ],
-    applications: ['Tratamiento de agua', 'Desinfección de cañerías', 'Sanitización de piletas'],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '0,1% - 0,2%', temperature: 'Ambiente', contactTime: '10 min' },
-      { dirtLevel: 'Media', concentration: '0,3% - 0,5%', temperature: 'Ambiente', contactTime: '15 min' },
-      { dirtLevel: 'Pesada', concentration: '0,8% - 1%', temperature: 'Ambiente', contactTime: '20 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico HDPE oscuro', code: 'B20-CLOR100' },
-      { size: '200 kg', packaging: 'Tambor 200 kg', code: 'T200-CLOR100' },
-    ],
-    benefits: ['Alta estabilidad en almacenamiento', 'Desinfección garantizada'],
-    compatibility: ['Acero inoxidable 316 (dosis controladas), plásticos'],
-    technicalData: {
-      pH: '11.5 ± 0.5',
-      density: '1.18 g/cm³',
-      appearance: 'Líquido amarillo verdoso característico',
-      solubility: '100%',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'foam-clor-20',
-    name: 'FOAM CLOR 20',
-    code: 'IQA-FOAM-CL20',
-    category: 'espumigenos',
-    categoryLabel: 'Limpiador Espumígeno Clorado',
-    badge: 'ESPUMÍGENO',
-    badgeColor: 'bg-amber-600',
-    canisterColor: '#d97706',
-    title: 'Detergente espumígeno clorado para limpieza de superficies verticales',
-    tagline: 'Espuma densa de alta permanencia para remoción de proteínas y grasas',
-    description:
-      'Detergente espumante alcalino clorado formulado para brindar contacto prolongado sobre paredes, exteriores de tanques, pisos y cintas transportadoras.',
-    features: [
-      'Espuma densa adherente de larga duración',
-      'Remueve grasas, proteínas y moho en un solo paso',
-      'Fácil enjuague sin dejar residuos alcalinos',
-    ],
-    applications: ['Paredes de salas de desposte', 'Exterior de tanques', 'Cintas transportadoras'],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '2% - 3%', temperature: 'Ambiente - 40°C', contactTime: '15 min' },
-      { dirtLevel: 'Media', concentration: '3% - 5%', temperature: 'Ambiente - 45°C', contactTime: '20 min' },
-      { dirtLevel: 'Pesada', concentration: '5% - 8%', temperature: 'Ambiente - 50°C', contactTime: '25 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B20-FOAMCL20' },
-    ],
-    benefits: ['Reduce tiempos de lavado y consumo de agua'],
-    compatibility: ['Acero inoxidable, azulejos, epoxi'],
-    technicalData: {
-      pH: '12.5 ± 0.5',
-      density: '1.16 g/cm³',
-      appearance: 'Líquido viscoso amarillento',
-      solubility: 'Total',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'foam-acid-15',
-    name: 'FOAM ACID 15',
-    code: 'IQA-FOAM-AC15',
-    category: 'espumigenos',
-    categoryLabel: 'Limpiador Ácido Espumígeno',
-    badge: 'ESPUMÍGENO',
-    badgeColor: 'bg-rose-600',
-    canisterColor: '#e11d48',
-    title: 'Detergente ácido espumígeno para remoción de sarro en exteriores',
-    tagline: 'Disuelve depósitos minerales y sarro en paredes y caras externas de tanques',
-    description:
-      'Formulado para remover incrustaciones inorgánicas, sales y velos de sarro en exteriores de tanques, azulejos y pisos mediante aplicación de espuma densa.',
-    features: [
-      'Disolución rápida de sales minerales',
-      'No genera emanaciones agresivas',
-      'Excelente brillo en acero inoxidable',
-    ],
-    applications: ['Exteriores de fermentadores', 'Pisos y azulejos con sarro', 'Maquinaria de lavado'],
-    dosageTable: [
-      { dirtLevel: 'Ligera', concentration: '2% - 3%', temperature: 'Ambiente', contactTime: '10 min' },
-      { dirtLevel: 'Media', concentration: '3% - 5%', temperature: 'Ambiente', contactTime: '15 min' },
-      { dirtLevel: 'Pesada', concentration: '5% - 7%', temperature: 'Ambiente', contactTime: '20 min' },
-    ],
-    presentations: [
-      { size: '20 kg', packaging: 'Bidón plástico HDPE', code: 'B20-FOAMAC15' },
-    ],
-    benefits: ['Restaura superficies sin ataque corrosivo'],
-    compatibility: ['Acero inoxidable 304/316, plásticos'],
-    technicalData: {
-      pH: '1.8 ± 0.3',
-      density: '1.12 g/cm³',
-      appearance: 'Líquido rojizo translúcido',
-      solubility: '100%',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'soda-caustica-50',
-    name: 'SODA CÁUSTICA 50%',
-    code: 'IQA-MP-SC50',
-    category: 'materia_prima',
-    categoryLabel: 'Materia Prima Industrial',
-    badge: 'MATERIA PRIMA',
-    badgeColor: 'bg-emerald-600',
-    canisterColor: '#059669',
-    title: 'Hidróxido de sodio en solución acuosa al 50% de alta pureza',
-    tagline: 'Insumo químico fundamental para formulaciones y procesos CIP de máxima exigencia',
-    description:
-      'Solución de hidróxido de sodio grado industrial y alimenticio al 50%. Materia prima clave para saponificación de grasas, ajuste de pH y limpiezas pesadas.',
-    features: [
-      'Concentración exacta 50% p/p',
-      'Bajo contenido de carbonatos y cloruros',
-      'Entrega en tambores, IBC o cisterna a granel',
-    ],
-    applications: ['Preparación de soluciones CIP', 'Saponificación', 'Tratamiento de efluentes'],
-    dosageTable: [
-      { dirtLevel: 'Media', concentration: '1% - 3%', temperature: 'Variable', contactTime: '15 min' },
-    ],
-    presentations: [
-      { size: '250 kg', packaging: 'Tambor reforzado de 200 L', code: 'T250-SC50' },
-      { size: '1300 kg', packaging: 'Contenedor IBC homologado', code: 'IBC-SC50' },
-    ],
-    benefits: ['Pureza analítica garantizada con certificado de calidad'],
-    compatibility: ['Acero inoxidable, PTFE, polietileno'],
-    technicalData: {
-      pH: '14.0 (concentrado)',
-      density: '1.52 g/cm³',
-      appearance: 'Líquido incoloro viscoso límpido',
-      solubility: 'Totalmente miscible en agua con desprendimiento térmico',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'acido-fosforico-85',
-    name: 'ÁCIDO FOSFÓRICO 85%',
-    code: 'IQA-MP-AF85',
-    category: 'materia_prima',
-    categoryLabel: 'Materia Prima Industrial',
-    badge: 'MATERIA PRIMA',
-    badgeColor: 'bg-emerald-600',
-    canisterColor: '#059669',
-    title: 'Ácido fosfórico concentrado al 85% grado alimenticio (Food Grade)',
-    tagline: 'Insumo esencial para desincrustación, pasivado y corrección de pH',
-    description:
-      'Ácido fosfórico grado alimenticio de máxima pureza para formulaciones químicas, pasivación de acero inoxidable y tratamientos enológicas o cerveceros.',
-    features: [
-      'Concentración mínima 85% p/p',
-      'Certificación alimenticia FCC / USP',
-      'Libre de metales pesados y sulfatos',
-    ],
-    applications: ['Ajuste de pH en aguas y mostos', 'Pasivado de aceros', 'Desincrustación'],
-    dosageTable: [
-      { dirtLevel: 'Media', concentration: '0,5% - 2%', temperature: 'Variable', contactTime: '15 min' },
-    ],
-    presentations: [
-      { size: '35 kg', packaging: 'Bidón plástico apilable HDPE', code: 'B35-AF85' },
-      { size: '1600 kg', packaging: 'Contenedor IBC homologado', code: 'IBC-AF85' },
-    ],
-    benefits: ['Alta pureza química para aplicaciones críticas de contacto con alimentos'],
-    compatibility: ['Acero inoxidable 316, plásticos de ingeniería'],
-    technicalData: {
-      pH: '< 1.0',
-      density: '1.68 g/cm³',
-      appearance: 'Líquido viscoso límpido incoloro e inodoro',
-      solubility: '100% soluble',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-  {
-    id: 'hipoclorito-sodio-100',
-    name: 'HIPOCLORITO DE SODIO 100',
-    code: 'IQA-MP-HS100',
-    category: 'materia_prima',
-    categoryLabel: 'Materia Prima Industrial',
-    badge: 'MATERIA PRIMA',
-    badgeColor: 'bg-emerald-600',
-    canisterColor: '#059669',
-    title: 'Solución de hipoclorito de sodio al 100 g Cl activo/L',
-    tagline: 'Poder oxidante y desinfectante industrial de alta pureza',
-    description:
-      'Hipoclorito de sodio estabilizado para tratamiento de aguas potables y de proceso, desinfección en plantas alimenticias y formulación de mezclas cloradas.',
-    features: [
-      'Cloro activo mínimo 100 g/L a salida de fábrica',
-      'Estabilizado con álcali residual para prolongar vida útil',
-      'Grado potabilización de agua homologado',
-    ],
-    applications: ['Potabilización de agua', 'Desinfección de plantas', 'Blanqueo industrial'],
-    dosageTable: [
-      { dirtLevel: 'Media', concentration: '50 - 200 ppm', temperature: 'Ambiente', contactTime: '10 min' },
-    ],
-    presentations: [
-      { size: '25 kg', packaging: 'Bidón plástico con válvula de venteo', code: 'B25-HS100' },
-      { size: '1200 kg', packaging: 'Contenedor IBC ventilado', code: 'IBC-HS100' },
-    ],
-    benefits: ['Desinfección confiable y máxima concentración efectiva'],
-    compatibility: ['Polietileno, PVC, PTFE, titanio'],
-    technicalData: {
-      pH: '12.0 ± 0.5',
-      density: '1.16 g/cm³',
-      appearance: 'Líquido amarillento claro característico',
-      solubility: 'Total',
-      biodegradable: true,
-    },
-    hasTechSheet: true,
-    hasSafetySheet: true,
-  },
-];
+export const PRODUCTS: Product[] = OFFICIAL_PRODUCTS;
 
 export const INDUSTRIES: Industry[] = [
   {
@@ -1098,6 +287,64 @@ export const INDUSTRIES: Industry[] = [
       },
     ],
   },
+  {
+    id: 'papelera',
+    name: 'Papelera',
+    shortName: 'Papelera',
+    icon: 'Layers',
+    heroImage: IMAGES.industryPapelera,
+    description:
+      'Productos para la limpieza de equipos, rodillos, circuitos y sistemas en la industria del papel.',
+    fullDescription:
+      'Fórmulas químicas de alto rendimiento para el acondicionamiento y lavado continuo de fieltros y telas, control de pitch y adhesivos, pasivación y desincrustación de circuitos de pulpa y papel.',
+    areas: [
+      {
+        id: 'fieltros-telas',
+        name: 'Lavado de fieltros y telas de formación',
+        icon: 'Layers',
+        description: 'Detergentes de alta humectación para eliminar resinas, finos y adhesivos.',
+        details: 'Recupera la permeabilidad y porosidad de los fieltros sin degradar las fibras sintéticas.',
+        suggestedProductIds: ['ac32', 'na45'],
+      },
+      {
+        id: 'circuitos-pasta',
+        name: 'Circuitos de pasta y desincrustación',
+        icon: 'Workflow',
+        description: 'Tratamiento ácido y alcalino para remover carbonato cálcico y depósitos minerales.',
+        details: 'Mantiene las cañerías y tinas de mezcla libres de incrustaciones inorgánicas.',
+        suggestedProductIds: ['acid-c30', 'na75-plus'],
+      },
+    ],
+  },
+  {
+    id: 'industria-general',
+    name: 'Industria en general',
+    shortName: 'Industria en general',
+    icon: 'Factory',
+    heroImage: IMAGES.industryGeneral,
+    description:
+      'Soluciones versátiles para múltiples procesos e industrias que requieren limpieza y desinfección efectiva.',
+    fullDescription:
+      'Amplia gama de soluciones desengrasantes, limpiadores neutros y alcalinos, inhibidores de corrosión y sanitizantes versátiles para plantas manufactureras, talleres, metalmecánica y procesos continuos.',
+    areas: [
+      {
+        id: 'desengrase-piezas',
+        name: 'Desengrase de piezas y maquinaria',
+        icon: 'Factory',
+        description: 'Soluciones desengrasantes para grasas minerales, aceites de corte y lubricantes.',
+        details: 'Rápido desprendimiento por inmersión o aspersión sin atacar componentes metálicos.',
+        suggestedProductIds: ['ac32', 'na45'],
+      },
+      {
+        id: 'pisos-talleres',
+        name: 'Limpieza de pisos industriales y plantas',
+        icon: 'Grid',
+        description: 'Detergentes alcalinos concentrados para pisos de hormigón, resinas y baldosas.',
+        details: 'Disuelve huellas de neumáticos, derrames oleosos y suciedad sedimentada.',
+        suggestedProductIds: ['foam-plus', 'ac32'],
+      },
+    ],
+  },
 ];
 
 export const INTERACTIVE_SCENES: InteractiveScene[] = [
@@ -1218,7 +465,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'recepcion-carne',
         name: 'Recepción de carne y playa',
         x: 13,
-        y: 43,
+        y: 44,
         code: 'RC-01',
         iconName: 'Truck',
         commonProblem:
@@ -1233,7 +480,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'camaras-frigorificas',
         name: 'Cámaras frigoríficas',
-        x: 27,
+        x: 21,
         y: 50,
         code: 'CF-02',
         iconName: 'Snowflake',
@@ -1249,8 +496,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'sala-desposte',
         name: 'Sala de desposte',
-        x: 43,
-        y: 30,
+        x: 30,
+        y: 32,
         code: 'SD-01',
         iconName: 'Scissors',
         commonProblem:
@@ -1266,8 +513,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'lineas-proceso',
         name: 'Líneas de proceso y sierras',
-        x: 61,
-        y: 37,
+        x: 42,
+        y: 39,
         code: 'LP-03',
         iconName: 'Activity',
         commonProblem:
@@ -1282,8 +529,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'cintas-transportadoras',
         name: 'Cintas transportadoras',
-        x: 58,
-        y: 52,
+        x: 39,
+        y: 53,
         code: 'CT-05',
         iconName: 'Layers',
         commonProblem:
@@ -1298,7 +545,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'pisos-superficies',
         name: 'Pisos y canaletas',
-        x: 37,
+        x: 27,
         y: 58,
         code: 'PS-04',
         iconName: 'Grid',
@@ -1424,7 +671,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
     name: 'Bodegas',
     title: 'Bodegas y vitivinicultura',
     subtitle: 'Proceso de elaboración de vinos finos y espumantes.',
-    bgImage: IMAGES.heroBreweryCellar,
+    bgImage: IMAGES.banner2,
     hotspots: [
       {
         id: 'barricas-madera',

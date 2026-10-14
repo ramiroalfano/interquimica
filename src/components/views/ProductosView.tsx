@@ -47,7 +47,7 @@ export const PRODUCT_LINES: ProductLineDef[] = [
     categoryTag: 'LIMPIADOR/DESINFECTANTE ALCALINO SÓLIDO',
     image: lineAlcalinoImg,
     icon: <FlaskConical className="w-4 h-4" />,
-    productIds: ['bio-det-duo-plus', 'bio-det-k75-plus', 'bio-det-na75-plus'],
+    productIds: ['bio-det-duo-plus', 'bio-det-k75-plus', 'bio-det-na75-plus', 'na75-plus'],
   },
   {
     id: 'desinfectantes-liquidos',
@@ -59,7 +59,15 @@ export const PRODUCT_LINES: ProductLineDef[] = [
     categoryTag: 'DESINFECTANTE LÍQUIDO',
     image: lineDesinfectanteImg,
     icon: <Sparkles className="w-4 h-4" />,
-    productIds: ['oxi-t', 'sanitex-forte', 'clor-liq-100'],
+    productIds: [
+      'oxi-t',
+      'bio-ap32',
+      'bio-ap32-forte',
+      'ac32',
+      'sanitex-forte',
+      'hipoclorito-sodio-100',
+      'clor-liq-100',
+    ],
   },
   {
     id: 'detergentes-alcalinos-liquidos',
@@ -71,7 +79,7 @@ export const PRODUCT_LINES: ProductLineDef[] = [
     categoryTag: 'DETERGENTE ALCALINO LÍQUIDO',
     image: lineDetergenteImg,
     icon: <Droplets className="w-4 h-4" />,
-    productIds: ['na45', 'k45', 'na75-plus'],
+    productIds: ['na45', 'bio-det-na75-lq', 'k45', 'bio-det-k45-lq'],
   },
   {
     id: 'limpiadores-acidos-liquidos',
@@ -83,7 +91,7 @@ export const PRODUCT_LINES: ProductLineDef[] = [
     categoryTag: 'LIMPIADOR ÁCIDO LÍQUIDO',
     image: lineAcidoImg,
     icon: <TestTube className="w-4 h-4" />,
-    productIds: ['acid', 'acid-c30', 'ac32'],
+    productIds: ['bio-det-acid', 'acid', 'acid-c30', 'bio-det-acid-n', 'bio-acid-s'],
   },
   {
     id: 'limpiadores-desinfectantes-por-espuma',
@@ -95,7 +103,14 @@ export const PRODUCT_LINES: ProductLineDef[] = [
     categoryTag: 'LIMPIADOR ESPUMÍGENO',
     image: lineEspumaImg,
     icon: <Layers className="w-4 h-4" />,
-    productIds: ['foam-plus', 'foam-clor-20', 'foam-acid-15'],
+    productIds: [
+      'bio-foam',
+      'foam-plus',
+      'bio-foam-cl',
+      'foam-clor-20',
+      'bio-foam-acid',
+      'foam-acid-15',
+    ],
   },
   {
     id: 'materia-prima',
@@ -107,7 +122,13 @@ export const PRODUCT_LINES: ProductLineDef[] = [
     categoryTag: 'MATERIA PRIMA INDUSTRIAL',
     image: lineMateriaPrimaImg,
     icon: <Leaf className="w-4 h-4" />,
-    productIds: ['soda-caustica-50', 'acido-fosforico-85', 'hipoclorito-sodio-100'],
+    productIds: [
+      'acido-acetico-glacial',
+      'acido-citrico-anhidrido',
+      'soda-caustica-50',
+      'acido-fosforico-85',
+      'hipoclorito-sodio-100',
+    ],
   },
 ];
 
@@ -134,9 +155,13 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
 
   const activeLine = PRODUCT_LINES.find((l) => l.id === selectedLineId) || PRODUCT_LINES[0];
 
-  // Get products corresponding to current line
-  const currentLineProducts = PRODUCTS.filter((p) =>
+  // Get products corresponding to current line and deduplicate by name
+  const rawLineProducts = PRODUCTS.filter((p) =>
     activeLine.productIds.includes(p.id)
+  );
+
+  const currentLineProducts = Array.from(
+    new Map(rawLineProducts.map((p) => [p.name, p])).values()
   ).sort((a, b) => {
     if (sortOrder === 'name-asc') return a.name.localeCompare(b.name);
     return b.name.localeCompare(a.name);

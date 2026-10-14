@@ -29,6 +29,7 @@ export interface Product {
   badge: string;
   badgeColor: string; // e.g. 'bg-blue-600', 'bg-red-600', 'bg-emerald-600', 'bg-amber-600'
   canisterColor: string; // hex for visual container accent: '#2563eb', '#10b981', '#ef4444', '#d97706', '#8b5cf6'
+  isBag?: boolean;
   title: string;
   tagline: string;
   description: string;
@@ -45,6 +46,29 @@ export interface Product {
     appearance: string;
     solubility: string;
     biodegradable: boolean;
+    color?: string;
+    odor?: string;
+    conductivity?: string;
+    activeChlorine?: string;
+    activeConcentration?: string;
+    purity?: string;
+    waterContent?: string;
+    formula?: string;
+    chemicalFamily?: string;
+  };
+  officialTechSheet?: {
+    officialName: string;
+    date: string;
+    properties: string;
+    physicochemical: {
+      label: string;
+      value: string;
+    }[];
+    applications: string[];
+    usageInstructions: string;
+    materialCompatibility?: string;
+    handlingAndStorage?: string;
+    packaging?: string;
   };
   hasTechSheet: boolean;
   hasSafetySheet: boolean;

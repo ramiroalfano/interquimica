@@ -17,7 +17,7 @@ interface NavbarProps {
   onNavigate: (view: string) => void;
   onOpenSearch: () => void;
   onOpenQuote: () => void;
-  onSelectIndustry: (ind: Industry) => void;
+  onSelectIndustry: (ind: Industry | null) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -79,7 +79,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 2: Navigation Links (Desktop) */}
         <nav className="hidden xl:flex items-center gap-6 text-[12px] font-bold tracking-wider text-slate-200 uppercase">
           {navLinks.map((link) => {
-            const isActive = currentView === link.id;
+            const isActive =
+              currentView === link.id ||
+              (link.id === 'productos' && currentView === 'producto-detalle');
 
             if (link.hasDropdown) {
               return (
@@ -90,7 +92,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onMouseLeave={() => setIndustriesDropdownOpen(false)}
                 >
                   <button
-                    onClick={() => onNavigate('industrias')}
+                    onClick={() => {
+                      onSelectIndustry(null);
+                      onNavigate('industrias');
+                    }}
                     className={`flex items-center gap-1 py-2 hover:text-white transition-colors cursor-pointer ${
                       isActive ? 'text-blue-400 font-extrabold' : 'text-slate-200'
                     }`}
@@ -179,20 +184,28 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div className="xl:hidden bg-[#070e1b]/95 backdrop-blur-lg border-b border-white/10 px-6 py-5 space-y-3 animate-in fade-in">
           <div className="flex flex-col space-y-2 text-xs font-bold uppercase tracking-wider">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => {
-                  onNavigate(link.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`py-2 text-left transition-colors ${
-                  currentView === link.id ? 'text-blue-400' : 'text-slate-200 hover:text-white'
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive =
+                currentView === link.id ||
+                (link.id === 'productos' && currentView === 'producto-detalle');
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => {
+                    if (link.id === 'industrias') {
+                      onSelectIndustry(null);
+                    }
+                    onNavigate(link.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`py-2 text-left transition-colors ${
+                    isActive ? 'text-blue-400 font-bold' : 'text-slate-200 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </div>
 
           <div className="pt-4 border-t border-white/10 flex flex-col gap-2.5">
