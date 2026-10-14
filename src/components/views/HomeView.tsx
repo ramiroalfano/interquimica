@@ -26,8 +26,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // 6 Industrial Banners matching the user's guide images
+  // 6 Industrial Banners matching the official guide, with the main banner (Banner 6) as first slide
   const heroSlides = [
+    {
+      id: 'banner6',
+      image: IMAGES.banner6,
+      type: 'quimica',
+      name: 'Banner Principal - Química que limpia. Resultados que impulsan',
+    },
     {
       id: 'banner1',
       image: IMAGES.banner1,
@@ -57,12 +63,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
       image: IMAGES.banner5,
       type: 'concepto',
       name: 'Banner 5 - Operario sanitización en tanques',
-    },
-    {
-      id: 'banner6',
-      image: IMAGES.banner6,
-      type: 'quimica',
-      name: 'Banner 6 - Cervecería y destilería',
     },
   ];
 
