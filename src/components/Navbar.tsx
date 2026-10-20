@@ -46,7 +46,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'industrias', label: 'INDUSTRIAS', hasDropdown: true },
     { id: 'productos', label: 'PRODUCTOS' },
     { id: 'soluciones', label: 'SOLUCIONES' },
-    { id: 'asistencia', label: 'ASISTENCIA TÉCNICA' },
     { id: 'nosotros', label: 'NOSOTROS' },
     { id: 'contacto', label: 'CONTACTO' },
   ];

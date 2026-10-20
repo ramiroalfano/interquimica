@@ -102,34 +102,32 @@ export const HomeView: React.FC<HomeViewProps> = ({
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-center"
             />
-            {/* Cinematic contrast scrim from left to transparent on right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/50 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050b14]/80 via-transparent to-black/30" />
+            {/* Deep dark cinematic contrast scrim for enhanced readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#01040a]/98 via-[#020713]/85 to-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-black/40 to-black/60" />
           </div>
         ))}
 
-        {/* Content Container (Left Aligned, Identical Typography) */}
+        {/* Content Container (Left Aligned, Extended Width, Refined Font Size) */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 w-full">
-          <div className="max-w-2xl space-y-8">
+          <div className="max-w-4xl lg:max-w-5xl space-y-6">
             {heroSlides[currentSlide].type === 'quimica' ? (
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-display">
-                Química que limpia.<br />
-                <span className="text-[#155fc2] sm:text-[#186be0] font-black">Resultados que impulsan.</span>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
+                Química que limpia.{' '}
+                <span className="text-[#0e4896] sm:text-[#1154b0] font-black">Resultados que impulsan.</span>
               </h1>
             ) : (
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] font-display">
-                Nuevo concepto<br />
-                de <span className="text-[#155fc2] sm:text-[#186be0] font-black">limpieza y desinfección</span>,<br />
-                <span className="text-[#155fc2] sm:text-[#186be0] font-black">sustentable</span><br />
-                y en un único paso.
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
+                Nuevo concepto de <span className="text-[#0e4896] sm:text-[#1154b0] font-black">limpieza y desinfección</span>,{' '}
+                <span className="text-[#0e4896] sm:text-[#1154b0] font-black">sustentable</span> y en un único paso.
               </h1>
             )}
 
-            {/* CTAs identical to screenshots */}
-            <div className="flex flex-wrap items-center gap-4">
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={() => onNavigate('productos')}
-                className="flex items-center gap-2 py-3.5 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] active:bg-[#062450] rounded-md transition-all shadow-lg shadow-blue-950/40 border border-blue-400/20"
+                className="flex items-center gap-2 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] active:bg-[#062450] rounded-md transition-all shadow-lg shadow-blue-950/40 border border-blue-400/20"
               >
                 <span>VER PRODUCTOS</span>
                 <ArrowRight className="w-4 h-4" />
@@ -137,7 +135,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
               <button
                 onClick={() => onNavigate('soluciones')}
-                className="py-3.5 px-6 text-xs font-bold uppercase tracking-wider text-white hover:text-white bg-[#0b1329]/90 hover:bg-slate-800 rounded-md transition-colors border border-slate-700/80"
+                className="py-3 px-6 text-xs font-bold uppercase tracking-wider text-white hover:text-white bg-[#0b1329]/90 hover:bg-slate-800 rounded-md transition-colors border border-slate-700/80"
               >
                 CONOCER SOLUCIONES
               </button>

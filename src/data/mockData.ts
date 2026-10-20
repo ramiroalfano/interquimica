@@ -358,8 +358,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'sala-coccion',
         name: 'Sala de cocción',
-        x: 29,
-        y: 38,
+        x: 25,
+        y: 62,
         code: 'SC-01',
         iconName: 'Flame',
         commonProblem:
@@ -376,7 +376,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'intercambiador',
         name: 'Intercambiador de calor',
         x: 26,
-        y: 52,
+        y: 78,
         code: 'HX-04',
         iconName: 'Workflow',
         commonProblem:
@@ -392,7 +392,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'fermentadores',
         name: 'Fermentadores cilíndrico-cónicos',
         x: 48,
-        y: 37,
+        y: 58,
         code: 'FV-03',
         iconName: 'Cylinder',
         commonProblem:
@@ -408,7 +408,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'tanques-guarda',
         name: 'Tanques de guarda (Brite Tanks)',
         x: 67,
-        y: 37,
+        y: 58,
         code: 'BBT-02',
         iconName: 'Cylinder',
         commonProblem:
@@ -424,7 +424,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'cip-canerias',
         name: 'CIP y cañerías',
         x: 44,
-        y: 57,
+        y: 79,
         code: 'CIP-LOOP',
         iconName: 'Layers',
         commonProblem:
@@ -440,7 +440,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'linea-envasado',
         name: 'Línea de envasado',
         x: 69,
-        y: 52,
+        y: 75,
         code: 'PKG-01',
         iconName: 'Bottle',
         commonProblem:
@@ -463,9 +463,9 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
     hotspots: [
       {
         id: 'recepcion-carne',
-        name: 'Recepción de carne y playa',
+        name: 'Recepción de carne',
         x: 13,
-        y: 44,
+        y: 58,
         code: 'RC-01',
         iconName: 'Truck',
         commonProblem:
@@ -480,8 +480,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'camaras-frigorificas',
         name: 'Cámaras frigoríficas',
-        x: 21,
-        y: 50,
+        x: 26,
+        y: 68,
         code: 'CF-02',
         iconName: 'Snowflake',
         commonProblem:
@@ -496,10 +496,10 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'sala-desposte',
         name: 'Sala de desposte',
-        x: 30,
-        y: 32,
+        x: 43,
+        y: 48,
         code: 'SD-01',
-        iconName: 'Scissors',
+        iconName: 'Knife',
         commonProblem:
           'Acumulación de materia orgánica, grasas y proteínas que favorecen la proliferación bacteriana, generan olores desagradables y riesgo de contaminación cruzada.',
         recommendedSolution:
@@ -507,16 +507,16 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         suggestedProductIds: ['na45', 'sanitex-forte', 'oxi-t'],
         downloads: [
           { title: 'Protocolo de limpieza – Sala de desposte', type: 'protocol', filename: 'Protocolo_Desposte.pdf' },
-          { title: 'Ficha técnica del proceso cárnico', type: 'techsheet', filename: 'Ficha_Tecnica_Desposte.pdf' },
+          { title: 'Ficha técnica del proceso', type: 'techsheet', filename: 'Ficha_Tecnica_Desposte.pdf' },
         ],
       },
       {
         id: 'lineas-proceso',
-        name: 'Líneas de proceso y sierras',
-        x: 42,
-        y: 39,
+        name: 'Líneas de proceso',
+        x: 61,
+        y: 52,
         code: 'LP-03',
-        iconName: 'Activity',
+        iconName: 'Lines',
         commonProblem:
           'Grasa adherida en guías mecánicas y partes móviles que reduce la vida útil de equipos.',
         recommendedSolution:
@@ -529,10 +529,10 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'cintas-transportadoras',
         name: 'Cintas transportadoras',
-        x: 39,
-        y: 53,
+        x: 57,
+        y: 69,
         code: 'CT-05',
-        iconName: 'Layers',
+        iconName: 'Conveyor',
         commonProblem:
           'Manchas de sangre y acumulación de grasa entre eslabones plásticos modulares.',
         recommendedSolution:
@@ -544,9 +544,9 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       },
       {
         id: 'pisos-superficies',
-        name: 'Pisos y canaletas',
-        x: 27,
-        y: 58,
+        name: 'Pisos y superficies',
+        x: 37,
+        y: 78,
         code: 'PS-04',
         iconName: 'Grid',
         commonProblem:
@@ -571,7 +571,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'recepcion-aceitunas',
         name: 'Recepción de aceitunas',
         x: 13,
-        y: 47,
+        y: 62,
         code: 'RA-01',
         iconName: 'Truck',
         commonProblem:
@@ -587,7 +587,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'lavado-seleccion',
         name: 'Lavado y selección',
         x: 26,
-        y: 34,
+        y: 58,
         code: 'LS-02',
         iconName: 'Droplet',
         commonProblem:
@@ -604,7 +604,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'molinos-batidoras',
         name: 'Molinos y batidoras',
         x: 40,
-        y: 29,
+        y: 58,
         code: 'MB-03',
         iconName: 'RotateCw',
         commonProblem:
@@ -620,7 +620,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'decantacion',
         name: 'Decantación y centrifugación',
         x: 51,
-        y: 37,
+        y: 66,
         code: 'DC-04',
         iconName: 'Activity',
         commonProblem:
@@ -636,7 +636,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'linea-envasado-oliva',
         name: 'Línea de envasado',
         x: 70,
-        y: 39,
+        y: 68,
         code: 'ENV-05',
         iconName: 'Bottle',
         commonProblem:
@@ -652,7 +652,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'pisos-superficies-oliva',
         name: 'Pisos y superficies',
         x: 43,
-        y: 56,
+        y: 80,
         code: 'PIS-06',
         iconName: 'Grid',
         commonProblem:
@@ -676,8 +676,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'barricas-madera',
         name: 'Barricas de roble',
-        x: 10,
-        y: 49,
+        x: 8,
+        y: 78,
         code: 'BAR-01',
         iconName: 'Barrel',
         commonProblem:
@@ -692,8 +692,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'tanques-inox-bodega',
         name: 'Tanques de acero inoxidable',
-        x: 35,
-        y: 31,
+        x: 26,
+        y: 59,
         code: 'TK-INOX',
         iconName: 'Cylinder',
         commonProblem:
@@ -706,26 +706,10 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         ],
       },
       {
-        id: 'filtros-tangenciales-bodega',
-        name: 'Filtros tangenciales',
-        x: 49,
-        y: 44,
-        code: 'FT-02',
-        iconName: 'Cpu',
-        commonProblem:
-          'Colmatación de membranas por polisacáridos y coloides del vino reduciendo el caudal de filtración.',
-        recommendedSolution:
-          'Lavado suave con Bio Det Na 75 Plus libre de cloro y posterior recuperación con solución ácida regulada.',
-        suggestedProductIds: ['bio-det-na75-plus', 'acid'],
-        downloads: [
-          { title: 'Regeneración de membranas de filtración', type: 'techsheet', filename: 'Membranas_Filtracion.pdf' },
-        ],
-      },
-      {
         id: 'linea-fraccionamiento-bodega',
         name: 'Línea de fraccionamiento',
-        x: 29,
-        y: 45,
+        x: 22,
+        y: 74,
         code: 'LF-03',
         iconName: 'Layers',
         commonProblem:
@@ -738,10 +722,26 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         ],
       },
       {
+        id: 'filtros-tangenciales-bodega',
+        name: 'Filtros tangenciales',
+        x: 36,
+        y: 71,
+        code: 'FT-02',
+        iconName: 'Cpu',
+        commonProblem:
+          'Colmatación de membranas por polisacáridos y coloides del vino reduciendo el caudal de filtración.',
+        recommendedSolution:
+          'Lavado suave con Bio Det Na 75 Plus libre de cloro y posterior recuperación con solución ácida regulada.',
+        suggestedProductIds: ['bio-det-na75-plus', 'acid'],
+        downloads: [
+          { title: 'Regeneración de membranas de filtración', type: 'techsheet', filename: 'Membranas_Filtracion.pdf' },
+        ],
+      },
+      {
         id: 'embotellado-bodega',
         name: 'Embotellado',
-        x: 70,
-        y: 44,
+        x: 51,
+        y: 71,
         code: 'EMB-04',
         iconName: 'Bottle',
         commonProblem:
@@ -766,7 +766,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'tanques-mezcla',
         name: 'Tanques de mezcla y jarabes',
         x: 32,
-        y: 35,
+        y: 60,
         code: 'TM-01',
         iconName: 'Cylinder',
         commonProblem:
@@ -782,7 +782,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'pasteurizador-alimentario',
         name: 'Pasteurizador continuo',
         x: 52,
-        y: 28,
+        y: 58,
         code: 'PST-02',
         iconName: 'Workflow',
         commonProblem:
@@ -798,7 +798,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         id: 'envasadora-aséptica',
         name: 'Envasadora aséptica',
         x: 68,
-        y: 46,
+        y: 68,
         code: 'ENV-AS',
         iconName: 'Bottle',
         commonProblem:

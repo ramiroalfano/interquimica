@@ -4,8 +4,6 @@ import { INTERACTIVE_SCENES, PRODUCTS } from '../data/mockData.ts';
 import { CanisterVisual } from './CanisterVisual.tsx';
 import {
   MousePointerClick,
-  FileDown,
-  MessageCircle,
   X,
   Layers,
   Flame,
@@ -13,7 +11,6 @@ import {
   Cylinder,
   Package,
   Snowflake,
-  Scissors,
   Activity,
   Truck,
   Droplet,
@@ -24,16 +21,8 @@ import {
   Headphones,
   ClipboardList,
   FileText,
-  MapPin,
-  Sparkles,
   Download,
-  ArrowRight,
-  CheckCircle2,
-  Maximize2,
-  Minimize2,
-  ZoomIn,
-  ZoomOut,
-  RotateCcw,
+  MessageCircle,
 } from 'lucide-react';
 
 interface InteractiveSceneViewerProps {
@@ -42,6 +31,15 @@ interface InteractiveSceneViewerProps {
   onNavigateToProducts: () => void;
 }
 
+// Fixed visual order matching the reference layout
+const SCENE_DISPLAY_ORDER = [
+  'bodegas',
+  'cervecerias',
+  'frigorificos',
+  'olivicola',
+  'alimentaria',
+];
+
 export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
   initialSceneId = 'frigorificos',
   onSelectProduct,
@@ -49,17 +47,23 @@ export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
 }) => {
   const [selectedSceneId, setSelectedSceneId] = useState<string>(initialSceneId);
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
-  const [zoomLevel, setZoomLevel] = useState<number>(1);
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+
+  // Ordered scenes list
+  const orderedScenes = [...INTERACTIVE_SCENES].sort(
+    (a, b) => SCENE_DISPLAY_ORDER.indexOf(a.id) - SCENE_DISPLAY_ORDER.indexOf(b.id)
+  );
 
   const currentScene =
-    INTERACTIVE_SCENES.find((s) => s.id === selectedSceneId) || INTERACTIVE_SCENES[0];
+    INTERACTIVE_SCENES.find((s) => s.id === selectedSceneId) ||
+    orderedScenes.find((s) => s.id === 'frigorificos') ||
+    orderedScenes[0];
 
-  // If selectedHotspot belongs to currentScene, keep it; otherwise default to "recepcion-carne" or first hotspot
+  // Active hotspot: prefer selectedHotspot if belongs to scene, else 'sala-desposte' for frigoríficos or first hotspot
   const activeHotspot: Hotspot | null =
     selectedHotspot && currentScene.hotspots.some((h) => h.id === selectedHotspot.id)
       ? selectedHotspot
-      : currentScene.hotspots.find((h) => h.id === 'recepcion-carne') ||
+      : currentScene.hotspots.find((h) => h.id === 'sala-desposte') ||
+        currentScene.hotspots.find((h) => h.id === 'recepcion-carne') ||
         (currentScene.hotspots.length > 0 ? currentScene.hotspots[0] : null);
 
   const handleSceneChange = (sceneId: string) => {
@@ -67,7 +71,8 @@ export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
     const targetScene = INTERACTIVE_SCENES.find((s) => s.id === sceneId);
     if (targetScene && targetScene.hotspots.length > 0) {
       const preferred =
-        targetScene.hotspots.find((h) => h.id === 'recepcion-carne') || targetScene.hotspots[0];
+        targetScene.hotspots.find((h) => h.id === 'sala-desposte') ||
+        targetScene.hotspots[0];
       setSelectedHotspot(preferred);
     } else {
       setSelectedHotspot(null);
@@ -76,33 +81,82 @@ export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
 
   const getHotspotIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Truck':
-        return <Truck className="w-4 h-4" />;
-      case 'Snowflake':
-        return <Snowflake className="w-4 h-4" />;
+      case 'Knife':
       case 'Scissors':
-        return <Scissors className="w-4 h-4" />;
+        return (
+          <svg
+            className="w-3.5 h-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m20.5 3.5-3 3-9 9-4.5 1 1-4.5 9-9 3-3a1.4 1.4 0 0 1 2 0l1.5 1.5a1.4 1.4 0 0 1 0 2Z" />
+            <path d="m14.5 6.5 3 3" />
+          </svg>
+        );
+      case 'Truck':
+        return <Truck className="w-3.5 h-3.5" />;
+      case 'Snowflake':
+        return <Snowflake className="w-3.5 h-3.5" />;
       case 'Grid':
-        return <Grid className="w-4 h-4" />;
-      case 'RotateCw':
-        return <RotateCw className="w-4 h-4" />;
+        return <Grid className="w-3.5 h-3.5" />;
+      case 'Conveyor':
+      case 'Layers':
+        return (
+          <svg
+            className="w-3.5 h-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect x="2" y="6" width="20" height="8" rx="4" />
+            <circle cx="6" cy="10" r="1" fill="currentColor" />
+            <circle cx="12" cy="10" r="1" fill="currentColor" />
+            <circle cx="18" cy="10" r="1" fill="currentColor" />
+            <path d="M4 14v4M20 14v4" />
+          </svg>
+        );
+      case 'Lines':
+      case 'Factory':
       case 'Activity':
-        return <Activity className="w-4 h-4" />;
+        return (
+          <svg
+            className="w-3.5 h-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M2 20h20" />
+            <path d="M6 20V10l4 4V10l4 4V4h6v16" />
+          </svg>
+        );
+      case 'RotateCw':
+        return <RotateCw className="w-3.5 h-3.5" />;
       case 'Flame':
-        return <Flame className="w-4 h-4" />;
+        return <Flame className="w-3.5 h-3.5" />;
       case 'Workflow':
-        return <Workflow className="w-4 h-4" />;
+        return <Workflow className="w-3.5 h-3.5" />;
       case 'Cylinder':
-        return <Cylinder className="w-4 h-4" />;
+        return <Cylinder className="w-3.5 h-3.5" />;
       case 'Bottle':
-        return <Package className="w-4 h-4" />;
+      case 'Package':
+        return <Package className="w-3.5 h-3.5" />;
       case 'Droplet':
-        return <Droplet className="w-4 h-4" />;
+        return <Droplet className="w-3.5 h-3.5" />;
       case 'Wine':
       case 'Barrel':
-        return <Wine className="w-4 h-4" />;
+        return <Wine className="w-3.5 h-3.5" />;
       default:
-        return <Layers className="w-4 h-4" />;
+        return <Layers className="w-3.5 h-3.5" />;
     }
   };
 
@@ -139,174 +193,164 @@ Mendoza, Argentina
     URL.revokeObjectURL(url);
   };
 
+  const handleDownloadTechSheet = () => {
+    if (!activeHotspot) return;
+    const techDoc =
+      activeHotspot.downloads.find((d) => d.type === 'techsheet') ||
+      activeHotspot.downloads[0];
+    if (techDoc) {
+      handleDownload(techDoc.filename, techDoc.title);
+    } else {
+      handleDownload(
+        `Ficha_Tecnica_${activeHotspot.id}.txt`,
+        `Ficha técnica de proceso - ${activeHotspot.name}`
+      );
+    }
+  };
+
   const handleWhatsAppChat = () => {
     if (!activeHotspot) return;
     const msg = encodeURIComponent(
-      `Hola equipo técnico de InterQuímica Argentina, estoy revisando el sector ${activeHotspot.name} de ${currentScene.name} y necesito asesoramiento sobre la solución recomendada.`
+      `Hola equipo técnico de InterQuímica Argentina, estoy revisando el sector "${activeHotspot.name}" en la planta de "${currentScene.name}" y deseo consultar por la solución recomendada.`
     );
     window.open(`https://wa.me/5492611234567?text=${msg}`, '_blank');
   };
 
-  // Other scenes for the bottom row
-  const otherScenes = INTERACTIVE_SCENES.filter((s) => s.id !== selectedSceneId);
+  // Other 4 scenes for the lower row
+  const otherScenes = orderedScenes.filter((s) => s.id !== selectedSceneId);
 
   return (
-    <div className="w-full bg-[#030816] text-slate-100 pt-24 pb-16 font-sans selection:bg-blue-600 selection:text-white">
-      <div className="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 space-y-8">
+    <div className="w-full bg-[#030816] text-slate-100 pt-20 pb-4 font-sans selection:bg-blue-600 selection:text-white">
+      {/* Container */}
+      <div className="w-full max-w-[1850px] mx-auto px-3 sm:px-5 lg:px-7 flex flex-col gap-3 sm:gap-4 min-h-[calc(100vh-80px)]">
+        
         {/* ========================================================= */}
-        {/* 1. TOP BAR: TITLE + GUIDANCE PILLS + 5 INDUSTRY SELECTOR CARDS */}
+        {/* 1. MAIN HERO ROW: UNIFIED PANORAMIC STAGE WITH OVERLAID HEADER (LEFT) & DETAIL PANEL (RIGHT) */}
         {/* ========================================================= */}
-        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 pb-2">
-          {/* Left Title & Instructions */}
-          <div className="max-w-xl space-y-3">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.08] font-display">
-              Escenarios<br />
-              industriales interactivos
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-              Explorá cada industria y hacé clic en las áreas del proceso para descubrir problemas habituales, soluciones recomendadas, productos y protocolos de aplicación.
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+          
+          {/* Panoramic Stage Container with the Title and 5 Industry Cards Overlaid Directly Inside */}
+          <div className="lg:col-span-8 xl:col-span-9 relative bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-2xl h-[470px] sm:h-[500px] lg:h-[500px] xl:h-[510px] flex flex-col justify-between">
+            {/* Full-bleed background panoramic facility image */}
+            <img
+              src={currentScene.bgImage}
+              alt={currentScene.title}
+              className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            />
 
-            {/* Helper Guidance Badges */}
-            <div className="flex flex-wrap items-center gap-4 pt-1">
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <span className="w-7 h-7 rounded-full bg-blue-950/80 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
-                  <MousePointerClick className="w-3.5 h-3.5" />
-                </span>
-                <span>Hacé clic en un sector</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <span className="w-7 h-7 rounded-full bg-blue-950/80 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
-                  <Layers className="w-3.5 h-3.5" />
-                </span>
-                <span>Explorá cada etapa del proceso</span>
-              </div>
-            </div>
-          </div>
+            {/* Gradient Scrims: Dark gradient from top to protect text readability */}
+            <div className="absolute inset-x-0 top-0 h-48 sm:h-56 bg-gradient-to-b from-[#020713]/95 via-[#020713]/70 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#020713]/85 via-transparent to-transparent pointer-events-none" />
 
-          {/* Right Top Industry Selector Cards Row (5 Cards) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 w-full xl:w-auto xl:max-w-3xl overflow-x-auto pb-1">
-            {INTERACTIVE_SCENES.map((scene) => {
-              const isSelected = scene.id === selectedSceneId;
-              return (
-                <button
-                  key={scene.id}
-                  onClick={() => handleSceneChange(scene.id)}
-                  className={`relative group flex flex-col text-left p-2.5 rounded-xl border transition-all duration-200 cursor-pointer overflow-hidden ${
-                    isSelected
-                      ? 'bg-[#0077c8]/15 border-[#0077c8] shadow-[0_0_16px_rgba(0,119,200,0.45)] ring-1 ring-[#0077c8]'
-                      : 'bg-[#051126]/70 border-slate-800/80 hover:border-slate-700 hover:bg-[#081a38]'
-                  }`}
-                >
-                  {/* Thumbnail Image */}
-                  <div className="relative w-full h-16 sm:h-18 rounded-lg overflow-hidden mb-2 bg-slate-900">
-                    <img
-                      src={scene.bgImage}
-                      alt={scene.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            {/* TOP OVERLAID SECTION INSIDE THE IMAGE (Title + Description + Badges + 5 Cards) */}
+            <div className="relative z-20 p-3 sm:p-4 flex flex-col xl:flex-row xl:items-start justify-between gap-2.5 sm:gap-3.5">
+              {/* Left Title, Subtitle and Badges */}
+              <div className="max-w-md xl:max-w-lg space-y-1.5">
+                <h1 className="text-xl sm:text-2xl xl:text-3xl font-black text-white tracking-tight leading-[1.08] font-display drop-shadow-md">
+                  Escenarios<br className="hidden sm:inline" /> industriales interactivos
+                </h1>
+                <p className="text-xs text-slate-300 font-normal leading-relaxed line-clamp-1 sm:line-clamp-2 drop-shadow">
+                  Explorá cada industria y hacé clic en las áreas del proceso para descubrir problemas habituales, soluciones recomendadas, productos y protocolos de aplicación.
+                </p>
 
-                    {/* Active Icon Badge if selected */}
-                    {isSelected && (
-                      <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-blue-600 border border-white/60 flex items-center justify-center text-white shadow-md">
-                        <Snowflake className="w-3 h-3" />
-                      </div>
-                    )}
+                {/* Helper Guidance Badges matching screenshot */}
+                <div className="flex flex-wrap items-center gap-2.5 pt-0.5">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                    <span className="w-5 h-5 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
+                      <MousePointerClick className="w-3 h-3" />
+                    </span>
+                    <span className="text-[11px] font-medium">Hacé clic en un sector</span>
                   </div>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                    <span className="w-5 h-5 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
+                      <svg
+                        className="w-3 h-3"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                        <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+                        <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+                        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+                      </svg>
+                    </span>
+                    <span className="text-[11px] font-medium">Explorá cada etapa del proceso</span>
+                  </div>
+                </div>
+              </div>
 
-                  {/* Card Title & Subtitle */}
-                  <div className="leading-tight">
-                    <h3
-                      className={`text-xs font-bold font-display line-clamp-1 ${
-                        isSelected ? 'text-white' : 'text-slate-200 group-hover:text-white'
+              {/* Right: 5 Industry Selector Cards in a single sleek horizontal row (never wraps into 2 rows) */}
+              <div className="flex items-stretch gap-2 overflow-x-auto no-scrollbar pb-1 w-full xl:w-auto xl:max-w-2xl shrink-0 flex-nowrap">
+                {orderedScenes.map((scene) => {
+                  const isSelected = scene.id === selectedSceneId;
+                  return (
+                    <button
+                      key={scene.id}
+                      onClick={() => handleSceneChange(scene.id)}
+                      className={`relative group flex flex-col text-left p-1.5 sm:p-2 rounded-xl border transition-all duration-200 cursor-pointer overflow-hidden backdrop-blur-md shrink-0 w-[112px] sm:w-[124px] xl:w-[128px] ${
+                        isSelected
+                          ? 'bg-[#0077c8]/35 border-[#0077c8] shadow-[0_0_16px_rgba(0,119,200,0.5)] ring-1 ring-[#0077c8]'
+                          : 'bg-[#051126]/85 border-white/10 hover:border-slate-500 hover:bg-[#081a38]/90'
                       }`}
                     >
-                      {scene.name}
-                    </h3>
-                    <p className="text-[10px] text-slate-400 line-clamp-2 mt-0.5 font-normal leading-tight">
-                      {scene.subtitle}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+                      {/* Thumbnail Image */}
+                      <div className="relative w-full h-11 sm:h-12 rounded-lg overflow-hidden mb-1.5 bg-slate-900">
+                        <img
+                          src={scene.bgImage}
+                          alt={scene.name}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-        {/* ========================================================= */}
-        {/* 2. EXPANDED PANORAMIC VIEWPORT (LEFT) & DETAIL PANEL (RIGHT) */}
-        {/* ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-          {/* Panoramic Stage with Hotspot Overlay (Takes 75% on desktop xl/2xl) */}
-          <div className="lg:col-span-8 xl:col-span-9 2xl:col-span-9 relative bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-2xl h-[640px] sm:h-[740px] lg:h-[840px] xl:h-[920px] 2xl:h-[980px]">
-            {/* Floating Viewport Controls: Zoom In / Zoom Out / Reset / Maximize */}
-            <div className="absolute top-4 right-4 z-30 flex items-center gap-1.5 bg-[#030919]/90 border border-slate-700/80 rounded-xl p-1.5 shadow-2xl backdrop-blur-md">
-              <button
-                onClick={() => setZoomLevel((z) => Math.max(1, Number((z - 0.25).toFixed(2))))}
-                disabled={zoomLevel <= 1}
-                className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                title="Alejar (-)"
-              >
-                <ZoomOut className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setZoomLevel(1)}
-                className="px-2 py-0.5 rounded text-[11px] font-mono font-bold text-sky-400 hover:bg-slate-800 transition-colors"
-                title="Restablecer zoom a 100%"
-              >
-                {Math.round(zoomLevel * 100)}%
-              </button>
-              <button
-                onClick={() => setZoomLevel((z) => Math.min(1.75, Number((z + 0.25).toFixed(2))))}
-                disabled={zoomLevel >= 1.75}
-                className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                title="Acercar (+)"
-              >
-                <ZoomIn className="w-4 h-4" />
-              </button>
-              <div className="w-px h-4 bg-slate-700 mx-0.5" />
-              <button
-                onClick={() => setIsFullscreen(true)}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-blue-600/90 hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md cursor-pointer"
-                title="Pantalla completa / Vista ampliada"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Ampliar</span>
-              </button>
+                        {/* Active Icon Snowflake Badge if selected */}
+                        {isSelected && (
+                          <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-blue-600 border border-white/70 flex items-center justify-center text-white shadow-md">
+                            <Snowflake className="w-2.5 h-2.5" />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Card Title & Subtitle */}
+                      <div className="leading-tight">
+                        <h3
+                          className={`text-[11px] font-bold font-display truncate ${
+                            isSelected ? 'text-white' : 'text-slate-200 group-hover:text-white'
+                          }`}
+                        >
+                          {scene.name}
+                        </h3>
+                        <p className="text-[9.5px] text-slate-400 line-clamp-2 mt-0.5 font-normal leading-tight">
+                          {scene.subtitle}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            <div
-              className="relative w-full h-full select-none overflow-hidden transition-transform duration-300 origin-center"
-              style={{ transform: `scale(${zoomLevel})` }}
-            >
-              {/* Background Panoramic Facility Photo - Expanded and High-Res */}
-              <img
-                src={currentScene.bgImage}
-                alt={currentScene.title}
-                className="w-full h-full object-cover object-center"
-              />
-
-              {/* Cinematic Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25 pointer-events-none" />
-
-              {/* Hotspots Overlay */}
+            {/* Hotspots Overlay positioned across the visual stage */}
+            <div className="absolute inset-0 pointer-events-none">
               {currentScene.hotspots.map((spot) => {
                 const isActive = activeHotspot?.id === spot.id;
                 return (
                   <div
                     key={spot.id}
                     style={{ top: `${spot.y}%`, left: `${spot.x}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-auto"
                   >
                     <div className="relative flex flex-col items-center group cursor-pointer">
                       {/* Hotspot Pill Badge Button */}
                       <button
                         onClick={() => setSelectedHotspot(spot)}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer whitespace-nowrap shadow-2xl backdrop-blur-md mb-2 ${
+                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all duration-200 cursor-pointer whitespace-nowrap shadow-xl backdrop-blur-md mb-1.5 ${
                           isActive
-                            ? 'bg-[#0070ba] text-white border-2 border-[#00c8ff] shadow-[0_0_24px_rgba(0,200,255,0.85)] scale-105 ring-2 ring-white/40'
-                            : 'bg-[#030919]/90 text-slate-100 border border-slate-700/90 hover:border-sky-400 hover:text-white hover:bg-[#071938]'
+                            ? 'bg-[#005bb7] text-white border border-[#2b90ff] shadow-[0_0_20px_rgba(43,144,255,0.75)] scale-105 ring-2 ring-white/30'
+                            : 'bg-[#050f24]/90 text-slate-100 border border-slate-700/80 hover:border-sky-400 hover:text-white hover:bg-[#071938]'
                         }`}
                       >
                         <span className={isActive ? 'text-white' : 'text-slate-300'}>
@@ -322,12 +366,12 @@ Mendoza, Argentina
                       >
                         {/* Target Circle for Active Pin */}
                         {isActive && (
-                          <span className="absolute w-8 h-8 rounded-full border-2 border-[#00c8ff] ring-4 ring-[#00c8ff]/30 animate-pulse pointer-events-none" />
+                          <span className="absolute w-7 h-7 rounded-full border border-[#00c8ff] ring-4 ring-[#00c8ff]/25 animate-pulse pointer-events-none" />
                         )}
 
                         {/* Ping Ripple */}
                         <span
-                          className={`absolute w-6 h-6 rounded-full ${
+                          className={`absolute w-5 h-5 rounded-full ${
                             isActive
                               ? 'bg-sky-400/60 animate-ping'
                               : 'bg-sky-500/30 group-hover:animate-ping'
@@ -336,13 +380,13 @@ Mendoza, Argentina
 
                         {/* Center Pin Button */}
                         <span
-                          className={`w-4 h-4 rounded-full border-2 transition-all flex items-center justify-center ${
+                          className={`w-3.5 h-3.5 rounded-full border-2 transition-all flex items-center justify-center ${
                             isActive
                               ? 'bg-[#0077c8] border-white shadow-[0_0_12px_rgba(0,200,255,1)] scale-110'
                               : 'bg-blue-500 border-white shadow-md'
                           }`}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                          <span className="w-1 h-1 rounded-full bg-white" />
                         </span>
                       </div>
                     </div>
@@ -352,126 +396,145 @@ Mendoza, Argentina
             </div>
           </div>
 
-          {/* Right Detail Side Panel (Col 4 on lg, Col 3 on xl/2xl) */}
-          <div className="lg:col-span-4 xl:col-span-3 2xl:col-span-3 bg-[#050f24]/95 border border-slate-800/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xl backdrop-blur-md h-full min-h-[640px] lg:min-h-[840px] xl:min-h-[920px]">
+          {/* Right Detail Side Panel matching screenshot exact layout */}
+          <div className="lg:col-span-4 xl:col-span-3 bg-[#040e21]/95 border border-slate-800/90 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md min-h-[380px] lg:h-[500px] xl:h-[510px] overflow-hidden">
             {activeHotspot ? (
-              <div className="space-y-5">
-                {/* Header with Hotspot Icon Badge, Name & Close */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-9 h-9 rounded-xl bg-blue-950/80 border border-blue-500/40 flex items-center justify-center text-[#00c8ff] shadow-sm">
-                      {getHotspotIcon(activeHotspot.iconName)}
+              <div className="flex flex-col justify-between h-full">
+                {/* Scrollable / Flexible Upper Content */}
+                <div className="space-y-3 overflow-y-auto pr-1">
+                  {/* Header with Hotspot Icon, Name & Close */}
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="w-7 h-7 rounded-lg bg-blue-950/80 border border-blue-500/40 flex items-center justify-center text-[#00c8ff] shadow-sm">
+                        {getHotspotIcon(activeHotspot.iconName)}
+                      </span>
+                      <h2 className="text-sm sm:text-base font-bold text-white font-display leading-tight truncate">
+                        {activeHotspot.name}
+                      </h2>
+                    </div>
+                    <button
+                      onClick={() => setSelectedHotspot(null)}
+                      className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
+                      title="Cerrar panel"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Section 1: PROBLEMA HABITUAL */}
+                  <div className="space-y-1">
+                    <span className="text-[10.5px] font-bold text-white uppercase tracking-wider block font-display">
+                      Problema habitual
                     </span>
-                    <h2 className="text-base sm:text-lg font-black text-white font-display leading-tight">
-                      {activeHotspot.name}
-                    </h2>
+                    <p className="text-[11px] text-slate-300 leading-snug font-normal">
+                      {activeHotspot.commonProblem}
+                    </p>
                   </div>
-                  <button
-                    onClick={() => setSelectedHotspot(null)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors cursor-pointer"
-                    title="Cerrar panel"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
 
-                {/* Section 1: PROBLEMA HABITUAL */}
-                <div className="space-y-1.5">
-                  <span className="text-xs font-black text-white uppercase tracking-wider block font-display">
-                    PROBLEMA HABITUAL
-                  </span>
-                  <p className="text-xs text-slate-300 leading-relaxed font-normal">
-                    {activeHotspot.commonProblem}
-                  </p>
-                </div>
-
-                {/* Section 2: SOLUCIÓN RECOMENDADA */}
-                <div className="space-y-1.5">
-                  <span className="text-xs font-black text-white uppercase tracking-wider block font-display">
-                    SOLUCIÓN RECOMENDADA
-                  </span>
-                  <p className="text-xs text-slate-300 leading-relaxed font-normal">
-                    {activeHotspot.recommendedSolution}
-                  </p>
-                </div>
-
-                {/* Section 3: PRODUCTOS SUGERIDOS */}
-                <div className="space-y-2">
-                  <span className="text-xs font-black text-white uppercase tracking-wider block font-display">
-                    PRODUCTOS SUGERIDOS
-                  </span>
-                  <div className="space-y-2">
-                    {activeHotspot.suggestedProductIds.map((pid) => {
-                      const prod = PRODUCTS.find((p) => p.id === pid);
-                      if (!prod) return null;
-                      return (
-                        <div
-                          key={prod.id}
-                          onClick={() => onSelectProduct(prod)}
-                          className="flex items-center justify-between p-2.5 rounded-xl bg-[#030919] hover:bg-[#071630] border border-slate-800 hover:border-[#0088cc] transition-all cursor-pointer group shadow-sm"
-                        >
-                          <div className="flex items-center gap-3">
-                            {/* Small Canister Visual */}
-                            <div className="w-8 h-10 flex items-center justify-center shrink-0">
-                              <CanisterVisual
-                                name={prod.name}
-                                color={prod.canisterColor}
-                                badge={prod.badge}
-                                className="w-full h-full scale-90"
-                              />
-                            </div>
-                            <div className="leading-tight">
-                              <span className="text-xs font-bold text-white group-hover:text-[#00c8ff] transition-colors block">
-                                {prod.name}
-                              </span>
-                              <span className="text-[11px] text-slate-400 line-clamp-1 block mt-0.5">
-                                {prod.description}
-                              </span>
-                            </div>
-                          </div>
-                          <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-transform group-hover:translate-x-0.5" />
-                        </div>
-                      );
-                    })}
+                  {/* Section 2: SOLUCIÓN RECOMENDADA */}
+                  <div className="space-y-1">
+                    <span className="text-[10.5px] font-bold text-white uppercase tracking-wider block font-display">
+                      Solución recomendada
+                    </span>
+                    <p className="text-[11px] text-slate-300 leading-snug font-normal">
+                      {activeHotspot.recommendedSolution}
+                    </p>
                   </div>
-                </div>
 
-                {/* Section 4: DESCARGAS */}
-                <div className="space-y-2 pt-1">
-                  <span className="text-xs font-black text-white uppercase tracking-wider block font-display">
-                    DESCARGAS
-                  </span>
+                  {/* Section 3: PRODUCTOS SUGERIDOS */}
                   <div className="space-y-1.5">
-                    {activeHotspot.downloads.map((d) => (
-                      <button
-                        key={d.title}
-                        onClick={() => handleDownload(d.filename, d.title)}
-                        className="w-full flex items-center justify-between py-2.5 px-3.5 rounded-lg bg-[#030919] hover:bg-[#071630] border border-slate-800 text-xs text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
-                      >
-                        <span className="truncate pr-2">{d.title}</span>
-                        <Download className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      </button>
-                    ))}
+                    <span className="text-[10.5px] font-bold text-white uppercase tracking-wider block font-display">
+                      Productos sugeridos
+                    </span>
+                    <div className="space-y-1.5">
+                      {activeHotspot.suggestedProductIds.map((pid) => {
+                        const prod = PRODUCTS.find((p) => p.id === pid);
+                        if (!prod) return null;
+                        return (
+                          <div
+                            key={prod.id}
+                            onClick={() => onSelectProduct(prod)}
+                            className="flex items-center justify-between p-1.5 rounded-lg bg-[#020713]/90 hover:bg-[#071630] border border-slate-800 hover:border-[#0088cc] transition-all cursor-pointer group shadow-sm"
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                              {/* Small Canister Visual */}
+                              <div className="w-6 h-7 flex items-center justify-center shrink-0">
+                                <CanisterVisual
+                                  name={prod.name}
+                                  color={prod.canisterColor}
+                                  badge={prod.badge}
+                                  className="w-full h-full scale-75"
+                                />
+                              </div>
+                              <div className="leading-tight truncate">
+                                <span className="text-[11px] font-bold text-white group-hover:text-[#00c8ff] transition-colors block truncate">
+                                  {prod.name}
+                                </span>
+                                <span className="text-[10px] text-slate-400 truncate block mt-0.5">
+                                  {prod.description}
+                                </span>
+                              </div>
+                            </div>
+                            <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-transform group-hover:translate-x-0.5 shrink-0 ml-1" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Section 4: DESCARGAS */}
+                  <div className="space-y-1 pt-0.5">
+                    <span className="text-[10.5px] font-bold text-white uppercase tracking-wider block font-display">
+                      Descargas
+                    </span>
+                    <div className="space-y-1">
+                      {activeHotspot.downloads.map((d) => (
+                        <button
+                          key={d.title}
+                          onClick={() => handleDownload(d.filename, d.title)}
+                          className="w-full flex items-center justify-between py-1 px-2.5 rounded-md bg-[#020713]/90 hover:bg-[#071630] border border-slate-800 text-[10.5px] text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
+                        >
+                          <span className="truncate pr-2">{d.title}</span>
+                          <Download className="w-3 h-3 text-slate-400 shrink-0" />
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Section 5: Primary Action Button */}
-                <div className="pt-2">
+                {/* Section 5: Primary Action Buttons (3 CTAs matching screenshot) */}
+                <div className="pt-2.5 border-t border-slate-800/80 space-y-1.5 shrink-0 mt-2">
                   <button
                     onClick={onNavigateToProducts}
-                    className="w-full py-3 px-4 rounded-md bg-[#0b4592] hover:bg-[#0d54b3] text-white text-xs font-black uppercase tracking-wider transition-all shadow-lg border border-blue-400/30 cursor-pointer"
+                    className="w-full py-2 px-3 rounded-lg bg-[#0b4592] hover:bg-[#0d54b3] text-white text-[11px] font-bold uppercase tracking-wider transition-all shadow-md border border-blue-400/30 cursor-pointer text-center"
                   >
                     VER PRODUCTOS
+                  </button>
+
+                  <button
+                    onClick={handleDownloadTechSheet}
+                    className="w-full py-2 px-3 rounded-lg bg-[#051126] hover:bg-[#081a38] text-white text-[11px] font-bold uppercase tracking-wider transition-all border border-slate-700/80 cursor-pointer flex items-center justify-center gap-1.5"
+                  >
+                    <span>DESCARGAR FICHA TÉCNICA</span>
+                    <Download className="w-3.5 h-3.5 text-slate-300" />
+                  </button>
+
+                  <button
+                    onClick={handleWhatsAppChat}
+                    className="w-full py-2 px-3 rounded-lg border border-emerald-500/70 text-emerald-400 hover:bg-emerald-500/10 text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>HABLAR POR WHATSAPP</span>
                   </button>
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full text-center p-6 space-y-3">
-                <MousePointerClick className="w-10 h-10 text-sky-400 animate-bounce" />
-                <h3 className="text-base font-bold text-white font-display">
+              <div className="flex flex-col items-center justify-center h-full text-center p-4 space-y-2">
+                <MousePointerClick className="w-8 h-8 text-sky-400 animate-bounce" />
+                <h3 className="text-sm font-bold text-white font-display">
                   Seleccioná un sector del proceso
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-[11px] text-slate-400">
                   Hacé clic en cualquiera de los puntos señalizados en la imagen para ver los problemas habituales, soluciones y productos recomendados.
                 </p>
               </div>
@@ -480,22 +543,19 @@ Mendoza, Argentina
         </div>
 
         {/* ========================================================= */}
-        {/* 3. LOWER SECTION: "Otros escenarios" (4 Panoramic Cards) */}
+        {/* 2. LOWER SECTION: "Otros escenarios" (4 Sleek Panoramic Cards) */}
         {/* ========================================================= */}
-        <div className="space-y-4 pt-4">
-          <h2 className="text-xl font-bold text-white font-display">
+        <div className="space-y-2.5 pt-1">
+          <h2 className="text-xs sm:text-sm font-bold text-white font-display tracking-wider uppercase">
             Otros escenarios
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {otherScenes.map((scene) => (
               <div
                 key={scene.id}
-                onClick={() => {
-                  handleSceneChange(scene.id);
-                  window.scrollTo({ top: 120, behavior: 'smooth' });
-                }}
-                className="relative group aspect-[16/9] rounded-xl overflow-hidden border border-slate-800 hover:border-[#0088cc] shadow-xl transition-all duration-300 cursor-pointer bg-slate-950"
+                onClick={() => handleSceneChange(scene.id)}
+                className="relative group h-18 sm:h-20 rounded-xl overflow-hidden border border-slate-800 hover:border-[#0088cc] shadow-md transition-all duration-300 cursor-pointer bg-slate-950"
               >
                 {/* Background Image */}
                 <img
@@ -506,27 +566,25 @@ Mendoza, Argentina
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
 
                 {/* Hotspot Glowing Dot in the scene preview */}
-                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 flex items-center justify-center pointer-events-none">
-                  <span className="absolute w-5 h-5 rounded-full bg-blue-400/40 animate-ping" />
-                  <span className="w-3.5 h-3.5 rounded-full bg-blue-500 border-2 border-white shadow-[0_0_8px_rgba(0,200,255,1)]" />
+                <div className="absolute top-1/2 right-6 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+                  <span className="absolute w-4 h-4 rounded-full bg-blue-400/40 animate-ping" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-blue-500 border border-white shadow-[0_0_8px_rgba(0,200,255,1)]" />
                 </div>
 
-                {/* Badge on Bottom Left */}
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 group-hover:border-sky-400/50 transition-colors">
-                    <span className="text-[#00c8ff]">
-                      {scene.id === 'bodegas' && <Wine className="w-3.5 h-3.5" />}
-                      {scene.id === 'cervecerias' && <Flame className="w-3.5 h-3.5" />}
-                      {scene.id === 'olivicola' && <Droplet className="w-3.5 h-3.5" />}
-                      {scene.id === 'alimentaria' && <Package className="w-3.5 h-3.5" />}
-                    </span>
-                    <span className="text-xs font-bold text-white font-display">
-                      {scene.name}
-                    </span>
-                    <span className="text-[10px] text-slate-300 hidden sm:inline ml-1 font-normal">
-                      Explorá el proceso ›
-                    </span>
-                  </div>
+                {/* Badge on Bottom Left matching screenshot */}
+                <div className="absolute bottom-2 left-2.5 flex items-center gap-1.5 bg-black/80 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/10 group-hover:border-sky-400/50 transition-colors">
+                  <span className="text-[#00c8ff]">
+                    {scene.id === 'bodegas' && <Wine className="w-3.5 h-3.5" />}
+                    {scene.id === 'cervecerias' && <Flame className="w-3.5 h-3.5" />}
+                    {scene.id === 'olivicola' && <Droplet className="w-3.5 h-3.5" />}
+                    {scene.id === 'alimentaria' && <Package className="w-3.5 h-3.5" />}
+                  </span>
+                  <span className="text-xs font-bold text-white font-display truncate">
+                    {scene.name}
+                  </span>
+                  <span className="text-[10px] text-slate-300 hidden sm:inline ml-1 font-normal">
+                    Explorá el proceso ›
+                  </span>
                 </div>
               </div>
             ))}
@@ -534,244 +592,83 @@ Mendoza, Argentina
         </div>
 
         {/* ========================================================= */}
-        {/* 4. TRUST & GUARANTEE FOOTER STRIP */}
+        {/* 3. TRUST & GUARANTEE STRIP (4 Items directly above Footer) */}
         {/* ========================================================= */}
-        <div className="pt-8 border-t border-slate-800/80">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="pt-3 pb-2 border-t border-slate-800/80">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Guarantee 1 */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
-                <Headphones className="w-5 h-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
+                <Headphones className="w-4 h-4" />
               </div>
-              <div className="space-y-0.5">
-                <h3 className="text-xs font-black uppercase tracking-wider text-white font-display">
+              <div className="leading-tight truncate">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-white font-display">
                   Asesoramiento técnico
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-snug">
+                <p className="text-[10px] text-slate-400 leading-tight truncate">
                   Acompañamiento en cada etapa del proceso de limpieza.
                 </p>
               </div>
             </div>
 
             {/* Guarantee 2 */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
-                <ClipboardList className="w-5 h-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
+                <ClipboardList className="w-4 h-4" />
               </div>
-              <div className="space-y-0.5">
-                <h3 className="text-xs font-black uppercase tracking-wider text-white font-display">
+              <div className="leading-tight truncate">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-white font-display">
                   Protocolos por industria
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-snug">
+                <p className="text-[10px] text-slate-400 leading-tight truncate">
                   Procedimientos validados para cada tipo de proceso.
                 </p>
               </div>
             </div>
 
             {/* Guarantee 3 */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
-                <FileText className="w-5 h-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
+                <FileText className="w-4 h-4" />
               </div>
-              <div className="space-y-0.5">
-                <h3 className="text-xs font-black uppercase tracking-wider text-white font-display">
+              <div className="leading-tight truncate">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-white font-display">
                   Fichas técnicas y SDS
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-snug">
+                <p className="text-[10px] text-slate-400 leading-tight truncate">
                   Documentación completa disponible para cada producto.
                 </p>
               </div>
             </div>
 
-            {/* Guarantee 4 */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
-                <MapPin className="w-5 h-5" />
+            {/* Guarantee 4: Argentina silhouette map */}
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-sky-950/40 border border-sky-500/20 flex items-center justify-center shrink-0 text-[#00c8ff]">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 28"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2c2 1 3 0 4 2 1 1 1 3 0 4-1 1-1 3 1 4 1 2 0 4-1 6-1 2-2 4-2 6-1 2-2 3-3 4-1-1-1-2-1-3 0-2 1-3 1-5 0-2-1-4-1-6 0-3 1-5 2-6 1-1 0-2-1-3 0-1 0-2 1-3Z" />
+                </svg>
               </div>
-              <div className="space-y-0.5">
-                <h3 className="text-xs font-black uppercase tracking-wider text-white font-display">
+              <div className="leading-tight truncate">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-white font-display">
                   Cobertura nacional
                 </h3>
-                <p className="text-[11px] text-slate-400 leading-snug">
+                <p className="text-[10px] text-slate-400 leading-tight truncate">
                   Llegamos a todo el país con logística propia y partners estratégicos.
                 </p>
               </div>
             </div>
           </div>
         </div>
+
       </div>
-
-      {/* ========================================================= */}
-      {/* 5. FULLSCREEN MAXIMIZED INTERACTIVE PLANT MODAL */}
-      {/* ========================================================= */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 bg-[#020713]/98 backdrop-blur-2xl flex flex-col p-3 sm:p-5 overflow-hidden animate-fadeIn">
-          {/* Top Control Bar in Fullscreen */}
-          <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-800 shrink-0">
-            <div className="flex items-center gap-3">
-              <h2 className="text-base sm:text-lg font-bold text-white font-display">
-                {currentScene.name} — Planta Interactiva
-              </h2>
-              <span className="text-xs text-sky-400/80 bg-sky-950/60 border border-sky-500/30 px-2.5 py-0.5 rounded-full hidden md:inline">
-                Vista panorámica maximizada
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* Zoom Controls inside Fullscreen */}
-              <div className="flex items-center gap-1.5 bg-[#030919] border border-slate-700/80 rounded-xl p-1 shadow-lg">
-                <button
-                  onClick={() => setZoomLevel((z) => Math.max(1, Number((z - 0.25).toFixed(2))))}
-                  disabled={zoomLevel <= 1}
-                  className="p-1.5 rounded-lg text-slate-300 hover:text-white disabled:opacity-40 transition-colors"
-                  title="Alejar (-)"
-                >
-                  <ZoomOut className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setZoomLevel(1)}
-                  className="px-2 py-0.5 rounded text-xs font-mono font-bold text-sky-400 hover:bg-slate-800 transition-colors"
-                  title="Restablecer zoom a 100%"
-                >
-                  {Math.round(zoomLevel * 100)}%
-                </button>
-                <button
-                  onClick={() => setZoomLevel((z) => Math.min(2, Number((z + 0.25).toFixed(2))))}
-                  disabled={zoomLevel >= 2}
-                  className="p-1.5 rounded-lg text-slate-300 hover:text-white disabled:opacity-40 transition-colors"
-                  title="Acercar (+)"
-                >
-                  <ZoomIn className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Close Fullscreen Button */}
-              <button
-                onClick={() => setIsFullscreen(false)}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all shadow-lg border border-slate-700 cursor-pointer"
-              >
-                <Minimize2 className="w-4 h-4" />
-                <span>Salir de pantalla completa</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Fullscreen Giant Panoramic Stage */}
-          <div className="relative flex-1 mt-3 rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl">
-            <div
-              className="relative w-full h-full select-none overflow-hidden transition-transform duration-300 origin-center"
-              style={{ transform: `scale(${zoomLevel})` }}
-            >
-              <img
-                src={currentScene.bgImage}
-                alt={currentScene.title}
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none" />
-
-              {/* Hotspots Overlay */}
-              {currentScene.hotspots.map((spot) => {
-                const isActive = activeHotspot?.id === spot.id;
-                return (
-                  <div
-                    key={spot.id}
-                    style={{ top: `${spot.y}%`, left: `${spot.x}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
-                  >
-                    <div className="relative flex flex-col items-center group cursor-pointer">
-                      <button
-                        onClick={() => setSelectedHotspot(spot)}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-2xl backdrop-blur-md mb-2 ${
-                          isActive
-                            ? 'bg-[#0070ba] text-white border-2 border-[#00c8ff] scale-110 shadow-[0_0_24px_rgba(0,200,255,0.9)]'
-                            : 'bg-[#030919]/90 text-slate-100 border border-slate-700 hover:border-sky-400 hover:text-white'
-                        }`}
-                      >
-                        <span className={isActive ? 'text-white' : 'text-slate-300'}>
-                          {getHotspotIcon(spot.iconName)}
-                        </span>
-                        <span>{spot.name}</span>
-                      </button>
-
-                      <div
-                        onClick={() => setSelectedHotspot(spot)}
-                        className="relative flex items-center justify-center cursor-pointer"
-                      >
-                        {isActive && (
-                          <span className="absolute w-8 h-8 rounded-full border-2 border-[#00c8ff] ring-4 ring-[#00c8ff]/30 animate-pulse pointer-events-none" />
-                        )}
-                        <span
-                          className={`absolute w-6 h-6 rounded-full ${
-                            isActive ? 'bg-sky-400/60 animate-ping' : 'bg-sky-500/30 group-hover:animate-ping'
-                          }`}
-                        />
-                        <span
-                          className={`w-4 h-4 rounded-full border-2 transition-all flex items-center justify-center ${
-                            isActive ? 'bg-[#0077c8] border-white scale-110' : 'bg-blue-500 border-white'
-                          }`}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Floating Info Drawer at bottom-right if hotspot is selected */}
-            {activeHotspot && (
-              <div className="absolute bottom-6 right-6 z-30 max-w-lg w-full bg-[#050f24]/95 border border-slate-700/90 rounded-2xl p-5 shadow-2xl backdrop-blur-xl animate-slideUp">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-9 h-9 rounded-xl bg-blue-950 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
-                      {getHotspotIcon(activeHotspot.iconName)}
-                    </span>
-                    <h3 className="text-base font-bold text-white font-display">
-                      {activeHotspot.name}
-                    </h3>
-                  </div>
-                  <button
-                    onClick={() => setSelectedHotspot(null)}
-                    className="p-1 rounded text-slate-400 hover:text-white"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-                <div className="mt-3 space-y-2.5 text-xs">
-                  <div>
-                    <span className="font-bold text-white uppercase text-[10px] tracking-wider block">
-                      PROBLEMA HABITUAL
-                    </span>
-                    <p className="text-slate-300 mt-0.5 leading-relaxed">
-                      {activeHotspot.commonProblem}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-white uppercase text-[10px] tracking-wider block">
-                      SOLUCIÓN RECOMENDADA
-                    </span>
-                    <p className="text-slate-300 mt-0.5 leading-relaxed">
-                      {activeHotspot.recommendedSolution}
-                    </p>
-                  </div>
-                  <div className="pt-2 flex items-center gap-2">
-                    <button
-                      onClick={() => {
-                        setIsFullscreen(false);
-                        onNavigateToProducts();
-                      }}
-                      className="w-full py-2.5 px-3 rounded-lg bg-[#0b4592] hover:bg-[#0d54b3] text-white font-bold text-xs uppercase tracking-wider text-center transition-colors cursor-pointer"
-                    >
-                      VER PRODUCTOS HOMOLOGADOS
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

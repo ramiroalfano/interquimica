@@ -123,11 +123,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('asistencia')} className="hover:text-blue-400 transition-colors">
-                  Asistencia Técnica
-                </button>
-              </li>
-              <li>
                 <button onClick={() => onNavigate('nosotros')} className="hover:text-blue-400 transition-colors">
                   Nosotros
                 </button>

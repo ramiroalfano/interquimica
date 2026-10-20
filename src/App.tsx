@@ -10,7 +10,6 @@ import { HomeView } from './components/views/HomeView.tsx';
 import { IndustriasView } from './components/views/IndustriasView.tsx';
 import { ProductosView } from './components/views/ProductosView.tsx';
 import { InteractiveSceneViewer } from './components/InteractiveSceneViewer.tsx';
-import { AsistenciaView } from './components/views/AsistenciaView.tsx';
 import { NosotrosContactoView } from './components/views/NosotrosContactoView.tsx';
 
 import { ProductDetailView } from './components/views/ProductDetailView.tsx';
@@ -165,10 +164,6 @@ export default function App() {
             onSelectProduct={handleSelectProduct}
             onNavigateToProducts={() => setCurrentView('productos')}
           />
-        )}
-
-        {currentView === 'asistencia' && (
-          <AsistenciaView onOpenDosageCalc={() => handleOpenDosageCalc()} />
         )}
 
         {currentView === 'nosotros' && (
