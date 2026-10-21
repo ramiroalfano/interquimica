@@ -182,20 +182,20 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
     return (
       <div className="w-full bg-[#050b14] text-slate-100 min-h-screen">
         {/* 1. HERO BANNER (Operario sanitizando tanque con espuma) */}
-        <section className="relative w-full h-[460px] sm:h-[520px] lg:h-[580px] overflow-hidden bg-slate-950 flex items-center">
+        <section className="relative w-full min-h-[320px] sm:h-[460px] lg:h-[560px] overflow-hidden bg-slate-950 flex items-center py-10 sm:py-0">
           <img
             src={IMAGES.banner5}
             alt="Operario de sanitización con espuma en tanque industrial"
             loading="eager"
             decoding="async"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-[center_35%] sm:object-center"
           />
-          {/* Contrast Scrim Overlay from dark left to transparent right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-transparent" />
+          {/* Contrast Scrim Overlay adapted for mobile and desktop */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050b14] via-slate-950/80 to-transparent sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/80 sm:to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050b14] via-transparent to-transparent" />
 
-          <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-16">
+          <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-10 sm:pt-16">
             <div className="max-w-2xl space-y-6">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] font-display">
                 Productos diseñados
@@ -357,17 +357,17 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
   return (
     <div className="w-full bg-white text-slate-900 min-h-screen">
       {/* 1. HERO BANNER WITH NAVIGABLE BREADCRUMB (Cervecería / Tanques de acero) */}
-      <section className="relative w-full overflow-hidden bg-slate-950 pt-28 pb-14 sm:pb-18 lg:pb-20">
+      <section className="relative w-full overflow-hidden bg-slate-950 pt-20 pb-10 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-20">
         <img
           src={IMAGES.banner6}
           alt={activeLine.title}
           loading="eager"
           decoding="async"
           referrerPolicy="no-referrer"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-[center_30%] sm:object-center"
         />
-        {/* Dark contrast scrim */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/45" />
+        {/* Dark contrast scrim adapted for mobile and desktop */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/25 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/80 sm:to-slate-950/45" />
 
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           {/* Navigable Breadcrumb Buttons */}

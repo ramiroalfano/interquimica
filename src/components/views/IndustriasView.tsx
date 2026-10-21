@@ -126,17 +126,17 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
     return (
       <div className="w-full bg-white text-slate-900 min-h-screen">
         {/* 1. HERO BANNER PRINCIPAL (Tanques de acero inoxidable) */}
-        <section className="relative w-full overflow-hidden bg-slate-950 pt-32 pb-16 sm:pb-20 lg:pb-24">
+        <section className="relative w-full overflow-hidden bg-slate-950 pt-20 pb-10 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-24">
           <img
             src={IMAGES.banner6}
             alt="Tanques industriales de acero inoxidable"
             loading="eager"
             decoding="async"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-[center_30%] sm:object-center"
           />
-          {/* Contrast Scrim Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-transparent" />
+          {/* Contrast Scrim Overlay adapted for mobile and desktop */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/25 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/75 sm:to-transparent" />
 
           <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="max-w-2xl space-y-4">
@@ -238,17 +238,17 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
   return (
     <div className="w-full bg-white text-slate-900 min-h-screen">
       {/* 1. HERO BANNER DE LA INDUSTRIA SELECCIONADA CON BREADCRUMB */}
-      <section className="relative w-full overflow-hidden bg-slate-950 pt-28 pb-14 sm:pb-18 lg:pb-20">
+      <section className="relative w-full overflow-hidden bg-slate-950 pt-20 pb-10 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-20">
         <img
           src={currentIndustry.heroImage}
           alt={currentIndustry.name}
           loading="eager"
           decoding="async"
           referrerPolicy="no-referrer"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-[center_30%] sm:object-center"
         />
-        {/* Contrast Scrim */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/45" />
+        {/* Contrast Scrim adapted for mobile and desktop */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/25 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/80 sm:to-slate-950/45" />
 
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           {/* Navigable Breadcrumb Buttons */}

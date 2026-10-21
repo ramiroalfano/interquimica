@@ -76,6 +76,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
     return () => clearInterval(timer);
   }, [heroSlides.length]);
 
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
@@ -84,10 +87,39 @@ export const HomeView: React.FC<HomeViewProps> = ({
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
 
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 45;
+    const isRightSwipe = distance < -45;
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   return (
     <div className="w-full bg-[#050b14] text-slate-100">
       {/* 1. HERO CAROUSEL ONLY (Exact reference banners 1 to 6 with identical text & CTA) */}
-      <section className="relative min-h-screen flex items-center overflow-hidden border-b border-slate-800 pt-20">
+      <section
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        className="relative min-h-[500px] sm:min-h-[580px] lg:min-h-screen flex items-center overflow-hidden border-b border-slate-800 pt-16 sm:pt-20 select-none"
+      >
         {/* Background Images Carousel (Banners 1 to 6) */}
         {heroSlides.map((slide, index) => (
           <div
@@ -102,16 +134,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding="async"
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-[center_35%] sm:object-center"
             />
-            {/* Deep dark cinematic contrast scrim for enhanced readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#01040a]/98 via-[#020713]/85 to-black/45" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-black/40 to-black/60" />
+            {/* Deep dark cinematic contrast scrim for enhanced readability on both mobile and desktop */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#01040a] via-[#01040a]/80 to-black/25 sm:bg-gradient-to-r sm:from-[#01040a]/98 sm:via-[#020713]/85 sm:to-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-black/30 to-black/50" />
           </div>
         ))}
 
         {/* Content Container (Left Aligned, Extended Width, Refined Font Size) */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 w-full">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
           <div className="max-w-4xl lg:max-w-5xl space-y-6">
             {heroSlides[currentSlide].type === 'quimica' ? (
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
@@ -145,10 +177,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
         </div>
 
-        {/* Left / Right Carousel Arrow Controls */}
+        {/* Desktop Left / Right Carousel Arrow Controls (hidden on mobile so they never overlap the text) */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-black/40 hover:bg-black/75 text-white/70 hover:text-white transition-all backdrop-blur-sm border border-white/10"
+          className="hidden sm:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/75 text-white/80 hover:text-white transition-all backdrop-blur-md border border-white/10 shadow-lg cursor-pointer"
           title="Banner anterior"
           aria-label="Anterior"
         >
@@ -157,25 +189,51 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-black/40 hover:bg-black/75 text-white/70 hover:text-white transition-all backdrop-blur-sm border border-white/10"
+          className="hidden sm:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/75 text-white/80 hover:text-white transition-all backdrop-blur-md border border-white/10 shadow-lg cursor-pointer"
           title="Siguiente banner"
           aria-label="Siguiente"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* Slide Indicators (6 Banners) */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/40 px-3.5 py-1.5 rounded-full backdrop-blur-sm border border-white/10">
-          {heroSlides.map((slide, idx) => (
-            <button
-              key={slide.id}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === currentSlide ? 'w-7 bg-[#104a99] shadow-sm shadow-blue-500/50' : 'w-2 bg-white/40 hover:bg-white/80'
-              }`}
-              title={slide.name}
-            />
-          ))}
+        {/* Slide Indicators & Integrated Mobile Control Bar */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 sm:gap-2.5 bg-black/60 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/15 shadow-2xl">
+          {/* Mobile Previous Button (at the bottom, ergonomic and non-intrusive) */}
+          <button
+            onClick={prevSlide}
+            className="sm:hidden p-1 text-slate-300 hover:text-white active:scale-90 transition-transform cursor-pointer"
+            aria-label="Banner anterior"
+            title="Anterior"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          {/* Slide Indicator Dots */}
+          <div className="flex items-center gap-1.5 sm:gap-2 px-1">
+            {heroSlides.map((slide, idx) => (
+              <button
+                key={slide.id}
+                onClick={() => setCurrentSlide(idx)}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  idx === currentSlide
+                    ? 'w-7 sm:w-8 bg-[#104a99] shadow-sm shadow-blue-500/50'
+                    : 'w-2 bg-white/35 hover:bg-white/75'
+                }`}
+                title={slide.name}
+                aria-label={`Ir al banner ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Next Button (at the bottom, ergonomic and non-intrusive) */}
+          <button
+            onClick={nextSlide}
+            className="sm:hidden p-1 text-slate-300 hover:text-white active:scale-90 transition-transform cursor-pointer"
+            aria-label="Siguiente banner"
+            title="Siguiente"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
         </div>
       </section>
 

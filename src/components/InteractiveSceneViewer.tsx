@@ -306,12 +306,12 @@ Mendoza, Argentina
           
           {/* Panoramic Stage Container */}
           <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-2">
-            <div className="relative bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-2xl h-[300px] sm:h-[380px] lg:h-[500px] xl:h-[510px] flex flex-col justify-between">
+            <div className="relative bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-2xl h-[250px] sm:h-[340px] lg:h-[500px] xl:h-[510px] flex flex-col justify-between">
               {/* Full-bleed background panoramic facility image */}
               <img
                 src={currentScene.bgImage}
                 alt={currentScene.title}
-                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                className="absolute inset-0 w-full h-full object-cover object-[center_35%] sm:object-center pointer-events-none"
               />
 
               {/* Desktop Gradient Scrims: Only needed on lg+ to protect overlaid text */}

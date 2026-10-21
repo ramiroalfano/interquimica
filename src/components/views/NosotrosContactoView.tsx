@@ -40,16 +40,17 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
   return (
     <div className="w-full bg-[#050b14] text-slate-100 min-h-screen">
       {/* Full-width Edge-to-Edge Banner with Banner 6 image */}
-      <div className="relative w-full overflow-hidden bg-slate-950 pt-28 pb-16 sm:pb-20 lg:pb-24">
+      <div className="relative w-full overflow-hidden bg-slate-950 pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-24">
         <img
           src={IMAGES.banner6}
           alt="Instalaciones InterQuímica"
           loading="eager"
           decoding="async"
           referrerPolicy="no-referrer"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-[center_30%] sm:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/45" />
+        {/* Scrim adapted for mobile and desktop */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050b14] via-slate-950/85 to-slate-950/25 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/80 sm:to-slate-950/45" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
