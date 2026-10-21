@@ -203,7 +203,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
-                <span>Mendoza, Argentina</span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=-32.932824,-68.8355"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 transition-colors"
+                  title="Ver ubicación en Google Maps (Independencia 28, Godoy Cruz, Mendoza)"
+                >
+                  Independencia 28, Godoy Cruz, Mendoza
+                </a>
               </li>
             </ul>
           </div>

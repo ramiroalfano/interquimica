@@ -3,12 +3,14 @@ import {
   ArrowRight,
   ChevronRight,
   ChevronLeft,
+  MapPin,
 } from 'lucide-react';
 import { Product, Industry } from '../../types.ts';
 import { IMAGES } from '../../data/mockData.ts';
 import { ProcessOverviewSection } from '../home/ProcessOverviewSection.tsx';
 import { IndustrySelectorStrip } from '../home/IndustrySelectorStrip.tsx';
 import { ProductShowcaseSection } from '../home/ProductShowcaseSection.tsx';
+import { LocationMap } from '../LocationMap.tsx';
 
 interface HomeViewProps {
   onNavigate: (view: string) => void;
@@ -194,6 +196,37 @@ export const HomeView: React.FC<HomeViewProps> = ({
         onNavigate={onNavigate}
         onSelectProduct={onSelectProduct}
       />
+
+      {/* Acerca de Nosotros & Planta Central / Ubicación */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#030712] border-t border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-500/30 text-sky-400 text-xs font-bold uppercase tracking-wider">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>Nuestra Planta & Ubicación</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-display">
+                Acerca de <span className="text-[#00c8ff]">Nosotros</span>
+              </h2>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Empresa argentina líder en el desarrollo y formulación de especialidades químicas para la industria vitivinícola, alimentaria y manufacturera. Contamos con planta de producción propia y laboratorio de control de calidad certificado bajo normas ISO 9001:2015 en Mendoza.
+              </p>
+            </div>
+
+            <button
+              onClick={() => onNavigate('nosotros')}
+              className="self-start md:self-auto flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-blue-900/40 cursor-pointer"
+            >
+              <span>Conocer más sobre nosotros</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Interactive Map with Exact Location */}
+          <LocationMap height="460px" />
+        </div>
+      </section>
     </div>
   );
 };

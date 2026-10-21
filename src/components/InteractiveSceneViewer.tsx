@@ -225,179 +225,290 @@ Mendoza, Argentina
       <div className="w-full max-w-[1850px] mx-auto px-3 sm:px-5 lg:px-7 flex flex-col gap-3 sm:gap-4 min-h-[calc(100vh-80px)]">
         
         {/* ========================================================= */}
-        {/* 1. MAIN HERO ROW: UNIFIED PANORAMIC STAGE WITH OVERLAID HEADER (LEFT) & DETAIL PANEL (RIGHT) */}
+        {/* MOBILE / TABLET HEADER & INDUSTRY SELECTOR (< lg only) */}
+        {/* Placed cleanly above the stage so nothing overlaps */}
+        {/* ========================================================= */}
+        <div className="lg:hidden flex flex-col gap-2.5">
+          {/* Header Title + Badges */}
+          <div className="space-y-1.5">
+            <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight font-display">
+              Escenarios industriales interactivos
+            </h1>
+            <p className="text-xs text-slate-300 font-normal leading-relaxed">
+              Explorá cada industria y tocá las áreas del proceso para descubrir problemas habituales, soluciones y productos recomendados.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2 pt-0.5">
+              <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-slate-900/90 px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                <span className="w-4 h-4 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
+                  <MousePointerClick className="w-2.5 h-2.5" />
+                </span>
+                <span className="text-[11px] font-medium">Hacé clic en un sector</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-slate-900/90 px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                <span className="w-4 h-4 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
+                  <Layers className="w-2.5 h-2.5" />
+                </span>
+                <span className="text-[11px] font-medium">Explorá cada etapa del proceso</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 5 Industry Selector Cards in smooth horizontal scroll */}
+          <div className="flex items-stretch gap-2 overflow-x-auto no-scrollbar pb-1 w-full shrink-0 flex-nowrap -mx-1 px-1">
+            {orderedScenes.map((scene) => {
+              const isSelected = scene.id === selectedSceneId;
+              return (
+                <button
+                  key={scene.id}
+                  onClick={() => handleSceneChange(scene.id)}
+                  className={`relative group flex flex-col text-left p-1.5 rounded-xl border transition-all duration-200 cursor-pointer overflow-hidden backdrop-blur-md shrink-0 w-[112px] sm:w-[124px] ${
+                    isSelected
+                      ? 'bg-[#0077c8]/35 border-[#0077c8] shadow-[0_0_16px_rgba(0,119,200,0.5)] ring-1 ring-[#0077c8]'
+                      : 'bg-[#051126]/85 border-white/10 hover:border-slate-500 hover:bg-[#081a38]/90'
+                  }`}
+                >
+                  <div className="relative w-full h-11 rounded-lg overflow-hidden mb-1.5 bg-slate-900">
+                    <img
+                      src={scene.bgImage}
+                      alt={scene.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                    {isSelected && (
+                      <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-blue-600 border border-white/70 flex items-center justify-center text-white shadow-md">
+                        <Snowflake className="w-2.5 h-2.5" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="leading-tight">
+                    <h3
+                      className={`text-[11px] font-bold font-display truncate ${
+                        isSelected ? 'text-white' : 'text-slate-200'
+                      }`}
+                    >
+                      {scene.name}
+                    </h3>
+                    <p className="text-[9.5px] text-slate-400 line-clamp-1 mt-0.5 font-normal leading-tight">
+                      {scene.subtitle}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* 1. MAIN HERO ROW: UNIFIED PANORAMIC STAGE (DESKTOP OVERLAY + MOBILE SECTOR BAR) & DETAIL PANEL */}
         {/* ========================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
           
-          {/* Panoramic Stage Container with the Title and 5 Industry Cards Overlaid Directly Inside */}
-          <div className="lg:col-span-8 xl:col-span-9 relative bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-2xl h-[470px] sm:h-[500px] lg:h-[500px] xl:h-[510px] flex flex-col justify-between">
-            {/* Full-bleed background panoramic facility image */}
-            <img
-              src={currentScene.bgImage}
-              alt={currentScene.title}
-              className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-            />
+          {/* Panoramic Stage Container */}
+          <div className="lg:col-span-8 xl:col-span-9 flex flex-col gap-2">
+            <div className="relative bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-2xl h-[300px] sm:h-[380px] lg:h-[500px] xl:h-[510px] flex flex-col justify-between">
+              {/* Full-bleed background panoramic facility image */}
+              <img
+                src={currentScene.bgImage}
+                alt={currentScene.title}
+                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+              />
 
-            {/* Gradient Scrims: Dark gradient from top to protect text readability */}
-            <div className="absolute inset-x-0 top-0 h-48 sm:h-56 bg-gradient-to-b from-[#020713]/95 via-[#020713]/70 to-transparent pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#020713]/85 via-transparent to-transparent pointer-events-none" />
+              {/* Desktop Gradient Scrims: Only needed on lg+ to protect overlaid text */}
+              <div className="hidden lg:block absolute inset-x-0 top-0 h-48 sm:h-56 bg-gradient-to-b from-[#020713]/95 via-[#020713]/70 to-transparent pointer-events-none" />
+              <div className="lg:hidden absolute inset-0 bg-black/20 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#020713]/85 via-transparent to-transparent pointer-events-none" />
 
-            {/* TOP OVERLAID SECTION INSIDE THE IMAGE (Title + Description + Badges + 5 Cards) */}
-            <div className="relative z-20 p-3 sm:p-4 flex flex-col xl:flex-row xl:items-start justify-between gap-2.5 sm:gap-3.5">
-              {/* Left Title, Subtitle and Badges */}
-              <div className="max-w-md xl:max-w-lg space-y-1.5">
-                <h1 className="text-xl sm:text-2xl xl:text-3xl font-black text-white tracking-tight leading-[1.08] font-display drop-shadow-md">
-                  Escenarios<br className="hidden sm:inline" /> industriales interactivos
-                </h1>
-                <p className="text-xs text-slate-300 font-normal leading-relaxed line-clamp-1 sm:line-clamp-2 drop-shadow">
-                  Explorá cada industria y hacé clic en las áreas del proceso para descubrir problemas habituales, soluciones recomendadas, productos y protocolos de aplicación.
-                </p>
+              {/* DESKTOP TOP OVERLAID SECTION INSIDE THE IMAGE (Title + Description + Badges + 5 Cards) - lg+ only */}
+              <div className="hidden lg:flex relative z-20 p-3 sm:p-4 flex-col xl:flex-row xl:items-start justify-between gap-2.5 sm:gap-3.5">
+                {/* Left Title, Subtitle and Badges */}
+                <div className="max-w-md xl:max-w-lg space-y-1.5">
+                  <h1 className="text-xl sm:text-2xl xl:text-3xl font-black text-white tracking-tight leading-[1.08] font-display drop-shadow-md">
+                    Escenarios<br className="hidden sm:inline" /> industriales interactivos
+                  </h1>
+                  <p className="text-xs text-slate-300 font-normal leading-relaxed line-clamp-1 sm:line-clamp-2 drop-shadow">
+                    Explorá cada industria y hacé clic en las áreas del proceso para descubrir problemas habituales, soluciones recomendadas, productos y protocolos de aplicación.
+                  </p>
 
-                {/* Helper Guidance Badges matching screenshot */}
-                <div className="flex flex-wrap items-center gap-2.5 pt-0.5">
-                  <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
-                    <span className="w-5 h-5 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
-                      <MousePointerClick className="w-3 h-3" />
-                    </span>
-                    <span className="text-[11px] font-medium">Hacé clic en un sector</span>
+                  {/* Helper Guidance Badges matching screenshot */}
+                  <div className="flex flex-wrap items-center gap-2.5 pt-0.5">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                      <span className="w-5 h-5 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
+                        <MousePointerClick className="w-3 h-3" />
+                      </span>
+                      <span className="text-[11px] font-medium">Hacé clic en un sector</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                      <span className="w-5 h-5 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
+                        <svg
+                          className="w-3 h-3"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                          <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+                          <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+                          <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+                        </svg>
+                      </span>
+                      <span className="text-[11px] font-medium">Explorá cada etapa del proceso</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-200 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
-                    <span className="w-5 h-5 rounded-full bg-blue-950/90 border border-blue-500/40 flex items-center justify-center text-[#00c8ff]">
-                      <svg
-                        className="w-3 h-3"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                </div>
+
+                {/* Right: 5 Industry Selector Cards in a single sleek horizontal row */}
+                <div className="flex items-stretch gap-2 overflow-x-auto no-scrollbar pb-1 w-full xl:w-auto xl:max-w-2xl shrink-0 flex-nowrap">
+                  {orderedScenes.map((scene) => {
+                    const isSelected = scene.id === selectedSceneId;
+                    return (
+                      <button
+                        key={scene.id}
+                        onClick={() => handleSceneChange(scene.id)}
+                        className={`relative group flex flex-col text-left p-1.5 sm:p-2 rounded-xl border transition-all duration-200 cursor-pointer overflow-hidden backdrop-blur-md shrink-0 w-[112px] sm:w-[124px] xl:w-[128px] ${
+                          isSelected
+                            ? 'bg-[#0077c8]/35 border-[#0077c8] shadow-[0_0_16px_rgba(0,119,200,0.5)] ring-1 ring-[#0077c8]'
+                            : 'bg-[#051126]/85 border-white/10 hover:border-slate-500 hover:bg-[#081a38]/90'
+                        }`}
                       >
-                        <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                        <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-                        <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-                        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-                      </svg>
-                    </span>
-                    <span className="text-[11px] font-medium">Explorá cada etapa del proceso</span>
-                  </div>
+                        <div className="relative w-full h-11 sm:h-12 rounded-lg overflow-hidden mb-1.5 bg-slate-900">
+                          <img
+                            src={scene.bgImage}
+                            alt={scene.name}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                          {isSelected && (
+                            <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-blue-600 border border-white/70 flex items-center justify-center text-white shadow-md">
+                              <Snowflake className="w-2.5 h-2.5" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="leading-tight">
+                          <h3
+                            className={`text-[11px] font-bold font-display truncate ${
+                              isSelected ? 'text-white' : 'text-slate-200 group-hover:text-white'
+                            }`}
+                          >
+                            {scene.name}
+                          </h3>
+                          <p className="text-[9.5px] text-slate-400 line-clamp-2 mt-0.5 font-normal leading-tight">
+                            {scene.subtitle}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Right: 5 Industry Selector Cards in a single sleek horizontal row (never wraps into 2 rows) */}
-              <div className="flex items-stretch gap-2 overflow-x-auto no-scrollbar pb-1 w-full xl:w-auto xl:max-w-2xl shrink-0 flex-nowrap">
-                {orderedScenes.map((scene) => {
-                  const isSelected = scene.id === selectedSceneId;
+              {/* Hotspots Overlay positioned across the visual stage */}
+              <div className="absolute inset-0 pointer-events-none">
+                {currentScene.hotspots.map((spot) => {
+                  const isActive = activeHotspot?.id === spot.id;
                   return (
-                    <button
-                      key={scene.id}
-                      onClick={() => handleSceneChange(scene.id)}
-                      className={`relative group flex flex-col text-left p-1.5 sm:p-2 rounded-xl border transition-all duration-200 cursor-pointer overflow-hidden backdrop-blur-md shrink-0 w-[112px] sm:w-[124px] xl:w-[128px] ${
-                        isSelected
-                          ? 'bg-[#0077c8]/35 border-[#0077c8] shadow-[0_0_16px_rgba(0,119,200,0.5)] ring-1 ring-[#0077c8]'
-                          : 'bg-[#051126]/85 border-white/10 hover:border-slate-500 hover:bg-[#081a38]/90'
-                      }`}
+                    <div
+                      key={spot.id}
+                      style={{ top: `${spot.y}%`, left: `${spot.x}%` }}
+                      className="absolute -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-auto"
                     >
-                      {/* Thumbnail Image */}
-                      <div className="relative w-full h-11 sm:h-12 rounded-lg overflow-hidden mb-1.5 bg-slate-900">
-                        <img
-                          src={scene.bgImage}
-                          alt={scene.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-
-                        {/* Active Icon Snowflake Badge if selected */}
-                        {isSelected && (
-                          <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-blue-600 border border-white/70 flex items-center justify-center text-white shadow-md">
-                            <Snowflake className="w-2.5 h-2.5" />
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Card Title & Subtitle */}
-                      <div className="leading-tight">
-                        <h3
-                          className={`text-[11px] font-bold font-display truncate ${
-                            isSelected ? 'text-white' : 'text-slate-200 group-hover:text-white'
+                      <div className="relative flex flex-col items-center group cursor-pointer">
+                        {/* Hotspot Pill Badge Button: on mobile (<sm), show only when active to avoid collisions; on sm+ always show */}
+                        <button
+                          onClick={() => setSelectedHotspot(spot)}
+                          className={`items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10.5px] sm:text-[11px] font-bold transition-all duration-200 cursor-pointer whitespace-nowrap shadow-xl backdrop-blur-md mb-1 sm:mb-1.5 ${
+                            isActive ? 'flex' : 'hidden sm:flex'
+                          } ${
+                            isActive
+                              ? 'bg-[#005bb7] text-white border border-[#2b90ff] shadow-[0_0_20px_rgba(43,144,255,0.75)] scale-105 ring-2 ring-white/30 z-40'
+                              : 'bg-[#050f24]/90 text-slate-100 border border-slate-700/80 hover:border-sky-400 hover:text-white hover:bg-[#071938]'
                           }`}
                         >
-                          {scene.name}
-                        </h3>
-                        <p className="text-[9.5px] text-slate-400 line-clamp-2 mt-0.5 font-normal leading-tight">
-                          {scene.subtitle}
-                        </p>
+                          <span className={isActive ? 'text-white' : 'text-slate-300'}>
+                            {getHotspotIcon(spot.iconName)}
+                          </span>
+                          <span>{spot.name}</span>
+                        </button>
+
+                        {/* Glowing Target Ring + Pulsing Dot Pin on floor/machinery */}
+                        <div
+                          onClick={() => setSelectedHotspot(spot)}
+                          className="relative flex items-center justify-center cursor-pointer p-0.5"
+                        >
+                          {/* Target Circle for Active Pin */}
+                          {isActive && (
+                            <span className="absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#00c8ff] ring-4 ring-[#00c8ff]/25 animate-pulse pointer-events-none" />
+                          )}
+
+                          {/* Ping Ripple */}
+                          <span
+                            className={`absolute w-5 h-5 sm:w-6 sm:h-6 rounded-full ${
+                              isActive
+                                ? 'bg-sky-400/60 animate-ping'
+                                : 'bg-sky-500/30 group-hover:animate-ping'
+                            }`}
+                          />
+
+                          {/* Mobile Icon Circle Pin when label is hidden on <sm */}
+                          <div
+                            className={`flex sm:hidden w-7 h-7 rounded-full items-center justify-center border-2 transition-all shadow-lg ${
+                              isActive
+                                ? 'bg-[#0077c8] border-white shadow-[0_0_12px_rgba(0,200,255,1)] scale-110 text-white'
+                                : 'bg-[#051126]/95 border-sky-400/80 text-sky-300 hover:scale-105'
+                            }`}
+                          >
+                            {getHotspotIcon(spot.iconName)}
+                          </div>
+
+                          {/* Center Pin Button for sm+ */}
+                          <span
+                            className={`hidden sm:flex w-3.5 h-3.5 rounded-full border-2 transition-all items-center justify-center ${
+                              isActive
+                                ? 'bg-[#0077c8] border-white shadow-[0_0_12px_rgba(0,200,255,1)] scale-110'
+                                : 'bg-blue-500 border-white shadow-md'
+                            }`}
+                          >
+                            <span className="w-1 h-1 rounded-full bg-white" />
+                          </span>
+                        </div>
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Hotspots Overlay positioned across the visual stage */}
-            <div className="absolute inset-0 pointer-events-none">
+            {/* Mobile / Tablet Horizontal Sector Chips Bar (< lg only) */}
+            <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 px-1.5 bg-slate-900/60 rounded-xl border border-slate-800">
+              <span className="text-[10px] uppercase font-bold text-slate-400 shrink-0 mr-1 flex items-center gap-1">
+                <Layers className="w-3 h-3 text-[#00c8ff]" />
+                Sectores:
+              </span>
               {currentScene.hotspots.map((spot) => {
-                const isActive = activeHotspot?.id === spot.id;
+                const isAct = activeHotspot?.id === spot.id;
                 return (
-                  <div
+                  <button
                     key={spot.id}
-                    style={{ top: `${spot.y}%`, left: `${spot.x}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-auto"
+                    onClick={() => setSelectedHotspot(spot)}
+                    className={`shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-colors cursor-pointer ${
+                      isAct
+                        ? 'bg-blue-600 text-white border-blue-400 shadow-sm'
+                        : 'bg-slate-950/80 text-slate-300 border-slate-800 hover:border-slate-700'
+                    }`}
                   >
-                    <div className="relative flex flex-col items-center group cursor-pointer">
-                      {/* Hotspot Pill Badge Button */}
-                      <button
-                        onClick={() => setSelectedHotspot(spot)}
-                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all duration-200 cursor-pointer whitespace-nowrap shadow-xl backdrop-blur-md mb-1.5 ${
-                          isActive
-                            ? 'bg-[#005bb7] text-white border border-[#2b90ff] shadow-[0_0_20px_rgba(43,144,255,0.75)] scale-105 ring-2 ring-white/30'
-                            : 'bg-[#050f24]/90 text-slate-100 border border-slate-700/80 hover:border-sky-400 hover:text-white hover:bg-[#071938]'
-                        }`}
-                      >
-                        <span className={isActive ? 'text-white' : 'text-slate-300'}>
-                          {getHotspotIcon(spot.iconName)}
-                        </span>
-                        <span>{spot.name}</span>
-                      </button>
-
-                      {/* Glowing Target Ring + Pulsing Dot Pin on floor/machinery */}
-                      <div
-                        onClick={() => setSelectedHotspot(spot)}
-                        className="relative flex items-center justify-center cursor-pointer"
-                      >
-                        {/* Target Circle for Active Pin */}
-                        {isActive && (
-                          <span className="absolute w-7 h-7 rounded-full border border-[#00c8ff] ring-4 ring-[#00c8ff]/25 animate-pulse pointer-events-none" />
-                        )}
-
-                        {/* Ping Ripple */}
-                        <span
-                          className={`absolute w-5 h-5 rounded-full ${
-                            isActive
-                              ? 'bg-sky-400/60 animate-ping'
-                              : 'bg-sky-500/30 group-hover:animate-ping'
-                          }`}
-                        />
-
-                        {/* Center Pin Button */}
-                        <span
-                          className={`w-3.5 h-3.5 rounded-full border-2 transition-all flex items-center justify-center ${
-                            isActive
-                              ? 'bg-[#0077c8] border-white shadow-[0_0_12px_rgba(0,200,255,1)] scale-110'
-                              : 'bg-blue-500 border-white shadow-md'
-                          }`}
-                        >
-                          <span className="w-1 h-1 rounded-full bg-white" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    <span>{getHotspotIcon(spot.iconName)}</span>
+                    <span>{spot.name}</span>
+                  </button>
                 );
               })}
             </div>
           </div>
 
           {/* Right Detail Side Panel matching screenshot exact layout */}
-          <div className="lg:col-span-4 xl:col-span-3 bg-[#040e21]/95 border border-slate-800/90 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md min-h-[380px] lg:h-[500px] xl:h-[510px] overflow-hidden">
+          <div className="lg:col-span-4 xl:col-span-3 bg-[#040e21]/95 border border-slate-800/90 rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md min-h-[360px] lg:h-[500px] xl:h-[510px] lg:overflow-hidden">
             {activeHotspot ? (
               <div className="flex flex-col justify-between h-full">
                 {/* Scrollable / Flexible Upper Content */}

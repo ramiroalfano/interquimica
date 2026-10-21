@@ -13,6 +13,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { IMAGES } from '../../data/mockData.ts';
+import { LocationMap } from '../LocationMap.tsx';
 
 interface NosotrosContactoViewProps {
   initialTab?: 'nosotros' | 'contacto';
@@ -149,6 +150,22 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
               </p>
             </div>
           </div>
+
+          {/* Planta Central y Ubicación en Mendoza */}
+          <div className="space-y-4 pt-4 border-t border-slate-800">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#00c8ff]">
+                Infraestructura Industrial
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                Nuestra Planta Central en Mendoza
+              </h3>
+              <p className="text-xs text-slate-300 max-w-2xl mt-1">
+                Ubicada en el polo industrial de Godoy Cruz, Mendoza. Desde aquí formulamos, testeamos y distribuimos insumos químicos para toda la República Argentina.
+              </p>
+            </div>
+            <LocationMap height="460px" />
+          </div>
         </div>
       )}
 
@@ -275,7 +292,7 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   </div>
                   <div>
                     <strong className="text-xs text-white block font-semibold">Planta Central</strong>
-                    <span className="text-xs text-slate-400">Carril Rodríguez Peña, Mendoza, Argentina.</span>
+                    <span className="text-xs text-slate-400">Independencia 28, Godoy Cruz, Mendoza.</span>
                   </div>
                 </div>
               </div>
@@ -333,6 +350,22 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   <span>Chatear ahora</span>
                 </button>
               </div>
+            </div>
+
+            {/* Ubicación Puntual de Planta en Mapa Interactivo */}
+            <div className="pt-6 space-y-3">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#00c8ff]">
+                  Ubicación Georreferenciada
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                  Planta Central & Punto de Despacho
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Independencia 28, Godoy Cruz, Mendoza, Argentina. Acceso directo por Carril Rodríguez Peña.
+                </p>
+              </div>
+              <LocationMap height="460px" />
             </div>
           </div>
         </div>
