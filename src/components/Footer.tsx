@@ -187,11 +187,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
             <ul className="space-y-2.5 text-xs text-slate-400">
               <li className="flex items-start gap-2">
                 <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
-                <span>+54 9 261 123 4567</span>
+                <a href="tel:+5492614681775" className="hover:text-blue-400 transition-colors">
+                  +54 9 261 468 1775
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
-                <span>info@interquimica.com.ar</span>
+                <a href="mailto:cblanco@interquimica.com.ar" className="hover:text-blue-400 transition-colors">
+                  cblanco@interquimica.com.ar
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <Clock className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />

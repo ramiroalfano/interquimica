@@ -97,7 +97,7 @@ export default function App() {
 
   const handleFloatingWhatsApp = () => {
     window.open(
-      'https://wa.me/5492611234567?text=Hola%20InterQuímica%20Argentina,%20deseo%20hacer%20una%20consulta%20técnica%20sobre%20sus%20productos.',
+      'https://wa.me/5492614681775?text=Hola%20InterQuímica%20Argentina,%20deseo%20hacer%20una%20consulta%20técnica%20sobre%20sus%20productos.',
       '_blank'
     );
   };
@@ -208,7 +208,7 @@ export default function App() {
               ? 'w-11 h-11 p-0 scale-90 hover:scale-100 ring-2 ring-emerald-400/40'
               : 'px-4 py-3 sm:px-5 sm:py-3.5 gap-2.5 scale-100 hover:scale-105'
           }`}
-          title="Contactanos por WhatsApp (+54 9 261 123 4567)"
+          title="Contactanos por WhatsApp (+54 9 261 468 1775)"
         >
           {/* Notification Ping Badge */}
           <span

@@ -169,7 +169,7 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
 
   const handleWhatsAppAdvisor = () => {
     window.open(
-      'https://wa.me/5492611234567?text=Hola%20InterQuímica%20Argentina,%20deseo%20contactar%20a%20un%20asesor%20técnico%20para%20mi%20planta.',
+      'https://wa.me/5492614681775?text=Hola%20InterQuímica%20Argentina,%20deseo%20contactar%20a%20un%20asesor%20técnico%20para%20mi%20planta.',
       '_blank'
     );
   };

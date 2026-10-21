@@ -31,7 +31,7 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
 
   const handleWhatsApp = () => {
     window.open(
-      'https://wa.me/5492611234567?text=Hola%20InterQuímica%20Argentina,%20deseo%20comunicarme%20con%20atención%20al%20cliente.',
+      'https://wa.me/5492614681775?text=Hola%20InterQuímica%20Argentina,%20deseo%20comunicarme%20con%20atención%20al%20cliente.',
       '_blank'
     );
   };
@@ -287,7 +287,12 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   </div>
                   <div>
                     <strong className="text-xs text-white block font-semibold">Teléfono Comercial</strong>
-                    <span className="text-xs text-slate-400 font-mono">+54 9 261 123 4567</span>
+                    <a
+                      href="tel:+5492614681775"
+                      className="text-xs text-slate-400 font-mono hover:text-blue-400 transition-colors"
+                    >
+                      +54 9 261 468 1775
+                    </a>
                   </div>
                 </div>
               </div>
@@ -299,7 +304,12 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   </div>
                   <div>
                     <strong className="text-xs text-white block font-semibold">Correo Electrónico</strong>
-                    <span className="text-xs text-slate-400 break-all">info@interquimica.com.ar</span>
+                    <a
+                      href="mailto:cblanco@interquimica.com.ar"
+                      className="text-xs text-slate-400 break-all hover:text-blue-400 transition-colors"
+                    >
+                      cblanco@interquimica.com.ar
+                    </a>
                   </div>
                 </div>
               </div>

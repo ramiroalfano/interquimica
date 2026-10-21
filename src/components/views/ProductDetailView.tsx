@@ -71,7 +71,7 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
     const text = encodeURIComponent(
       `Hola InterQuímica Argentina, deseo consultar sobre el producto ${product.name} (${officialName}) y solicitar asesoramiento técnico.`
     );
-    window.open(`https://wa.me/5492611234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/5492614681775?text=${text}`, '_blank');
   };
 
   const handleDownloadPdf = () => {

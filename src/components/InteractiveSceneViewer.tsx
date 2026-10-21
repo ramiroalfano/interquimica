@@ -181,7 +181,7 @@ NORMAS Y CERTIFICACIONES:
 - Cumple con estándares de Gestión de Calidad ISO 9001:2015
 - Habilitación SENASA para plantas de alimentos y bebidas
 
-Consultas técnicas: soporte@interquimica.com.ar | Tel: +54 9 261 123 4567
+Consultas técnicas: cblanco@interquimica.com.ar | Tel: +54 9 261 468 1775
 Mendoza, Argentina
 `;
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -213,7 +213,7 @@ Mendoza, Argentina
     const msg = encodeURIComponent(
       `Hola equipo técnico de InterQuímica Argentina, estoy revisando el sector "${activeHotspot.name}" en la planta de "${currentScene.name}" y deseo consultar por la solución recomendada.`
     );
-    window.open(`https://wa.me/5492611234567?text=${msg}`, '_blank');
+    window.open(`https://wa.me/5492614681775?text=${msg}`, '_blank');
   };
 
   // Other 4 scenes for the lower row

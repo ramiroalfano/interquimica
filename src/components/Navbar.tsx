@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const handleWhatsApp = () => {
     window.open(
-      'https://wa.me/5492611234567?text=Hola%20InterQuímica%20Argentina,%20deseo%20contactar%20a%20un%20asesor%20técnico.',
+      'https://wa.me/5492614681775?text=Hola%20InterQuímica%20Argentina,%20deseo%20contactar%20a%20un%20asesor%20técnico.',
       '_blank'
     );
   };

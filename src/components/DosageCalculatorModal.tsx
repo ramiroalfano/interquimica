@@ -58,7 +58,7 @@ export const DosageCalculatorModal: React.FC<DosageCalculatorModalProps> = ({
     const text = encodeURIComponent(
       `Hola equipo técnico de InterQuímica, estuve utilizando la calculadora de dosificación para ${currentProduct.name} con un volumen de ${tankVolume}L (suciedad ${dirtLevel}). Necesito validar este protocolo para mi planta.`
     );
-    window.open(`https://wa.me/5492611234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/5492614681775?text=${text}`, '_blank');
   };
 
   return (

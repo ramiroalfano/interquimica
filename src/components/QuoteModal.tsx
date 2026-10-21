@@ -63,7 +63,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
         `Cantidad estimada: ${quantity} unidades\n` +
         `Comentarios: ${comments || 'Sin comentarios adicionales'}`
     );
-    window.open(`https://wa.me/5492611234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/5492614681775?text=${text}`, '_blank');
   };
 
   return (

@@ -72,12 +72,12 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
     const text = encodeURIComponent(
       `Hola InterQuímica Argentina, deseo solicitar asesoramiento técnico especializado para la industria ${currentIndustry?.name || 'industrial'}.`
     );
-    window.open(`https://wa.me/5492611234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/5492614681775?text=${text}`, '_blank');
   };
 
   const handleAdvisorContact = () => {
     window.open(
-      'https://wa.me/5492611234567?text=Hola%20InterQuímica%20Argentina,%20deseo%20consultar%20por%20soluciones%20específicas%20para%20mi%20industria.',
+      'https://wa.me/5492614681775?text=Hola%20InterQuímica%20Argentina,%20deseo%20consultar%20por%20soluciones%20específicas%20para%20mi%20industria.',
       '_blank'
     );
   };

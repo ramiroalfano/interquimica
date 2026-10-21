@@ -88,7 +88,7 @@ export function downloadProductPdf(product: Product): void {
     );
     doc.setTextColor(165, 215, 255);
     doc.text(
-      'Email: cblanco@interquimica.com.ar  |  Sitio web: www.interquimica.com.ar  |  Tel: +54 9 2614681775',
+      'Email: cblanco@interquimica.com.ar  |  Sitio web: www.interquimica.com.ar  |  Tel: +54 9 261 468 1775',
       pageWidth / 2,
       footerY + 8.5,
       { align: 'center' }

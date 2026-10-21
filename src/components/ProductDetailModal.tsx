@@ -42,7 +42,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     const text = encodeURIComponent(
       `Hola InterQuímica Argentina, deseo consultar sobre el producto ${product.name} (${product.title}) y solicitar asesoramiento técnico.`
     );
-    window.open(`https://wa.me/5492611234567?text=${text}`, '_blank');
+    window.open(`https://wa.me/5492614681775?text=${text}`, '_blank');
   };
 
   const handleDownloadPdf = (docType: string) => {
@@ -77,7 +77,7 @@ COMPATIBILIDAD DE MATERIALES:
 ${product.compatibility.map(c => `- ${c}`).join('\n')}
 
 CERTIFICACIÓN: ISO 9001:2015 - Sistema de Gestión de Calidad
-Mendoza, Argentina | info@interquimica.com.ar | Tel: +54 9 261 123 4567
+Mendoza, Argentina | cblanco@interquimica.com.ar | Tel: +54 9 261 468 1775
 `;
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
