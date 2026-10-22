@@ -3,6 +3,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '../../types.ts';
 import { PRODUCTS } from '../../data/mockData.ts';
 import { CanisterVisual } from '../CanisterVisual.tsx';
+import { motion } from 'motion/react';
 
 interface ProductShowcaseSectionProps {
   onNavigate: (view: string) => void;
@@ -90,7 +91,13 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
     <section className="relative w-full bg-[#030917] text-white py-12 sm:py-16 border-b border-slate-800/80 font-sans overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Header Row with Title, Categories and Arrow Controls */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10"
+        >
           {/* Left Column: Eyebrow, Main Title, Subtitle & Button */}
           <div className="max-w-md space-y-4">
             <span className="text-xs font-black uppercase tracking-widest text-[#00a2ff]">
@@ -156,17 +163,21 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Product Cards Row / Carousel */}
         <div
           ref={scrollContainerRef}
           className="flex gap-4 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-slate-800 scroll-smooth snap-x snap-mandatory"
         >
-          {filteredProducts.map((product) => {
+          {filteredProducts.map((product, idx) => {
             return (
-              <div
+              <motion.div
                 key={product.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: Math.min(idx * 0.05, 0.3) }}
                 onClick={() => handleProductClick(product)}
                 className="group shrink-0 w-[275px] sm:w-[295px] lg:w-[310px] snap-start bg-[#071328]/75 hover:bg-[#0a1b38] border border-slate-700/60 hover:border-[#0088cc] rounded-xl p-4 transition-all duration-300 shadow-xl flex items-center gap-3.5 cursor-pointer"
               >
@@ -203,7 +214,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

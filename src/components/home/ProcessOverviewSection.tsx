@@ -6,6 +6,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { IMAGES } from '../../data/mockData.ts';
+import { motion } from 'motion/react';
 
 interface ProcessOverviewSectionProps {
   onNavigate: (view: string) => void;
@@ -58,7 +59,13 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
         {/* ========================================================= */}
         {/* COLUMNA IZQUIERDA: "QUÍMICOS QUE IMPULSAN PROCESOS QUE PRODUCEN MÁS" */}
         {/* ========================================================= */}
-        <div className="relative lg:col-span-5 xl:col-span-4 p-8 sm:p-12 lg:p-14 xl:p-16 flex flex-col justify-between bg-gradient-to-br from-[#040d21] via-[#030919] to-[#020613] border-b lg:border-b-0 lg:border-r border-slate-800/80 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="relative lg:col-span-5 xl:col-span-4 p-8 sm:p-12 lg:p-14 xl:p-16 flex flex-col justify-between bg-gradient-to-br from-[#040d21] via-[#030919] to-[#020613] border-b lg:border-b-0 lg:border-r border-slate-800/80 overflow-hidden"
+        >
           {/* Technical Blueprint Watermark Texture */}
           <div
             className="absolute inset-0 opacity-[0.06] pointer-events-none"
@@ -104,7 +111,13 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
             {/* 3 Pillars with cyan icons */}
             <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-3">
               {/* Pillar 1 */}
-              <div className="flex items-center gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.1 }}
+                className="flex items-center gap-3"
+              >
                 <div className="w-10 h-10 rounded-lg bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 shadow-sm shadow-sky-500/10">
                   <FlaskConical className="w-5 h-5 text-[#00c2ff]" />
                 </div>
@@ -116,10 +129,16 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
                     DE ALTO RENDIMIENTO
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Pillar 2 */}
-              <div className="flex items-center gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.2 }}
+                className="flex items-center gap-3"
+              >
                 <div className="w-10 h-10 rounded-lg bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 shadow-sm shadow-sky-500/10">
                   <ShieldCheck className="w-5 h-5 text-[#00c2ff]" />
                 </div>
@@ -131,10 +150,16 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
                     EN CADA ETAPA
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Pillar 3 */}
-              <div className="flex items-center gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.3 }}
+                className="flex items-center gap-3"
+              >
                 <div className="w-10 h-10 rounded-lg bg-sky-950/60 border border-sky-500/30 flex items-center justify-center shrink-0 shadow-sm shadow-sky-500/10">
                   <CheckCircle2 className="w-5 h-5 text-[#00c2ff]" />
                 </div>
@@ -146,7 +171,7 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
                     COMPROBABLES
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
@@ -168,12 +193,18 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* ========================================================= */}
         {/* COLUMNA DERECHA: PROCESO LIMPIO, SEGURO Y EFICIENTE (EXACTO A LA IMAGEN) */}
         {/* ========================================================= */}
-        <div className="relative lg:col-span-7 xl:col-span-8 p-6 sm:p-10 lg:p-12 flex flex-col justify-between bg-[#040a18] overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="relative lg:col-span-7 xl:col-span-8 p-6 sm:p-10 lg:p-12 flex flex-col justify-between bg-[#040a18] overflow-hidden"
+        >
           {/* Ambient Spotlight Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[360px] bg-sky-600/[0.08] rounded-full blur-[130px] pointer-events-none" />
 
@@ -197,10 +228,14 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
 
             {/* Steps Row */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-2">
-              {processSteps.map((step) => {
+              {processSteps.map((step, idx) => {
                 return (
-                  <div
+                  <motion.div
                     key={step.num}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
                     className="relative flex flex-col items-center text-center select-none"
                   >
                     {/* Number Badge */}
@@ -220,14 +255,20 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
 
                     {/* Vertical Cyan Pointer pointing down towards corresponding equipment */}
                     <div className="hidden sm:block w-[1px] h-3.5 bg-gradient-to-b from-[#00c8ff] to-transparent mt-1.5 opacity-70" />
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
           </div>
 
-          {/* Panoramic Realistic Machinery Equipment matching exact reference image - Significantly Larger */}
-          <div className="relative z-10 my-2 rounded-xl overflow-hidden shadow-2xl shadow-sky-950/50 border border-sky-500/20 bg-[#020713]">
+          {/* Panoramic Realistic Machinery Equipment matching exact reference image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative z-10 my-2 rounded-xl overflow-hidden shadow-2xl shadow-sky-950/50 border border-sky-500/20 bg-[#020713]"
+          >
             <img
               src={IMAGES.processDiagram}
               alt="Proceso industrial CIP sanitizado con tanques de acero inoxidable, intercambiador de placas y embotellado"
@@ -238,7 +279,7 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
             />
             {/* Soft gradient edge blend */}
             <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#040a18] to-transparent pointer-events-none" />
-          </div>
+          </motion.div>
 
           {/* Bottom CTA Button: "VER TODO EL PROCESO →" (exact match to screenshot) */}
           <div className="relative z-10 pt-4 flex justify-center">
@@ -250,7 +291,7 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

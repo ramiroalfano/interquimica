@@ -20,6 +20,7 @@ import { SearchModal } from './components/SearchModal.tsx';
 import { Product, Industry } from './types.ts';
 import { PRODUCTS, INDUSTRIES } from './data/mockData.ts';
 import { MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<string>('inicio');
@@ -113,66 +114,77 @@ export default function App() {
         onSelectIndustry={handleSelectIndustry}
       />
 
-      {/* Main View Switcher */}
+      {/* Main View Switcher with Smooth View Transition */}
       <main className={`flex-1 ${currentView === 'productos' || currentView === 'industrias' ? 'bg-white' : ''}`}>
-        {currentView === 'inicio' && (
-          <HomeView
-            onNavigate={setCurrentView}
-            onSelectProduct={handleSelectProduct}
-            onSelectIndustry={(ind) => {
-              handleSelectIndustry(ind);
-              setCurrentView('industrias');
-            }}
-            onOpenQuote={handleOpenQuote}
-            onOpenEscenarios={handleOpenEscenariosWithScene}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentView}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+            className="w-full"
+          >
+            {currentView === 'inicio' && (
+              <HomeView
+                onNavigate={setCurrentView}
+                onSelectProduct={handleSelectProduct}
+                onSelectIndustry={(ind) => {
+                  handleSelectIndustry(ind);
+                  setCurrentView('industrias');
+                }}
+                onOpenQuote={handleOpenQuote}
+                onOpenEscenarios={handleOpenEscenariosWithScene}
+              />
+            )}
 
-        {currentView === 'industrias' && (
-          <IndustriasView
-            selectedIndustryId={selectedIndustry?.id || null}
-            onSelectProduct={handleSelectProduct}
-            onNavigateToProducts={() => setCurrentView('productos')}
-            onOpenQuote={() => handleOpenQuote()}
-            onOpenEscenarios={handleOpenEscenariosWithScene}
-            onNavigate={setCurrentView}
-            onSelectIndustry={handleSelectIndustry}
-          />
-        )}
+            {currentView === 'industrias' && (
+              <IndustriasView
+                selectedIndustryId={selectedIndustry?.id || null}
+                onSelectProduct={handleSelectProduct}
+                onNavigateToProducts={() => setCurrentView('productos')}
+                onOpenQuote={() => handleOpenQuote()}
+                onOpenEscenarios={handleOpenEscenariosWithScene}
+                onNavigate={setCurrentView}
+                onSelectIndustry={handleSelectIndustry}
+              />
+            )}
 
-        {currentView === 'productos' && (
-          <ProductosView
-            onSelectProduct={handleSelectProduct}
-            onRequestQuote={handleOpenQuote}
-            onNavigate={setCurrentView}
-          />
-        )}
+            {currentView === 'productos' && (
+              <ProductosView
+                onSelectProduct={handleSelectProduct}
+                onRequestQuote={handleOpenQuote}
+                onNavigate={setCurrentView}
+              />
+            )}
 
-        {currentView === 'producto-detalle' && selectedProduct && (
-          <ProductDetailView
-            product={selectedProduct}
-            onNavigate={setCurrentView}
-            onSelectProduct={handleSelectProduct}
-            onRequestQuote={(prod, pres) => handleOpenQuote(prod, pres)}
-            onBack={() => setCurrentView('productos')}
-          />
-        )}
+            {currentView === 'producto-detalle' && selectedProduct && (
+              <ProductDetailView
+                product={selectedProduct}
+                onNavigate={setCurrentView}
+                onSelectProduct={handleSelectProduct}
+                onRequestQuote={(prod, pres) => handleOpenQuote(prod, pres)}
+                onBack={() => setCurrentView('productos')}
+              />
+            )}
 
-        {currentView === 'soluciones' && (
-          <InteractiveSceneViewer
-            initialSceneId={interactiveSceneId}
-            onSelectProduct={handleSelectProduct}
-            onNavigateToProducts={() => setCurrentView('productos')}
-          />
-        )}
+            {currentView === 'soluciones' && (
+              <InteractiveSceneViewer
+                initialSceneId={interactiveSceneId}
+                onSelectProduct={handleSelectProduct}
+                onNavigateToProducts={() => setCurrentView('productos')}
+              />
+            )}
 
-        {currentView === 'nosotros' && (
-          <NosotrosContactoView initialTab="nosotros" />
-        )}
+            {currentView === 'nosotros' && (
+              <NosotrosContactoView initialTab="nosotros" />
+            )}
 
-        {currentView === 'contacto' && (
-          <NosotrosContactoView initialTab="contacto" />
-        )}
+            {currentView === 'contacto' && (
+              <NosotrosContactoView initialTab="contacto" />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Global Modals */}

@@ -11,6 +11,7 @@ import { ProcessOverviewSection } from '../home/ProcessOverviewSection.tsx';
 import { IndustrySelectorStrip } from '../home/IndustrySelectorStrip.tsx';
 import { ProductShowcaseSection } from '../home/ProductShowcaseSection.tsx';
 import { LocationMap } from '../LocationMap.tsx';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface HomeViewProps {
   onNavigate: (view: string) => void;
@@ -145,23 +146,38 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Content Container (Left Aligned, Extended Width, Refined Font Size) */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full">
           <div className="max-w-4xl lg:max-w-5xl space-y-6">
-            {heroSlides[currentSlide].type === 'quimica' ? (
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
-                Química que limpia.{' '}
-                <span className="text-[#0e4896] sm:text-[#1154b0] font-black">Resultados que impulsan.</span>
-              </h1>
-            ) : (
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
-                Nuevo concepto de <span className="text-[#0e4896] sm:text-[#1154b0] font-black">limpieza y desinfección</span>,{' '}
-                <span className="text-[#0e4896] sm:text-[#1154b0] font-black">sustentable</span> y en un único paso.
-              </h1>
-            )}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -14 }}
+                transition={{ duration: 0.45, ease: 'easeOut' }}
+              >
+                {heroSlides[currentSlide].type === 'quimica' ? (
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
+                    Química que limpia.{' '}
+                    <span className="text-[#0e4896] sm:text-[#1154b0] font-black">Resultados que impulsan.</span>
+                  </h1>
+                ) : (
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug font-display">
+                    Nuevo concepto de <span className="text-[#0e4896] sm:text-[#1154b0] font-black">limpieza y desinfección</span>,{' '}
+                    <span className="text-[#0e4896] sm:text-[#1154b0] font-black">sustentable</span> y en un único paso.
+                  </h1>
+                )}
+              </motion.div>
+            </AnimatePresence>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* CTAs with entrance animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              className="flex flex-wrap items-center gap-4 pt-2"
+            >
               <button
                 onClick={() => onNavigate('productos')}
-                className="flex items-center gap-2 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] active:bg-[#062450] rounded-md transition-all shadow-lg shadow-blue-950/40 border border-blue-400/20"
+                className="flex items-center gap-2 py-3 px-6 text-xs font-bold uppercase tracking-wider text-white bg-[#0b4592] hover:bg-[#083470] active:bg-[#062450] rounded-md transition-all shadow-lg shadow-blue-950/40 border border-blue-400/20 cursor-pointer"
               >
                 <span>VER PRODUCTOS</span>
                 <ArrowRight className="w-4 h-4" />
@@ -169,11 +185,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
               <button
                 onClick={() => onNavigate('soluciones')}
-                className="py-3 px-6 text-xs font-bold uppercase tracking-wider text-white hover:text-white bg-[#0b1329]/90 hover:bg-slate-800 rounded-md transition-colors border border-slate-700/80"
+                className="py-3 px-6 text-xs font-bold uppercase tracking-wider text-white hover:text-white bg-[#0b1329]/90 hover:bg-slate-800 rounded-md transition-colors border border-slate-700/80 cursor-pointer"
               >
                 CONOCER SOLUCIONES
               </button>
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -255,10 +271,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
         onSelectProduct={onSelectProduct}
       />
 
-      {/* Acerca de Nosotros & Planta Central / Ubicación */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-[#030712] border-t border-slate-800/80">
+      {/* Acerca de Nosotros & Planta Central / Ubicación with Scroll Reveal */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#030712] border-t border-slate-800/80 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+          >
             <div className="space-y-3 max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-500/30 text-sky-400 text-xs font-bold uppercase tracking-wider">
                 <MapPin className="w-3.5 h-3.5" />
@@ -279,10 +301,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span>Conocer más sobre nosotros</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-          </div>
+          </motion.div>
 
           {/* Interactive Map with Exact Location */}
-          <LocationMap height="460px" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+          >
+            <LocationMap height="460px" />
+          </motion.div>
         </div>
       </section>
     </div>

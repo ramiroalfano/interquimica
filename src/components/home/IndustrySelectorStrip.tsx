@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Industry } from '../../types.ts';
 import { INDUSTRIES } from '../../data/mockData.ts';
+import { motion } from 'motion/react';
 
 interface IndustrySelectorStripProps {
   onNavigate: (view: string) => void;
@@ -173,7 +174,11 @@ export const IndustrySelectorStrip: React.FC<IndustrySelectorStripProps> = ({
               const isSelected = selectedId === item.id;
               return (
                 <React.Fragment key={item.id}>
-                  <button
+                  <motion.button
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: idx * 0.06 }}
                     onClick={() => handleSelect(item.id)}
                     className={`group relative flex flex-col items-center justify-center py-2.5 px-3 sm:px-4 min-w-[110px] sm:min-w-[125px] rounded-lg transition-all duration-200 cursor-pointer ${
                       isSelected
@@ -201,7 +206,7 @@ export const IndustrySelectorStrip: React.FC<IndustrySelectorStripProps> = ({
                         </p>
                       )}
                     </div>
-                  </button>
+                  </motion.button>
 
                   {/* Vertical separator between items */}
                   {idx < industryItems.length - 1 && (

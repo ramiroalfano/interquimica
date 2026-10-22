@@ -15,6 +15,7 @@ import {
   Layers,
   TestTube,
 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 // High-definition generated images matching the user reference
 import lineAlcalinoImg from '../../assets/images/line_alcalino_water_1791474358377.jpg';
@@ -248,9 +249,13 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
 
           {/* 6 Product Line Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {PRODUCT_LINES.map((line) => (
-              <div
+            {PRODUCT_LINES.map((line, idx) => (
+              <motion.div
                 key={line.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: idx * 0.05 }}
                 onClick={() => setSelectedLineId(line.id)}
                 className="group bg-[#0c1a2f] border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/70 hover:shadow-xl hover:shadow-blue-950/40 transition-all duration-300 cursor-pointer flex flex-col justify-between"
               >
@@ -291,12 +296,18 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Bottom 4 Trust Badges (Horizontal Dark Strip) */}
-          <div className="mt-14 pt-10 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-14 pt-10 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             <div className="flex items-start gap-3.5">
               <div className="w-10 h-10 rounded-xl bg-blue-600/15 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-5 h-5" />
@@ -344,7 +355,7 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
       </div>
     );
@@ -493,15 +504,19 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
 
             {/* Products Grid (3 items per row on desktop) */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {currentLineProducts.map((product) => {
+              {currentLineProducts.map((product, pIdx) => {
                 const isSolid =
                   product.id.startsWith('bio-det') ||
                   product.categoryLabel.toLowerCase().includes('sólido') ||
                   product.category === 'materia_prima';
 
                 return (
-                  <div
+                  <motion.div
                     key={product.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: Math.min(pIdx * 0.05, 0.25) }}
                     className="bg-white rounded-2xl border border-slate-200/90 p-5 flex flex-col justify-between hover:shadow-xl hover:border-blue-300 transition-all duration-300 group"
                   >
                     <div>
@@ -553,7 +568,7 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
                         SOLICITAR COTIZACIÓN
                       </button>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>

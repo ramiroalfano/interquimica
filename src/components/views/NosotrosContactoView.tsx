@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { IMAGES } from '../../data/mockData.ts';
 import { LocationMap } from '../LocationMap.tsx';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface NosotrosContactoViewProps {
   initialTab?: 'nosotros' | 'contacto';
@@ -97,81 +98,124 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
           </button>
         </div>
 
-        {activeTab === 'nosotros' && (
-          <div className="space-y-12">
-            {/* Stats Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl">
-              <div>
-                <span className="text-3xl font-black text-blue-400 font-mono block">+25</span>
-                <span className="text-xs text-slate-400">Años de trayectoria industrial</span>
-              </div>
-              <div>
-                <span className="text-3xl font-black text-blue-400 font-mono block">+500</span>
-                <span className="text-xs text-slate-400">Plantas y bodegas atendidas</span>
-              </div>
-              <div>
-                <span className="text-3xl font-black text-emerald-400 font-mono block">100%</span>
-                <span className="text-xs text-slate-400">Fórmulas biodegradables</span>
-              </div>
-              <div>
-                <span className="text-3xl font-black text-emerald-400 font-mono block">ISO</span>
-                <span className="text-xs text-slate-400">Certificación 9001:2015</span>
-              </div>
-            </div>
+        <AnimatePresence mode="wait">
+          {activeTab === 'nosotros' ? (
+            <motion.div
+              key="tab-nosotros"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-12"
+            >
+              {/* Stats Bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45 }}
+                className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl"
+              >
+                <div>
+                  <span className="text-3xl font-black text-blue-400 font-mono block">+25</span>
+                  <span className="text-xs text-slate-400">Años de trayectoria industrial</span>
+                </div>
+                <div>
+                  <span className="text-3xl font-black text-blue-400 font-mono block">+500</span>
+                  <span className="text-xs text-slate-400">Plantas y bodegas atendidas</span>
+                </div>
+                <div>
+                  <span className="text-3xl font-black text-emerald-400 font-mono block">100%</span>
+                  <span className="text-xs text-slate-400">Fórmulas biodegradables</span>
+                </div>
+                <div>
+                  <span className="text-3xl font-black text-emerald-400 font-mono block">ISO</span>
+                  <span className="text-xs text-slate-400">Certificación 9001:2015</span>
+                </div>
+              </motion.div>
 
-          {/* Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3">
-              <div className="p-3 bg-blue-600/20 text-blue-400 rounded-xl w-fit">
-                <ShieldCheck className="w-6 h-6" />
+              {/* Pillars */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.05 }}
+                  className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
+                >
+                  <div className="p-3 bg-blue-600/20 text-blue-400 rounded-xl w-fit">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-white">Certificación ISO 9001:2015</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Cada lote producido es testeado cromatográfica y titrimétricamente en nuestro laboratorio central antes de su despacho.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.12 }}
+                  className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
+                >
+                  <div className="p-3 bg-emerald-600/20 text-emerald-400 rounded-xl w-fit">
+                    <Factory className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-white">Fabricación Propia</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Planta industrial propia en Mendoza equipada con reactores de acero inoxidable de alta capacidad y envasado automatizado.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.19 }}
+                  className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
+                >
+                  <div className="p-3 bg-purple-600/20 text-purple-400 rounded-xl w-fit">
+                    <Award className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-white">Compromiso Sustentable</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Desarrollo continuo de surfactantes libres de fosfatos y fórmulas de fácil enjuagabilidad para reducir la huella hídrica.
+                  </p>
+                </motion.div>
               </div>
-              <h3 className="text-base font-bold text-white">Certificación ISO 9001:2015</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Cada lote producido es testeado cromatográfica y titrimétricamente en nuestro laboratorio central antes de su despacho.
-              </p>
-            </div>
 
-            <div className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3">
-              <div className="p-3 bg-emerald-600/20 text-emerald-400 rounded-xl w-fit">
-                <Factory className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-bold text-white">Fabricación Propia</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Planta industrial propia en Mendoza equipada con reactores de acero inoxidable de alta capacidad y envasado automatizado.
-              </p>
-            </div>
-
-            <div className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3">
-              <div className="p-3 bg-purple-600/20 text-purple-400 rounded-xl w-fit">
-                <Award className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-bold text-white">Compromiso Sustentable</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Desarrollo continuo de surfactantes libres de fosfatos y fórmulas de fácil enjuagabilidad para reducir la huella hídrica.
-              </p>
-            </div>
-          </div>
-
-          {/* Planta Central y Ubicación en Mendoza */}
-          <div className="space-y-4 pt-4 border-t border-slate-800">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#00c8ff]">
-                Infraestructura Industrial
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
-                Nuestra Planta Central en Mendoza
-              </h3>
-              <p className="text-xs text-slate-300 max-w-2xl mt-1">
-                Ubicada en el polo industrial de Godoy Cruz, Mendoza. Desde aquí formulamos, testeamos y distribuimos insumos químicos para toda la República Argentina.
-              </p>
-            </div>
-            <LocationMap height="460px" />
-          </div>
-        </div>
-      )}
-
-      {activeTab === 'contacto' && (
-        <div className="space-y-12">
+              {/* Planta Central y Ubicación en Mendoza */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55 }}
+                className="space-y-4 pt-4 border-t border-slate-800"
+              >
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#00c8ff]">
+                    Infraestructura Industrial
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                    Nuestra Planta Central en Mendoza
+                  </h3>
+                  <p className="text-xs text-slate-300 max-w-2xl mt-1">
+                    Ubicada en el polo industrial de Godoy Cruz, Mendoza. Desde aquí formulamos, testeamos y distribuimos insumos químicos para toda la República Argentina.
+                  </p>
+                </div>
+                <LocationMap height="460px" />
+              </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="tab-contacto"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-12"
+            >
           {/* Centered Main Contact Form */}
           <div className="max-w-2xl mx-auto w-full bg-[#09111e] border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
             {/* Subtle decorative glow */}
@@ -369,9 +413,10 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
               <LocationMap height="460px" />
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
   </div>
+</div>
 );
 };

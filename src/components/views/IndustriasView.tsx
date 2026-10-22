@@ -19,6 +19,7 @@ import {
   AlertTriangle,
   Lightbulb,
 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface IndustriasViewProps {
   selectedIndustryId?: string | null;
@@ -153,9 +154,13 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
         {/* 2. CUADRÍCULA DE 8 TARJETAS DE INDUSTRIA */}
         <main className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-10 sm:py-14 bg-white">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {INDUSTRIES.map((ind) => (
-              <div
+            {INDUSTRIES.map((ind, idx) => (
+              <motion.div
                 key={ind.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: idx * 0.05 }}
                 onClick={() => handleSelectIndustryCard(ind)}
                 className="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:shadow-blue-950/10 transition-all duration-300 cursor-pointer flex flex-col justify-between"
               >
@@ -197,12 +202,18 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* 3. TARJETA INFERIOR DE ASISTENCIA: "¿Tu industria tiene necesidades específicas?" */}
-          <div className="mt-12 bg-blue-50/70 border border-blue-100 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-12 bg-blue-50/70 border border-blue-100 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          >
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-white border border-blue-200/70 text-[#1d4ed8] flex items-center justify-center shrink-0 shadow-sm">
                 <FlaskConical className="w-6 h-6" />
@@ -223,7 +234,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
             >
               CONTACTAR ASESOR →
             </button>
-          </div>
+          </motion.div>
         </main>
       </div>
     );
@@ -390,9 +401,13 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
                   Productos químicos recomendados para {currentArea.name}:
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {PRODUCTS.filter((p) => currentArea.suggestedProductIds.includes(p.id)).map((product) => (
-                    <div
+                  {PRODUCTS.filter((p) => currentArea.suggestedProductIds.includes(p.id)).map((product, pIdx) => (
+                    <motion.div
                       key={product.id}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: pIdx * 0.08 }}
                       className="bg-white rounded-xl border border-slate-200 p-4 flex flex-col justify-between hover:shadow-md transition-shadow group"
                     >
                       <div>
@@ -427,7 +442,7 @@ export const IndustriasView: React.FC<IndustriasViewProps> = ({
                           Cotizar
                         </button>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
