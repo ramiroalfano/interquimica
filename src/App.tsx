@@ -26,7 +26,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState<string>('inicio');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedIndustry, setSelectedIndustry] = useState<Industry | null>(null);
-  const [interactiveSceneId, setInteractiveSceneId] = useState<string>('frigorificos');
+  const [interactiveSceneId, setInteractiveSceneId] = useState<string>('bodegas');
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Modals state

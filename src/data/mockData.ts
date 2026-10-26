@@ -22,6 +22,7 @@ import industryPapeleraImg from '../assets/images/industry_papelera_179147670958
 import industryGeneralImg from '../assets/images/industry_general_1791476718928.jpg';
 import interquimicaSvg from '../assets/images/interquimica.svg';
 import industrialProcessDiagramImg from '../assets/images/industrial_process_diagram_1791565701189.jpg';
+import wineryInteractiveSceneImg from '../assets/images/winery_eyelevel_scene_1793057520667.jpg';
 
 // Image paths generated from prompt references (bundled via Vite)
 export const IMAGES = {
@@ -33,12 +34,13 @@ export const IMAGES = {
   banner6: banner6Img, // Cervecería / Brewery cellar
   interquimica: interquimicaSvg, // Exact process diagram graphic
   processDiagram: industrialProcessDiagramImg, // Panoramic realistic equipment matching user reference
+  wineryInteractiveScene: wineryInteractiveSceneImg, // Panoramic winery with barrels, stainless tanks, and bottling line
   heroBreweryCellar: banner6Img,
   operatorFoam: banner5Img,
   bottlingConveyor: banner4Img,
   frigorificoCold: banner1Img,
   oliveOilFacility: banner3Img,
-  wineCellar: banner2Img,
+  wineCellar: wineryInteractiveSceneImg,
   industryVitivinicola: industryVitivinicolaImg,
   industryLactea: industryLacteaImg,
   industryOlives: industryOlivesImg,
@@ -670,53 +672,55 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
     id: 'bodegas',
     name: 'Bodegas',
     title: 'Bodegas y vitivinicultura',
-    subtitle: 'Proceso de elaboración de vinos finos y espumantes.',
-    bgImage: IMAGES.banner2,
+    subtitle: 'Proceso de elaboración de vinos y bebidas.',
+    bgImage: IMAGES.wineryInteractiveScene,
     hotspots: [
       {
         id: 'barricas-madera',
-        name: 'Barricas de roble',
-        x: 8,
-        y: 78,
+        name: 'Barricas',
+        x: 10,
+        y: 64,
         code: 'BAR-01',
         iconName: 'Barrel',
         commonProblem:
-          'Presencia de bitartratos, contaminación por Brettanomyces bruxellensis y acidez volátil.',
+          'Presencia de bitartratos, contaminación por Brettanomyces bruxellensis y acidez volátil que deterioran la calidad organoléptica en barricas.',
         recommendedSolution:
-          'Lavado con OXI T en solución fría o templada que penetra en los poros de la madera eliminando levaduras indeseadas sin dañar los aromas del tostado.',
+          'Lavado con OXI T en solución fría o templada que penetra en los poros de la madera eliminando levaduras indeseadas sin alterar los aromas del roble.',
         suggestedProductIds: ['oxi-t', 'bio-det-na75-plus'],
         downloads: [
           { title: 'Protocolo de higiene de barricas de roble', type: 'protocol', filename: 'Protocolo_Barricas.pdf' },
+          { title: 'Ficha técnica de sanitización', type: 'techsheet', filename: 'Ficha_Tecnica_Barricas.pdf' },
         ],
       },
       {
         id: 'tanques-inox-bodega',
         name: 'Tanques de acero inoxidable',
-        x: 26,
-        y: 59,
+        x: 35,
+        y: 32,
         code: 'TK-INOX',
         iconName: 'Cylinder',
         commonProblem:
-          'Costras duras de bitartrato de potasio adheridas tras la estabilización por frío.',
+          'Acumulación de materia orgánica, sarro y biofilm que afecta la higiene, genera sabores indeseados y reduce la vida útil del equipo.',
         recommendedSolution:
-          'Recirculación por boquilla rotativa CIP de Na45 al 2% o Bio Det Na 75 Plus.',
-        suggestedProductIds: ['na45', 'acid', 'bio-det-na75-plus'],
+          'Limpieza alcalina formulada para remover residuos orgánicos, sedimentos y biofilm sin dañar el acero inoxidable. Ideal para CIP y limpieza manual.',
+        suggestedProductIds: ['na45', 'acid-c30', 'oxi-t'],
         downloads: [
-          { title: 'Desincrustación de tártaros en bodegas', type: 'protocol', filename: 'Desincrustacion_Tartaro.pdf' },
+          { title: 'Protocolo de limpieza CIP', type: 'protocol', filename: 'Protocolo_CIP_Tanques.pdf' },
+          { title: 'Ficha técnica del proceso', type: 'techsheet', filename: 'Ficha_Tecnica_Tanques.pdf' },
         ],
       },
       {
         id: 'linea-fraccionamiento-bodega',
         name: 'Línea de fraccionamiento',
-        x: 22,
-        y: 74,
+        x: 23,
+        y: 56,
         code: 'LF-03',
         iconName: 'Layers',
         commonProblem:
           'Riesgo de contaminación microbiológica en picos de llenado y taponadoras que afecte la botella comercial.',
         recommendedSolution:
           'Sanitización química con ácido peracético OXI T sin enjuague final justo antes del fraccionamiento.',
-        suggestedProductIds: ['oxi-t'],
+        suggestedProductIds: ['oxi-t', 'ac32'],
         downloads: [
           { title: 'Control microbiológico en fraccionamiento', type: 'protocol', filename: 'Fraccionamiento_Vino.pdf' },
         ],
@@ -724,10 +728,10 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
       {
         id: 'filtros-tangenciales-bodega',
         name: 'Filtros tangenciales',
-        x: 36,
-        y: 71,
+        x: 58,
+        y: 53,
         code: 'FT-02',
-        iconName: 'Cpu',
+        iconName: 'Workflow',
         commonProblem:
           'Colmatación de membranas por polisacáridos y coloides del vino reduciendo el caudal de filtración.',
         recommendedSolution:
@@ -738,17 +742,33 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         ],
       },
       {
+        id: 'pisos-superficies-bodega',
+        name: 'Pisos y superficies',
+        x: 38,
+        y: 76,
+        code: 'PS-05',
+        iconName: 'Grid',
+        commonProblem:
+          'Manchas de mosto y vino, formación de sarro tartárico y superficies resbaladizas con biofilm en rejillas y pisos industriales.',
+        recommendedSolution:
+          'Tratamiento alcalino desengrasante y espumante con Foam Plus y desinfección continua con OXI T para asegurar inocuidad microbiológica total.',
+        suggestedProductIds: ['foam-plus', 'oxi-t', 'ac32'],
+        downloads: [
+          { title: 'Protocolo de higiene de pisos y canaletas de vendimia', type: 'protocol', filename: 'Pisos_Bodega.pdf' },
+        ],
+      },
+      {
         id: 'embotellado-bodega',
         name: 'Embotellado',
-        x: 51,
-        y: 71,
+        x: 77,
+        y: 53,
         code: 'EMB-04',
         iconName: 'Bottle',
         commonProblem:
-          'Biofilm en enjuagadoras de botellas vacías y acumulación de azúcar en transportadores.',
+          'Biofilm en enjuagadoras de botellas vacías, derrames de vino y acumulación de azúcares en transportadores.',
         recommendedSolution:
-          'Limpieza alcalina con AC32 y desinfección ambiental con Sanitex Forte.',
-        suggestedProductIds: ['ac32', 'sanitex-forte'],
+          'Limpieza alcalina con AC32 y desinfección ambiental con Sanitex Forte y OXI T.',
+        suggestedProductIds: ['ac32', 'sanitex-forte', 'oxi-t'],
         downloads: [
           { title: 'Protocolo de higiene para línea de botellas', type: 'protocol', filename: 'Higiene_Botellas.pdf' },
         ],

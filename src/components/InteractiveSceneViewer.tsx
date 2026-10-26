@@ -41,7 +41,7 @@ const SCENE_DISPLAY_ORDER = [
 ];
 
 export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
-  initialSceneId = 'frigorificos',
+  initialSceneId = 'bodegas',
   onSelectProduct,
   onNavigateToProducts,
 }) => {
@@ -55,14 +55,15 @@ export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
 
   const currentScene =
     INTERACTIVE_SCENES.find((s) => s.id === selectedSceneId) ||
-    orderedScenes.find((s) => s.id === 'frigorificos') ||
+    orderedScenes.find((s) => s.id === 'bodegas') ||
     orderedScenes[0];
 
-  // Active hotspot: prefer selectedHotspot if belongs to scene, else 'sala-desposte' for frigoríficos or first hotspot
+  // Active hotspot: prefer selectedHotspot if belongs to scene, else 'tanques-inox-bodega' for bodegas, 'sala-desposte' for frigoríficos or first hotspot
   const activeHotspot: Hotspot | null =
     selectedHotspot && currentScene.hotspots.some((h) => h.id === selectedHotspot.id)
       ? selectedHotspot
-      : currentScene.hotspots.find((h) => h.id === 'sala-desposte') ||
+      : currentScene.hotspots.find((h) => h.id === 'tanques-inox-bodega') ||
+        currentScene.hotspots.find((h) => h.id === 'sala-desposte') ||
         currentScene.hotspots.find((h) => h.id === 'recepcion-carne') ||
         (currentScene.hotspots.length > 0 ? currentScene.hotspots[0] : null);
 
@@ -71,6 +72,7 @@ export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
     const targetScene = INTERACTIVE_SCENES.find((s) => s.id === sceneId);
     if (targetScene && targetScene.hotspots.length > 0) {
       const preferred =
+        targetScene.hotspots.find((h) => h.id === 'tanques-inox-bodega') ||
         targetScene.hotspots.find((h) => h.id === 'sala-desposte') ||
         targetScene.hotspots[0];
       setSelectedHotspot(preferred);
@@ -148,12 +150,26 @@ export const InteractiveSceneViewer: React.FC<InteractiveSceneViewerProps> = ({
       case 'Cylinder':
         return <Cylinder className="w-3.5 h-3.5" />;
       case 'Bottle':
+        return (
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7 21h4a1 1 0 0 0 1-1v-8a3 3 0 0 0-1-2.2V4h-4v5.8A3 3 0 0 0 6 12v8a1 1 0 0 0 1 1z" />
+            <path d="M15 21h3a1 1 0 0 0 1-1v-7a2.5 2.5 0 0 0-1-1.9V6h-3v5.1a2.5 2.5 0 0 0-1 1.9v7a1 1 0 0 0 1 1z" />
+          </svg>
+        );
       case 'Package':
         return <Package className="w-3.5 h-3.5" />;
       case 'Droplet':
         return <Droplet className="w-3.5 h-3.5" />;
-      case 'Wine':
       case 'Barrel':
+        return (
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <ellipse cx="12" cy="12" rx="7.5" ry="8.5" />
+            <line x1="5.5" y1="8" x2="18.5" y2="8" />
+            <line x1="5.5" y1="16" x2="18.5" y2="16" />
+            <line x1="12" y1="3.5" x2="12" y2="20.5" />
+          </svg>
+        );
+      case 'Wine':
         return <Wine className="w-3.5 h-3.5" />;
       default:
         return <Layers className="w-3.5 h-3.5" />;
