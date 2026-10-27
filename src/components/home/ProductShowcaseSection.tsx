@@ -189,7 +189,8 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                     badge={product.badge}
                     badgeColor={product.badgeColor}
                     className="w-full h-full"
-                    isBag={product.presentations.some((p) =>
+                    image={product.image || product.imageUrl}
+                    isBag={product.isBag ?? product.presentations.some((p) =>
                       p.packaging.toLowerCase().includes('bolsa') || p.packaging.toLowerCase().includes('saco')
                     )}
                   />

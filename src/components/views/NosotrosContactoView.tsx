@@ -5,7 +5,6 @@ import {
   Phone,
   Mail,
   Clock,
-  ShieldCheck,
   Send,
   MessageCircle,
   Award,
@@ -143,8 +142,13 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   transition={{ duration: 0.45, delay: 0.05 }}
                   className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
                 >
-                  <div className="p-3 bg-blue-600/20 text-blue-400 rounded-xl w-fit">
-                    <ShieldCheck className="w-6 h-6" />
+                  <div className="w-12 h-12 bg-white rounded-xl p-1.5 flex items-center justify-center border border-slate-700/60 overflow-hidden shadow-sm">
+                    <img
+                      src="/images/imgiso.jpeg"
+                      alt="Certificación ISO 9001:2015"
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
                   </div>
                   <h3 className="text-base font-bold text-white">Certificación ISO 9001:2015</h3>
                   <p className="text-xs text-slate-400 leading-relaxed">

@@ -6,6 +6,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-foam',
+    image: '/imgprod/bio-foam.jpeg',
+    imageUrl: '/imgprod/bio-foam.jpeg',
     name: 'BIO FOAM',
     code: 'IQA-BIO-FOAM',
     category: 'espumigenos',
@@ -93,6 +95,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'acido-acetico-glacial',
+    image: '/imgprod/bio-det-acid.jpeg',
+    imageUrl: '/imgprod/bio-det-acid.jpeg',
     name: 'Ácido Acético Glacial',
     code: 'IQA-AC-ACET',
     category: 'materia_prima',
@@ -190,6 +194,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'acido-citrico-anhidrido',
+    image: '/imgprod/bio-det-duo-plus.jpeg',
+    imageUrl: '/imgprod/bio-det-duo-plus.jpeg',
     name: 'Ácido Cítrico Anhidrido',
     code: 'IQA-AC-CITR',
     category: 'materia_prima',
@@ -272,6 +278,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'ac32',
+    image: '/imgprod/bio-det-alka.jpeg',
+    imageUrl: '/imgprod/bio-det-alka.jpeg',
     name: 'BIO AC32',
     code: 'IQA-BIO-AC32',
     category: 'desinfectantes',
@@ -354,6 +362,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-acid-s',
+    image: '/imgprod/bio-det-acid.jpeg',
+    imageUrl: '/imgprod/bio-det-acid.jpeg',
     name: 'BIO ACID S',
     code: 'IQA-ACID-S',
     category: 'acidos',
@@ -434,6 +444,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-ap32',
+    image: '/imgprod/bio-ap32.jpeg',
+    imageUrl: '/imgprod/bio-ap32.jpeg',
     name: 'BIO AP32',
     code: 'IQA-BIO-AP32',
     category: 'desinfectantes',
@@ -517,6 +529,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-ap32-forte',
+    image: '/imgprod/bio-ap32-forte.jpeg',
+    imageUrl: '/imgprod/bio-ap32-forte.jpeg',
     name: 'BIO AP32 FORTE',
     code: 'IQA-AP32-FORTE',
     category: 'desinfectantes',
@@ -605,6 +619,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-foam-cl',
+    image: '/imgprod/bio-foam-cl.jpeg',
+    imageUrl: '/imgprod/bio-foam-cl.jpeg',
     name: 'BIO FOAM CL',
     code: 'IQA-FOAM-CL',
     category: 'espumigenos',
@@ -689,6 +705,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-acid',
+    image: '/imgprod/bio-det-acid.jpeg',
+    imageUrl: '/imgprod/bio-det-acid.jpeg',
     name: 'BIO DET ACID',
     code: 'IQA-DET-ACID',
     category: 'acidos',
@@ -773,6 +791,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'acid-c30',
+    image: '/imgprod/bio-det-acid-c30.jpeg',
+    imageUrl: '/imgprod/bio-det-acid-c30.jpeg',
     name: 'BIO DET ACID C30',
     code: 'IQA-ACID-C30',
     category: 'acidos',
@@ -855,6 +875,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-acid-n',
+    image: '/imgprod/bio-det-acid-n.jpeg',
+    imageUrl: '/imgprod/bio-det-acid-n.jpeg',
     name: 'BIO DET ACID N',
     code: 'IQA-ACID-NITR',
     category: 'acidos',
@@ -940,6 +962,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-duo-plus',
+    image: '/imgprod/bio-det-duo-plus.jpeg',
+    imageUrl: '/imgprod/bio-det-duo-plus.jpeg',
     name: 'BIO DET DUO PLUS',
     code: 'IQA-DUO-PLUS',
     category: 'alcalinos',
@@ -1021,6 +1045,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'k45',
+    image: '/imgprod/bio-det-k45.jpeg',
+    imageUrl: '/imgprod/bio-det-k45.jpeg',
     name: 'BIO DET K45',
     code: 'IQA-BIO-K45',
     category: 'alcalinos',
@@ -1107,6 +1133,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-k45-lq',
+    image: '/imgprod/bio-det-k45.jpeg',
+    imageUrl: '/imgprod/bio-det-k45.jpeg',
     name: 'BIO DET K45 LQ',
     code: 'IQA-K45-LQ',
     category: 'alcalinos',
@@ -1190,6 +1218,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-k75-plus',
+    image: '/imgprod/bio-det-k75-plus.jpeg',
+    imageUrl: '/imgprod/bio-det-k75-plus.jpeg',
     name: 'BIO DET K75 PLUS',
     code: 'IQA-K75-PLUS',
     category: 'alcalinos',
@@ -1272,6 +1302,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'na45',
+    image: '/imgprod/bio-det-na45.jpeg',
+    imageUrl: '/imgprod/bio-det-na45.jpeg',
     name: 'BIO DET Na45',
     code: 'IQA-BIO-NA45',
     category: 'alcalinos',
@@ -1356,6 +1388,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-na75-lq',
+    image: '/imgprod/bio-det-na-75-lq.jpeg',
+    imageUrl: '/imgprod/bio-det-na-75-lq.jpeg',
     name: 'BIO DET Na 75 LQ',
     code: 'IQA-NA75-LQ',
     category: 'alcalinos',
@@ -1440,6 +1474,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-det-na75-plus',
+    image: '/imgprod/bio-det-na75-plus.jpeg',
+    imageUrl: '/imgprod/bio-det-na75-plus.jpeg',
     name: 'BIO DET Na75 PLUS',
     code: 'IQA-NA75-PLUS',
     category: 'alcalinos',
@@ -1523,6 +1559,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'oxi-t',
+    image: '/imgprod/bio-det-oxi-t.jpeg',
+    imageUrl: '/imgprod/bio-det-oxi-t.jpeg',
     name: 'BIO DET OXI T',
     code: 'IQA-OXI-T',
     category: 'desinfectantes',
@@ -1605,6 +1643,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'bio-foam-acid',
+    image: '/imgprod/bio-foam-acid.jpeg',
+    imageUrl: '/imgprod/bio-foam-acid.jpeg',
     name: 'BIO FOAM ACID',
     code: 'IQA-FOAM-ACID',
     category: 'espumigenos',
@@ -1689,6 +1729,8 @@ const BASE_PRODUCTS: Product[] = [
   // =========================================================================
   {
     id: 'soda-caustica-50',
+    image: '/imgprod/bio-det-alka.jpeg',
+    imageUrl: '/imgprod/bio-det-alka.jpeg',
     name: 'Soda Cáustica 50%',
     code: 'IQA-MP-SC50',
     category: 'materia_prima',
@@ -1726,6 +1768,8 @@ const BASE_PRODUCTS: Product[] = [
   },
   {
     id: 'acido-fosforico-85',
+    image: '/imgprod/bio-det-acid.jpeg',
+    imageUrl: '/imgprod/bio-det-acid.jpeg',
     name: 'Ácido Fosfórico 85%',
     code: 'IQA-MP-AF85',
     category: 'materia_prima',
@@ -1763,6 +1807,8 @@ const BASE_PRODUCTS: Product[] = [
   },
   {
     id: 'hipoclorito-sodio-100',
+    image: '/imgprod/bio-det-cl.jpeg',
+    imageUrl: '/imgprod/bio-det-cl.jpeg',
     name: 'Hipoclorito de Sodio 100 g/l',
     code: 'IQA-MP-HS100',
     category: 'desinfectantes',
@@ -1800,6 +1846,8 @@ const BASE_PRODUCTS: Product[] = [
   },
   {
     id: 'sanitex-forte',
+    image: '/imgprod/bio-ap32.jpeg',
+    imageUrl: '/imgprod/bio-ap32.jpeg',
     name: 'Sanitex Forte',
     code: 'IQA-STX-FORTE',
     category: 'desinfectantes',

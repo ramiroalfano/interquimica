@@ -44,6 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               badge={product.badge}
               color={product.canisterColor}
               isBag={isBag}
+              image={product.image || product.imageUrl}
               className="w-full h-full"
             />
           </div>
@@ -114,6 +115,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           badge={product.badge}
           color={product.canisterColor}
           isBag={isBag}
+          image={product.image || product.imageUrl}
           className="w-36 h-44 py-1"
         />
 

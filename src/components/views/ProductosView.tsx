@@ -531,6 +531,7 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
                           badge={product.badge}
                           color={product.canisterColor}
                           isBag={isSolid}
+                          image={product.image || product.imageUrl}
                           className="w-44 h-56"
                         />
                       </div>

@@ -129,6 +129,7 @@ Mendoza, Argentina | cblanco@interquimica.com.ar | Tel: +54 9 261 468 1775
                 badge={product.badge}
                 color={product.canisterColor}
                 isBag={isBag}
+                image={product.image || product.imageUrl}
                 className="w-48 h-60 drop-shadow-2xl"
               />
 

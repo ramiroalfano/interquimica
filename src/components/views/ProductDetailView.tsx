@@ -156,6 +156,7 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
                   color={product.canisterColor}
                   badge={product.badge}
                   className="w-full h-full"
+                  image={product.image || product.imageUrl}
                   isBag={isSolidProduct}
                 />
               </div>
@@ -460,6 +461,7 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
                       color={product.canisterColor}
                       badge={product.badge}
                       className="w-20 h-28"
+                      image={product.image || product.imageUrl}
                       isBag={isSolidProduct || pres.packaging.toLowerCase().includes('bolsa')}
                     />
                   </div>
@@ -643,6 +645,7 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
                       color={rel.canisterColor}
                       badge={rel.badge}
                       className="w-full h-full"
+                      image={rel.image || rel.imageUrl}
                       isBag={
                         rel.isBag ??
                         rel.presentations.some((p) =>

@@ -8,7 +8,6 @@ import {
   Linkedin,
   Instagram,
   Youtube,
-  ShieldCheck,
   CheckCircle2,
 } from 'lucide-react';
 import { IqaLogo } from './IqaLogo.tsx';
@@ -86,8 +85,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
 
             {/* ISO 9001 Seal */}
             <div className="pt-4 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full border-2 border-slate-700 flex items-center justify-center p-1 bg-slate-900/60">
-                <ShieldCheck className="w-7 h-7 text-blue-400" />
+              <div className="w-12 h-12 rounded-full border-2 border-slate-700 overflow-hidden bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                <img
+                  src="/images/imgiso.jpeg"
+                  alt="ISO 9001:2015 Certificación"
+                  className="w-full h-full object-contain rounded-full"
+                  loading="lazy"
+                />
               </div>
               <div>
                 <span className="text-xs font-bold text-white block">ISO 9001:2015</span>

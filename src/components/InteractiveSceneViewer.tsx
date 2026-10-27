@@ -590,7 +590,9 @@ Mendoza, Argentina
                                   name={prod.name}
                                   color={prod.canisterColor}
                                   badge={prod.badge}
-                                  className="w-full h-full scale-75"
+                                  image={prod.image || prod.imageUrl}
+                                  isBag={prod.isBag}
+                                  className="w-full h-full scale-90"
                                 />
                               </div>
                               <div className="leading-tight truncate">

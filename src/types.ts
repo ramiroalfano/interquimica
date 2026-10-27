@@ -73,6 +73,7 @@ export interface Product {
   hasTechSheet: boolean;
   hasSafetySheet: boolean;
   imageUrl?: string;
+  image?: string;
 }
 
 export interface Hotspot {
