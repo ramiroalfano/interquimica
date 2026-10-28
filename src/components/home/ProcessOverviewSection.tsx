@@ -1,8 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import { IMAGES } from '../../data/mockData.ts';
-
 interface ProcessOverviewSectionProps {
   onNavigate: (view: string) => void;
   onOpenEscenarios?: (sceneId: string) => void;
@@ -100,7 +98,7 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
           className="relative overflow-hidden rounded-xl border border-sky-500/25 bg-[#020713] shadow-2xl shadow-sky-950/50"
         >
           <img
-            src={IMAGES.processDiagram}
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-EoEMAUiErCWvSdlhNI2D3Qj3zmgfJN.png"
             alt="Proceso industrial CIP con tanques de acero inoxidable y línea de embotellado"
             loading="eager"
             decoding="async"
