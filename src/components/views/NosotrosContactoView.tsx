@@ -133,8 +133,8 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                 </div>
               </motion.div>
 
-              {/* Pillars */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Pillars & Certifications */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <motion.div
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -160,7 +160,36 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: 0.12 }}
+                  transition={{ duration: 0.45, delay: 0.1 }}
+                  className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
+                >
+                  <div className="w-12 h-12 bg-white rounded-xl p-1.5 flex items-center justify-center border border-slate-700/60 overflow-hidden shadow-sm">
+                    <img
+                      src="/images/logo_senasa_organico.png"
+                      alt="Certificación SENASA para Productos Orgánicos"
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-bold text-white">SENASA Orgánico</h3>
+                    <img
+                      src="/images/logo_senasa.png"
+                      alt="Logo SENASA"
+                      className="h-3.5 w-auto object-contain bg-white px-1 py-0.5 rounded shadow-xs"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Formulaciones certificadas para uso en la elaboración de alimentos y vinos orgánicos bajo normativa SENASA.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.15 }}
                   className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
                 >
                   <div className="p-3 bg-emerald-600/20 text-emerald-400 rounded-xl w-fit">
@@ -176,7 +205,7 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: 0.19 }}
+                  transition={{ duration: 0.45, delay: 0.2 }}
                   className="p-6 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3"
                 >
                   <div className="p-3 bg-purple-600/20 text-purple-400 rounded-xl w-fit">

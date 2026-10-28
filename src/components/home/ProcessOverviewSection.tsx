@@ -17,31 +17,32 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
   onNavigate,
   onOpenEscenarios,
 }) => {
+  // Proceso de lavado optimizado con productos sólidos (ahorro de tiempo, agua y dinero)
   const processSteps = [
     {
       num: '01',
-      title: 'PREPARACIÓN',
-      desc: 'Dosificación precisa y controlada.',
+      title: 'DOSIFICACIÓN SÓLIDA',
+      desc: 'Disolución rápida y segura sin manipulación de líquidos corrosivos.',
     },
     {
       num: '02',
-      title: 'LIMPIEZA',
-      desc: 'Remoción efectiva de suciedad y residuos.',
+      title: 'LAVADO ACTIVO SÓLIDO',
+      desc: 'Alta concentración alcalina para remoción profunda de residuos.',
     },
     {
       num: '03',
-      title: 'ENJUAGUE',
-      desc: 'Eliminación total de residuos químicos.',
+      title: 'ENJUAGUE ACELERADO',
+      desc: 'Fórmula de fácil eliminación con significativo ahorro de agua.',
     },
     {
       num: '04',
-      title: 'DESINFECCIÓN',
-      desc: 'Control microbiológico y seguridad alimentaria.',
+      title: 'DESINFECCIÓN INTEGRAL',
+      desc: 'Control microbiológico total y máxima seguridad higiénico-sanitaria.',
     },
     {
       num: '05',
-      title: 'ENJUAGUE FINAL Y SECADO',
-      desc: 'Acabado óptimo del proceso.',
+      title: 'ACABADO Y AHORRO',
+      desc: 'Rápido reinicio operativo con ahorro de tiempo y dinero a largo plazo.',
     },
   ];
 
@@ -105,7 +106,7 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
-              Desarrollamos y fabricamos soluciones de alta performance para la industria alimentaria, bebidas, frigoríficos y más.
+              Desarrollamos y fabricamos soluciones de alta performance para la industria alimentaria, bebidas, bodegas, frigoríficos y más.
             </p>
 
             {/* 3 Pillars with cyan icons */}
@@ -196,7 +197,7 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
         </motion.div>
 
         {/* ========================================================= */}
-        {/* COLUMNA DERECHA: PROCESO LIMPIO, SEGURO Y EFICIENTE (EXACTO A LA IMAGEN) */}
+        {/* COLUMNA DERECHA: PROCESO LIMPIO, SEGURO Y EFICIENTE */}
         {/* ========================================================= */}
         <motion.div
           initial={{ opacity: 0, x: 24 }}
@@ -208,8 +209,8 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
           {/* Ambient Spotlight Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[360px] bg-sky-600/[0.08] rounded-full blur-[130px] pointer-events-none" />
 
-          {/* Header */}
-          <div className="relative z-10 text-center space-y-1.5 mb-6">
+          {/* Header con Texto Normal No Interactivo */}
+          <div className="relative z-10 text-center space-y-2 mb-6 max-w-3xl mx-auto">
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-wide uppercase font-display">
               UN PROCESO{' '}
               <span className="text-[#00c8ff] drop-shadow-[0_0_14px_rgba(0,200,255,0.5)]">
@@ -218,6 +219,9 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 font-medium">
               Acompañamos cada etapa con la solución química ideal.
+            </p>
+            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+              Incorporamos el proceso de lavado con productos sólidos, que es más sencillo, ahorrando tiempo, agua y a la larga dinero.
             </p>
           </div>
 

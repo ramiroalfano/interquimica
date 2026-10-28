@@ -83,19 +83,46 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
               </a>
             </div>
 
-            {/* ISO 9001 Seal */}
-            <div className="pt-4 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full border-2 border-slate-700 overflow-hidden bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
-                <img
-                  src="/images/imgiso.jpeg"
-                  alt="ISO 9001:2015 Certificación"
-                  className="w-full h-full object-contain rounded-full"
-                  loading="lazy"
-                />
+            {/* Official Certifications: ISO 9001 & SENASA Orgánico */}
+            <div className="pt-4 flex flex-wrap items-center gap-4 sm:gap-5">
+              {/* ISO 9001 Seal */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-12 h-12 rounded-full border-2 border-slate-700 overflow-hidden bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                  <img
+                    src="/images/imgiso.jpeg"
+                    alt="ISO 9001:2015 Certificación"
+                    className="w-full h-full object-contain rounded-full"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-white block">ISO 9001:2015</span>
+                  <span className="text-[10px] text-slate-400 block leading-tight">Gestión de la Calidad Certificada</span>
+                </div>
               </div>
-              <div>
-                <span className="text-xs font-bold text-white block">ISO 9001:2015</span>
-                <span className="text-[10px] text-slate-400 block">Gestión de la Calidad Certificada</span>
+
+              {/* SENASA Orgánico Seal con Logo SENASA */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-12 h-12 rounded-full border-2 border-slate-700 overflow-hidden bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                  <img
+                    src="/images/logo_senasa_organico.png"
+                    alt="Certificación SENASA para Productos Orgánicos"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-white block">SENASA Orgánico</span>
+                    <img
+                      src="/images/logo_senasa.png"
+                      alt="Logo SENASA"
+                      className="h-3.5 w-auto object-contain bg-white px-1 py-0.5 rounded shadow-xs"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="text-[10px] text-slate-400 block leading-tight">Certificado para Productos Orgánicos</span>
+                </div>
               </div>
             </div>
           </div>

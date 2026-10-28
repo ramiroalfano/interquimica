@@ -87,6 +87,8 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
         p.packaging.toLowerCase().includes('perlas')
     );
 
+  const hasImage = Boolean(product.image || product.imageUrl);
+
   return (
     <div className="w-full bg-[#030917] text-white min-h-screen font-sans selection:bg-blue-600 selection:text-white pt-24 pb-16">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -127,30 +129,40 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
           {/* Left Column: Product Visual with Splash Background */}
           <div className="lg:col-span-5 flex flex-col items-center">
             {/* Main Stage with Water Splash / Clean Industrial Aura */}
-            <div className="relative w-full aspect-square max-w-[460px] rounded-2xl bg-gradient-to-b from-[#06142e] via-[#040e22] to-[#020713] border border-slate-800/80 p-8 sm:p-10 flex items-center justify-center overflow-hidden shadow-2xl">
-              {/* Radial Cyan Glow Spotlight */}
-              <div className="absolute inset-0 bg-radial from-sky-500/15 via-transparent to-transparent pointer-events-none blur-2xl" />
+            <div
+              className={`relative w-full aspect-square max-w-[460px] rounded-2xl p-6 sm:p-8 flex items-center justify-center overflow-hidden shadow-2xl transition-all ${
+                hasImage
+                  ? 'bg-white border border-slate-200/90 shadow-slate-900/50'
+                  : 'bg-gradient-to-b from-[#06142e] via-[#040e22] to-[#020713] border border-slate-800/80'
+              }`}
+            >
+              {!hasImage && (
+                <>
+                  {/* Radial Cyan Glow Spotlight */}
+                  <div className="absolute inset-0 bg-radial from-sky-500/15 via-transparent to-transparent pointer-events-none blur-2xl" />
 
-              {/* Water Splash & Droplets Effect behind Canister */}
-              <svg
-                className="absolute inset-0 w-full h-full text-sky-400/25 pointer-events-none"
-                viewBox="0 0 300 300"
-                fill="currentColor"
-              >
-                <path d="M 50 240 Q 80 180 100 210 Q 130 250 170 210 Q 210 170 240 220 Q 270 250 250 270 Q 150 290 50 240 Z" opacity="0.35" />
-                <path d="M 60 210 Q 40 160 70 140 Q 90 120 85 160 Q 80 190 60 210 Z" opacity="0.25" />
-                <path d="M 230 210 Q 260 160 235 130 Q 215 110 225 150 Q 230 180 230 210 Z" opacity="0.25" />
-                <circle cx="65" cy="120" r="4" opacity="0.6" />
-                <circle cx="85" cy="95" r="3" opacity="0.5" />
-                <circle cx="215" cy="105" r="3.5" opacity="0.6" />
-                <circle cx="240" cy="130" r="4.5" opacity="0.5" />
-                <circle cx="150" cy="70" r="3" opacity="0.4" />
-                <circle cx="180" cy="60" r="2.5" opacity="0.4" />
-                <circle cx="115" cy="80" r="2.5" opacity="0.5" />
-              </svg>
+                  {/* Water Splash & Droplets Effect behind Canister */}
+                  <svg
+                    className="absolute inset-0 w-full h-full text-sky-400/25 pointer-events-none"
+                    viewBox="0 0 300 300"
+                    fill="currentColor"
+                  >
+                    <path d="M 50 240 Q 80 180 100 210 Q 130 250 170 210 Q 210 170 240 220 Q 270 250 250 270 Q 150 290 50 240 Z" opacity="0.35" />
+                    <path d="M 60 210 Q 40 160 70 140 Q 90 120 85 160 Q 80 190 60 210 Z" opacity="0.25" />
+                    <path d="M 230 210 Q 260 160 235 130 Q 215 110 225 150 Q 230 180 230 210 Z" opacity="0.25" />
+                    <circle cx="65" cy="120" r="4" opacity="0.6" />
+                    <circle cx="85" cy="95" r="3" opacity="0.5" />
+                    <circle cx="215" cy="105" r="3.5" opacity="0.6" />
+                    <circle cx="240" cy="130" r="4.5" opacity="0.5" />
+                    <circle cx="150" cy="70" r="3" opacity="0.4" />
+                    <circle cx="180" cy="60" r="2.5" opacity="0.4" />
+                    <circle cx="115" cy="80" r="2.5" opacity="0.5" />
+                  </svg>
+                </>
+              )}
 
               {/* Main Display: Pure Product Canister / Sack Visual */}
-              <div className="relative z-10 w-56 h-72 sm:w-64 sm:h-80 flex items-center justify-center filter drop-shadow-[0_20px_40px_rgba(0,120,255,0.28)]">
+              <div className="relative z-10 w-64 h-80 sm:w-72 sm:h-96 flex items-center justify-center">
                 <CanisterVisual
                   name={product.name}
                   color={product.canisterColor}
@@ -162,9 +174,15 @@ export const ProductDetailView: React.FC<ProductDetailViewProps> = ({
               </div>
 
               {/* Bottom Format Badge */}
-              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] text-slate-400 font-mono bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800">
+              <div
+                className={`absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono px-3 py-1.5 rounded-lg border ${
+                  hasImage
+                    ? 'text-slate-700 bg-slate-100/90 border-slate-200'
+                    : 'text-slate-400 bg-black/60 backdrop-blur-md border-slate-800'
+                }`}
+              >
                 <span>{isSolidProduct ? 'Formato: Sólido / Escamas' : 'Formato: Líquido Concentrado'}</span>
-                <span className="text-sky-400 font-bold">{product.code}</span>
+                <span className="text-blue-600 font-bold">{product.code}</span>
               </div>
             </div>
           </div>

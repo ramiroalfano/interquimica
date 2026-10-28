@@ -181,8 +181,8 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                 onClick={() => handleProductClick(product)}
                 className="group shrink-0 w-[275px] sm:w-[295px] lg:w-[310px] snap-start bg-[#071328]/75 hover:bg-[#0a1b38] border border-slate-700/60 hover:border-[#0088cc] rounded-xl p-4 transition-all duration-300 shadow-xl flex items-center gap-3.5 cursor-pointer"
               >
-                {/* Canister Image Visual on Left */}
-                <div className="w-[105px] h-[145px] shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                {/* Canister Image Visual on Left with clean white stage */}
+                <div className="w-[110px] h-[145px] shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-md border border-white/20 overflow-hidden">
                   <CanisterVisual
                     name={product.name}
                     color={product.canisterColor}

@@ -23,16 +23,13 @@ export const CanisterVisual: React.FC<CanisterVisualProps> = ({
   if (image && !imgError) {
     return (
       <div className={`relative flex items-center justify-center p-1 group/visual ${className}`}>
-        {/* Soft atmospheric ambient glow */}
-        <div
-          className="absolute inset-2 rounded-2xl opacity-20 blur-xl pointer-events-none transition-opacity duration-300 group-hover/visual:opacity-35"
-          style={{ backgroundColor: color }}
-        />
+        {/* Natural contact ground shadow beneath the packaging */}
+        <div className="absolute bottom-2.5 w-3/5 h-2.5 bg-black/15 rounded-[100%] blur-[4px] pointer-events-none" />
         <img
           src={image}
           alt={name}
           onError={() => setImgError(true)}
-          className="relative z-10 w-full h-full max-h-full object-contain filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:scale-105 select-none"
+          className="relative z-10 w-full h-full max-h-full object-contain mix-blend-multiply transition-transform duration-300 hover:scale-105 select-none"
           loading="lazy"
         />
       </div>

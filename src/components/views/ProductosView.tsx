@@ -523,7 +523,7 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
                       {/* Product Realistic Packaging Stage */}
                       <div
                         onClick={() => onSelectProduct(product)}
-                        className="h-60 sm:h-64 flex items-center justify-center p-3 mb-4 bg-slate-50/70 rounded-xl cursor-pointer group-hover:bg-blue-50/30 transition-colors"
+                        className="h-60 sm:h-64 flex items-center justify-center p-2 mb-4 bg-white rounded-xl cursor-pointer transition-all border border-slate-100 group-hover:border-blue-200"
                         title={`Ver detalles de ${product.name}`}
                       >
                         <CanisterVisual
@@ -532,7 +532,7 @@ export const ProductosView: React.FC<ProductosViewProps> = ({
                           color={product.canisterColor}
                           isBag={isSolid}
                           image={product.image || product.imageUrl}
-                          className="w-44 h-56"
+                          className="w-full h-full max-w-[210px] max-h-[225px]"
                         />
                       </div>
 
