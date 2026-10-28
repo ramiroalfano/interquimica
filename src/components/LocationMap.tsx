@@ -10,7 +10,6 @@ import {
   MapPin,
   ExternalLink,
   Navigation,
-  Building2,
   Phone,
   Mail,
   Copy,
@@ -57,7 +56,7 @@ export const LocationMap: React.FC<LocationMapProps> = ({
   const [showInfoWindow, setShowInfoWindow] = useState(true);
   const [copied, setCopied] = useState(false);
   const [hasMapError, setHasMapError] = useState(false);
-  const [isSatellite, setIsSatellite] = useState(true);
+  const [isSatellite, setIsSatellite] = useState(false);
   const [showReferenceModal, setShowReferenceModal] = useState(false);
 
   // Retrieve API Key from env, fallback to provided key if defined
@@ -129,7 +128,7 @@ export const LocationMap: React.FC<LocationMapProps> = ({
             title={isSatellite ? 'Cambiar a vista de calles' : 'Cambiar a vista satelital'}
           >
             <Layers className="w-3.5 h-3.5 text-blue-400" />
-            <span>{isSatellite ? 'Satélite' : 'Plano'}</span>
+            <span>{isSatellite ? 'Satélite' : 'Mapa'}</span>
           </button>
 
           {/* Reference image preview button */}
@@ -282,12 +281,6 @@ export const LocationMap: React.FC<LocationMapProps> = ({
               </span>
             </div>
             <div className="text-[11px] text-slate-300 space-y-1">
-              <div className="flex items-start gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
-                <span>
-                  Planta Química, Reactores & Laboratorio de Ensayos Cromatográficos.
-                </span>
-              </div>
               <div className="flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                 <a
