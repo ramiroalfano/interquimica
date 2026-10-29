@@ -17,13 +17,11 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
   onNavigate,
   onOpenEscenarios,
 }) => {
-  // Proceso industrial CIP optimizado en 5 etapas
+  // Proceso industrial CIP optimizado en 3 etapas
   const processSteps = [
-    { num: '01', title: 'PREPARACIÓN' },
-    { num: '02', title: 'LIMPIEZA' },
-    { num: '03', title: 'ENJUAGUE' },
-    { num: '04', title: 'DESINFECCIÓN' },
-    { num: '05', title: 'ENJUAGUE FINAL' },
+    { num: '01', title: 'ENJUAGUE INICIAL' },
+    { num: '02', title: 'LAVADO Y DESINFECCIÓN', subtitle: '(recircular el producto)' },
+    { num: '03', title: 'ENJUAGUE FINAL' },
   ];
 
   const handleOpenProcess = () => {
@@ -205,13 +203,13 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
             </p>
           </div>
 
-          {/* 5-Step Pipeline Flow with Connected Cyan Line */}
+          {/* 3-Step Pipeline Flow with Connected Cyan Line */}
           <div className="relative z-10 w-full mb-6">
             {/* Horizontal Glowing Cyan Pipeline */}
-            <div className="absolute top-[16px] sm:top-[18px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-sky-500/30 via-[#00c8ff] to-sky-500/30 shadow-[0_0_8px_rgba(0,200,255,0.8)] pointer-events-none" />
+            <div className="absolute top-[16px] sm:top-[18px] left-[16%] right-[16%] h-[2px] bg-gradient-to-r from-sky-500/30 via-[#00c8ff] to-sky-500/30 shadow-[0_0_8px_rgba(0,200,255,0.8)] pointer-events-none" />
 
-            {/* Steps Row (5 columns matching the reference horizontal timeline) */}
-            <div className="grid grid-cols-5 gap-1 sm:gap-3">
+            {/* Steps Row (3 columns) */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-2xl mx-auto">
               {processSteps.map((step, idx) => {
                 return (
                   <motion.div
@@ -227,11 +225,16 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
                       {step.num}
                     </div>
 
-                    {/* Step Title Only (no explanation paragraph below) */}
+                    {/* Step Title & Note */}
                     <div className="mt-2.5">
-                      <h4 className="text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-wider font-display text-white">
+                      <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider font-display text-white">
                         {step.title}
                       </h4>
+                      {step.subtitle && (
+                        <p className="text-[10px] sm:text-xs text-sky-300 font-medium tracking-normal mt-0.5">
+                          {step.subtitle}
+                        </p>
+                      )}
                     </div>
                   </motion.div>
                 );
