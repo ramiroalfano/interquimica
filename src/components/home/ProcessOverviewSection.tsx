@@ -17,33 +17,13 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
   onNavigate,
   onOpenEscenarios,
 }) => {
-  // Proceso de lavado optimizado con productos sólidos (ahorro de tiempo, agua y dinero)
+  // Proceso industrial CIP optimizado en 5 etapas
   const processSteps = [
-    {
-      num: '01',
-      title: 'DOSIFICACIÓN SÓLIDA',
-      desc: 'Disolución rápida y segura sin manipulación de líquidos corrosivos.',
-    },
-    {
-      num: '02',
-      title: 'LAVADO ACTIVO SÓLIDO',
-      desc: 'Alta concentración alcalina para remoción profunda de residuos.',
-    },
-    {
-      num: '03',
-      title: 'ENJUAGUE ACELERADO',
-      desc: 'Fórmula de fácil eliminación con significativo ahorro de agua.',
-    },
-    {
-      num: '04',
-      title: 'DESINFECCIÓN INTEGRAL',
-      desc: 'Control microbiológico total y máxima seguridad higiénico-sanitaria.',
-    },
-    {
-      num: '05',
-      title: 'ACABADO Y AHORRO',
-      desc: 'Rápido reinicio operativo con ahorro de tiempo y dinero a largo plazo.',
-    },
+    { num: '01', title: 'PREPARACIÓN' },
+    { num: '02', title: 'LIMPIEZA' },
+    { num: '03', title: 'ENJUAGUE' },
+    { num: '04', title: 'DESINFECCIÓN' },
+    { num: '05', title: 'ENJUAGUE FINAL' },
   ];
 
   const handleOpenProcess = () => {
@@ -226,12 +206,12 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
           </div>
 
           {/* 5-Step Pipeline Flow with Connected Cyan Line */}
-          <div className="relative z-10 w-full mb-4">
+          <div className="relative z-10 w-full mb-6">
             {/* Horizontal Glowing Cyan Pipeline */}
-            <div className="hidden sm:block absolute top-[14px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-sky-500/30 via-[#00c8ff] to-sky-500/30 shadow-[0_0_8px_rgba(0,200,255,0.7)] pointer-events-none" />
+            <div className="absolute top-[16px] sm:top-[18px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-sky-500/30 via-[#00c8ff] to-sky-500/30 shadow-[0_0_8px_rgba(0,200,255,0.8)] pointer-events-none" />
 
-            {/* Steps Row */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-2">
+            {/* Steps Row (5 columns matching the reference horizontal timeline) */}
+            <div className="grid grid-cols-5 gap-1 sm:gap-3">
               {processSteps.map((step, idx) => {
                 return (
                   <motion.div
@@ -243,22 +223,16 @@ export const ProcessOverviewSection: React.FC<ProcessOverviewSectionProps> = ({
                     className="relative flex flex-col items-center text-center select-none"
                   >
                     {/* Number Badge */}
-                    <div className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs bg-[#0088cc] text-white shadow-[0_0_10px_rgba(0,136,204,0.6)]">
+                    <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-extrabold text-xs sm:text-sm bg-[#0088cc] border border-[#38bdf8]/70 text-white shadow-[0_0_12px_rgba(0,180,255,0.7)]">
                       {step.num}
                     </div>
 
-                    {/* Step Title & Subtitle */}
-                    <div className="mt-2 space-y-0.5">
-                      <h4 className="text-xs font-black uppercase tracking-wider font-display text-white">
+                    {/* Step Title Only (no explanation paragraph below) */}
+                    <div className="mt-2.5">
+                      <h4 className="text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-wider font-display text-white">
                         {step.title}
                       </h4>
-                      <p className="text-[11px] text-slate-300 leading-tight">
-                        {step.desc}
-                      </p>
                     </div>
-
-                    {/* Vertical Cyan Pointer pointing down towards corresponding equipment */}
-                    <div className="hidden sm:block w-[1px] h-3.5 bg-gradient-to-b from-[#00c8ff] to-transparent mt-1.5 opacity-70" />
                   </motion.div>
                 );
               })}

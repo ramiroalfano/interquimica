@@ -65,8 +65,8 @@ export const PRODUCT_LINES: ProductLineDef[] = [
       'bio-ap32',
       'bio-ap32-forte',
       'ac32',
-      'sanitex-forte',
       'hipoclorito-sodio-100',
+      'bio-det-cl',
       'clor-liq-100',
     ],
   },
@@ -128,7 +128,6 @@ export const PRODUCT_LINES: ProductLineDef[] = [
       'acido-citrico-anhidrido',
       'soda-caustica-50',
       'acido-fosforico-85',
-      'hipoclorito-sodio-100',
     ],
   },
 ];

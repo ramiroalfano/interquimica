@@ -100,7 +100,7 @@ export const INDUSTRIES: Industry[] = [
         icon: 'Bottle',
         description: 'Higiene y desinfección de líneas de embotellado, cintas transportadoras y superficies.',
         details: 'Seguridad microbiológica y trazabilidad alimentaria para evitar contaminación cruzada previa al tapado.',
-        suggestedProductIds: ['sanitex-forte', 'foam-plus'],
+        suggestedProductIds: ['bio-ap32', 'foam-plus'],
       },
     ],
   },
@@ -166,7 +166,7 @@ export const INDUSTRIES: Industry[] = [
         icon: 'Scissors',
         description: 'Limpieza alcalina clorada espumante para remover materia orgánica y grasas de alta viscosidad.',
         details: 'Control estricto de carga microbiana y prevención de biofilm en mesas de corte y transportadores.',
-        suggestedProductIds: ['foam-plus', 'k45', 'sanitex-forte'],
+        suggestedProductIds: ['foam-plus', 'k45', 'bio-ap32'],
       },
       {
         id: 'camaras-frigorificas',
@@ -174,7 +174,7 @@ export const INDUSTRIES: Industry[] = [
         icon: 'Snowflake',
         description: 'Desinfección de evaporadores, paredes de paneles aislantes y puertas herméticas.',
         details: 'Control ambiental de mohos psicrófilos y hongos sin condensaciones indeseadas.',
-        suggestedProductIds: ['sanitex-forte', 'oxi-t'],
+        suggestedProductIds: ['bio-ap32', 'oxi-t'],
       },
       {
         id: 'pisos-superficies',
@@ -211,7 +211,7 @@ export const INDUSTRIES: Industry[] = [
         icon: 'Droplet',
         description: 'Limpieza alcalina de tolvas, cintas de inspección y circuitos de agua de lavado.',
         details: 'Elimina residuos de tierra, hojas y materia orgánica antes del ingreso al molino.',
-        suggestedProductIds: ['ac32', 'sanitex-forte'],
+        suggestedProductIds: ['ac32', 'bio-ap32'],
       },
       {
         id: 'molinos-batidoras',
@@ -489,8 +489,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         commonProblem:
           'Desarrollo de hongos psicrófilos en paredes y evaporadores a bajas temperaturas continuas.',
         recommendedSolution:
-          'Nebulización y aplicación con Sanitex Forte o OXI T formulados para actuar en frío.',
-        suggestedProductIds: ['sanitex-forte', 'oxi-t'],
+          'Nebulización y aplicación con BIO AP32 o OXI T formulados para actuar en frío.',
+        suggestedProductIds: ['bio-ap32', 'oxi-t'],
         downloads: [
           { title: 'Control fúngico en cámaras de frío', type: 'techsheet', filename: 'Control_Fungico.pdf' },
         ],
@@ -506,7 +506,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
           'Acumulación de materia orgánica, grasas y proteínas que favorecen la proliferación bacteriana, generan olores desagradables y riesgo de contaminación cruzada.',
         recommendedSolution:
           'Limpieza alcalina y desinfección de alto desempeño para eliminar residuos, controlar la carga microbiana y asegurar la inocuidad en áreas de contacto con la carne.',
-        suggestedProductIds: ['na45', 'sanitex-forte', 'oxi-t'],
+        suggestedProductIds: ['na45', 'bio-ap32', 'oxi-t'],
         downloads: [
           { title: 'Protocolo de limpieza – Sala de desposte', type: 'protocol', filename: 'Protocolo_Desposte.pdf' },
           { title: 'Ficha técnica del proceso', type: 'techsheet', filename: 'Ficha_Tecnica_Desposte.pdf' },
@@ -539,7 +539,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
           'Manchas de sangre y acumulación de grasa entre eslabones plásticos modulares.',
         recommendedSolution:
           'Detergente alcalino clorado K45 por recirculación o túnel de lavado con enjuague posterior.',
-        suggestedProductIds: ['k45', 'sanitex-forte'],
+        suggestedProductIds: ['k45', 'bio-ap32'],
         downloads: [
           { title: 'Higienización de bandas modulares', type: 'protocol', filename: 'Higiene_Bandas.pdf' },
         ],
@@ -645,7 +645,7 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
           'Goteo de aceite en boquillas dosificadoras y transportadores de botellas.',
         recommendedSolution:
           'Limpiador desengrasante AC32 y sanitizante volátil que no deja olores.',
-        suggestedProductIds: ['ac32', 'sanitex-forte'],
+        suggestedProductIds: ['ac32', 'bio-ap32'],
         downloads: [
           { title: 'Guía de envasado y calidad organoléptica', type: 'techsheet', filename: 'Guia_Envasado_Oliva.pdf' },
         ],
@@ -767,8 +767,8 @@ export const INTERACTIVE_SCENES: InteractiveScene[] = [
         commonProblem:
           'Biofilm en enjuagadoras de botellas vacías, derrames de vino y acumulación de azúcares en transportadores.',
         recommendedSolution:
-          'Limpieza alcalina con AC32 y desinfección ambiental con Sanitex Forte y OXI T.',
-        suggestedProductIds: ['ac32', 'sanitex-forte', 'oxi-t'],
+          'Limpieza alcalina con AC32 y desinfección ambiental con BIO AP32 y OXI T.',
+        suggestedProductIds: ['ac32', 'bio-ap32', 'oxi-t'],
         downloads: [
           { title: 'Protocolo de higiene para línea de botellas', type: 'protocol', filename: 'Higiene_Botellas.pdf' },
         ],
