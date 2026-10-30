@@ -147,9 +147,6 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                     />
                   </div>
                   <h3 className="text-base font-bold text-white">Certificación ISO 9001:2015</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Cada lote producido es testeado cromatográfica y titrimétricamente en nuestro laboratorio central antes de su despacho.
-                  </p>
                 </motion.div>
 
                 <motion.div
@@ -176,9 +173,6 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                       loading="lazy"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Formulaciones certificadas para uso en la elaboración de alimentos y vinos orgánicos bajo normativa SENASA.
-                  </p>
                 </motion.div>
 
                 <motion.div
