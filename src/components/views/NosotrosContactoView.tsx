@@ -113,7 +113,7 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-6 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl text-center sm:text-left"
               >
                 <div>
                   <span className="text-3xl font-black text-blue-400 font-mono block">+25</span>
@@ -122,10 +122,6 @@ export const NosotrosContactoView: React.FC<NosotrosContactoViewProps> = ({
                 <div>
                   <span className="text-3xl font-black text-blue-400 font-mono block">+500</span>
                   <span className="text-xs text-slate-400">Plantas y bodegas atendidas</span>
-                </div>
-                <div>
-                  <span className="text-3xl font-black text-emerald-400 font-mono block">100%</span>
-                  <span className="text-xs text-slate-400">Fórmulas biodegradables</span>
                 </div>
                 <div>
                   <span className="text-3xl font-black text-emerald-400 font-mono block">ISO</span>

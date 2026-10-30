@@ -212,7 +212,7 @@ const BASE_PRODUCTS: Product[] = [
       'Cristales o polvo traslúcidos incoloros de disolución rápida',
       'Excelente poder antioxidante y secuestrante de iones metálicos',
       'pH débil y seguro para cualquier superficie de metal',
-      'No tóxico, 100% biodegradable de origen orgánico',
+      'No tóxico, de origen orgánico',
       'Muy soluble en agua y alcohol',
     ],
     applications: [
