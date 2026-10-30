@@ -5,9 +5,7 @@ import {
   Clock,
   MapPin,
   Send,
-  Linkedin,
   Instagram,
-  Youtube,
   CheckCircle2,
 } from 'lucide-react';
 import { IqaLogo } from './IqaLogo.tsx';
@@ -55,31 +53,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectProductById 
             {/* Social Icons */}
             <div className="flex items-center gap-2 pt-2">
               <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-500 transition-colors"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/interquimica.ar?rpxt=YnpqYjAweThtOHNy"
                 target="_blank"
                 rel="noreferrer"
                 className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-rose-400 hover:border-rose-500 transition-colors"
-                title="Instagram"
+                title="Instagram @interquimica.ar"
+                aria-label="Instagram de InterQuímica Argentina"
               >
                 <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-red-400 hover:border-red-500 transition-colors"
-                title="YouTube"
-              >
-                <Youtube className="w-4 h-4" />
               </a>
             </div>
 
